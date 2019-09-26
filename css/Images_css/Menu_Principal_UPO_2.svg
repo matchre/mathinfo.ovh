@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40"
+   height="40"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Menu_Principal_UPO_2.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="10"
+     inkscape:cx="20.688636"
+     inkscape:cy="20"
+     inkscape:document-units="px"
+     inkscape:current-layer="g2988"
+     showgrid="false"
+     inkscape:window-width="944"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1012.3622)">
+    <g
+       id="g2988"
+       transform="matrix(0.28683205,0,0,0.28683205,134.50269,473.98948)">
+      <path
+         transform="matrix(0,-0.42197001,0.42197001,0,-610.27012,2114.1896)"
+         d="M 560.34483,500.207 A 163.36208,163.36208 0 0 1 396.98276,663.56908 163.36208,163.36208 0 0 1 233.62068,500.207 163.36208,163.36208 0 0 1 396.98276,336.84492 163.36208,163.36208 0 0 1 560.34483,500.207 Z"
+         sodipodi:ry="163.36208"
+         sodipodi:rx="163.36208"
+         sodipodi:cy="500.207"
+         sodipodi:cx="396.98276"
+         id="path3774"
+         style="fill:#e3001b;fill-opacity:1;stroke:#ffffff;stroke-width:3.79181147;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         transform="matrix(0,-0.3550788,0.3550788,0,-576.74752,2087.8311)"
+         d="M 560.34483,500.207 A 163.36208,163.36208 0 0 1 396.98276,663.56908 163.36208,163.36208 0 0 1 233.62068,500.207 163.36208,163.36208 0 0 1 396.98276,336.84492 163.36208,163.36208 0 0 1 560.34483,500.207 Z"
+         sodipodi:ry="163.36208"
+         sodipodi:rx="163.36208"
+         sodipodi:cy="500.207"
+         sodipodi:cx="396.98276"
+         id="path3774-7"
+         style="fill:#ed6000;fill-opacity:1;stroke:#ffffff;stroke-width:4.50612831;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <rect
+         style="fill:#e3001b;fill-opacity:1;stroke:#ffffff;stroke-width:1.60065579;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3004"
+         width="15.831148"
+         height="85.558365"
+         x="-433.26096"
+         y="1903.9095" />
+      <rect
+         style="fill:#e3001b;fill-opacity:1;stroke:#ffffff;stroke-width:1.60065579;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3004-1"
+         width="15.831148"
+         height="85.558365"
+         x="-407.11325"
+         y="1903.9095" />
+      <rect
+         style="fill:#e3001b;fill-opacity:1;stroke:#ffffff;stroke-width:1.60065579;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3004-7"
+         width="15.831148"
+         height="85.558365"
+         x="-380.96555"
+         y="1903.9095" />
+    </g>
+  </g>
+</svg>

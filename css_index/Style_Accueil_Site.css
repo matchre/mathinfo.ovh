@@ -1,0 +1,215 @@
+@charset "utf-8";
+/**---- Structure html/css/js de Nicolas Buyle-Bodin, groupe IREM-ISN de Lyon, sous licence Creative Commons BY-NC-SA ----**/
+/**---- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique ----**/
+
+
+@font-face {
+	font-family: 'FAFERS';
+	src: url(FAFERS_Technical_Font.ttf);
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                       Règles générales pour la page                       */
+/* ------------------------------------------------------------------------- */
+* {
+	margin: 0;
+	padding: 0;
+	}
+
+body{
+	margin: 0;								/* marge extérieure des éléments du corps de la page */
+	font-size: 1em;								/* taille de base de la police */
+	line-height: 1.25;								/* hauteur de ligne de texte */
+	color: black;									/* couleur de base du texte */
+	font-family: 'Helvetica', sans-serif;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                     Partie rédactionnelle principale                      */
+/* ------------------------------------------------------------------------- */
+header {
+	padding: 20px 0;
+	font-size: 2em;
+	font-family: FAFERS;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	background: #118A11;
+	}
+
+section {
+	margin: 0;
+	text-align: justify;
+	padding: 0;
+	min-height: 600px;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+	align-content: space-between;
+	}
+
+section a{
+	text-decoration: none;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                             Liens vers Parties                            */
+/* ------------------------------------------------------------------------- */
+#liste_choix {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	flex: 1;
+	}
+
+a.choix {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+	min-height: 200px;
+	font-weight: bold;
+	flex: 1 0 400px;
+	}
+
+a.choix h3 {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 5px;
+	font-weight: bold;
+}
+
+a.choix  p{
+	margin: 10px;
+	margin-top: 15px;
+	font-size: 1.5em;
+	text-align: center;
+	}
+
+/* ------------------------------------------------------------------------- */
+/*                      Distinctions Maths/Info/Classes                      */
+/* ------------------------------------------------------------------------- */
+.Prem {
+	border: 2px solid #ac1515;
+	color: #ac1515;
+}
+
+h3.Prem {
+	color: white;
+	background-color: #ac1515;
+}
+
+h3.Prem:before {
+	content: "Première";
+}
+
+a.Prem:hover {
+	color: white;
+	background-color: #ac1515;
+	}
+
+.Sec {
+	border: 2px solid #e46e0a;
+	color: #e46e0a;
+}
+
+h3.Sec {
+	color: white;
+	background-color: #e46e0a;
+}
+
+h3.Sec:before {
+	content: "Seconde";
+}
+
+a.Sec:hover {
+	color: white;
+	background-color: #e46e0a;
+	}
+
+.Term {
+	border: 2px solid #163c99;
+	color: #163c99;
+}
+
+h3.Term {
+	color: white;
+	background-color: #163c99;
+}
+
+h3.Term:before {
+	content: "Terminale";
+}
+
+a.Term:hover {
+	color: white;
+	background-color: #163c99;
+	}
+
+.IUT {
+	border: 2px solid #fcaab4;
+	color: #fcaab4;
+}
+
+h3.IUT {
+	color: white;
+	background-color: #fcaab4;
+}
+
+h3.IUT:before {
+	content: "IUT GEII";
+}
+
+a.IUT:hover {
+	color: white;
+	background-color: #fcaab4;
+	}
+
+/* ------------------------------------------------------------------------- */
+/*                              Le pied de page                              */
+/* ------------------------------------------------------------------------- */
+footer {
+	width: 100%;
+	min-width: 810px;
+	height: 30px;						/* hauteur du bloc */
+	line-height: 30px;					/* hauteur de ligne de texte - la même que celle du bloc */
+	padding: 0 5px 2px 5px;				/* marges intérieures du bloc */
+	color: #ffffff;						/* couleur du texte */
+	text-align: center;					/* position horizontal du texte */
+	background: #118A11;				/* couleur du fond */
+	background-image: url(Images_css/Licence03.svg);
+	background-position: 50% -1px;
+	background-repeat: no-repeat;
+	clear: both;						/* Stoppe les objets flottants */
+	}
+
+footer #a_gauche {
+	float: left;
+	text-align: left;
+	padding-left: 10px;
+	}
+
+footer #a_droite {
+	float: right;
+	text-align: right;
+	padding-right: 10px;
+	}
+
+footer #a_droite:after {
+	content: 'Lycée Lacassagne';
+	}
+
+
+
+
+
+
+
+

@@ -1,0 +1,1257 @@
+@charset "utf-8";
+/**---- Structure html/css/js de Nicolas Buyle-Bodin, groupe IREM-ISN de Lyon, sous licence Creative Commons BY-NC-SA ----**/
+/**---- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique ----**/
+
+
+/* ------------------------------------------------------------------------- */
+/*                 CSS DU SITE ISN-HTML DU LYCEE LACASSAGNE                  */
+/* ------------------------------------------------------------------------- */
+/*                             Charte Graphique                              */
+/* Couleurs principales : Orange ISN - #e46e0a                               */
+/*                        Bleu ISN   - #163c99                               */
+/*																			 */
+/* Couleurs secondaires : Vert ISN   - #007100                               */
+/*																			 */
+/* ------------------------------------------------------------------------- */
+/*              Importation de nouvelles polices de caractères               */
+/* ------------------------------------------------------------------------- */
+@font-face {
+	font-family: 'FAFERS';
+	src: url(FAFERS_Technical_Font.ttf);
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                       Règles générales pour la page                       */
+/* ------------------------------------------------------------------------- */
+* {
+	margin: 0;
+	padding: 0;
+	}
+
+body{
+	margin: 0;								/* marge extérieure des éléments du corps de la page */
+	font-size: 1em;								/* taille de base de la police */
+	line-height: 1.25;								/* hauteur de ligne de texte */
+	color: black;									/* couleur de base du texte */
+	font-family: 'Helvetica', sans-serif;
+	background: linear-gradient(to right, white, #29a629, #118A11, #29a629, white);
+	counter-reset: num_exo;							/* mise à zéro du compteur num_exo */
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                    Mise en forme des sélecteurs usuels                    */
+/* ------------------------------------------------------------------------- */
+p {
+	margin: 15px 10px;
+	text-align: justify;
+	}
+	
+
+code {
+	font-size: 1em;
+	font-family: monospace, Courier New;
+	font-weight: bold;
+	}
+
+pre>code {
+	font-weight: normal;
+	}
+
+strong {
+	text-decoration: none;							/* on enlève le soulignement*/
+	font-weight: bold;
+	color: #e46e0a;									/* Couleur du texte - Orange ISN */
+	}
+
+em {
+	font-style: italic;
+	}
+
+sub {
+	font-size: 0.8em;
+    vertical-align: -0.5em;
+	}
+
+sup {
+	font-size: 0.8em;
+    vertical-align: 0.5em;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                 Classes pour des mises en forme de texte                  */
+/* ------------------------------------------------------------------------- */
+.majuscules {
+	font-variant: small-caps;
+	}
+	
+.centrer {
+	text-align: center;
+	}
+	
+.barrer {
+	text-decoration: line-through;
+	}
+
+.leger {
+	color: grey;
+	}
+
+.enonce {
+	color: #007100;
+	}
+
+.encadre{
+	padding: 5px;
+    border: 3px solid #fb8007;
+	border-radius: 6px;
+	clear: both;
+	}
+
+/* ------------------------------------------------------------------------- */
+/*                          Mise en forme des liens                          */
+/* ------------------------------------------------------------------------- */
+section a {
+	padding: 0 2px;
+	text-decoration: none;				/* on enlève le soulignement automatique de tous les liens */
+	color: #163c99;						/* Couleur du texte - Bleu ISN */
+	border: 2px ridge #163c99;
+	border-radius: 8px;
+	cursor: pointer;
+	}
+
+section a:hover {
+	color: #e46e0a;						/* Couleur du texte - Orange ISN */
+	border: 2px solid #ffffff;
+	border-top: 1px solid #e46e0a;
+	border-left: 2px solid #e46e0a;
+	box-shadow: 4px 4px 4px #e46e0a;
+	}
+	
+.lien_image,
+.lien_image:hover {
+	margin: 0;
+	padding: 0;
+	color: black;
+	border: none;
+	box-shadow: none;
+	background-color: #ffffff;
+	}
+
+p .lien_image>img.logo,
+li .lien_image>img.logo {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #163c99;
+	box-shadow: 2px 2px 2px #163c99;
+	border-radius: 8px;
+	}
+
+p .lien_image>img.logo:hover,
+li .lien_image>img.logo:hover {
+	border: 1px solid #e46e0a;
+	box-shadow: 2px 2px 2px #e46e0a;
+	transform: rotate(-15deg);
+	transition: 0.5s
+	}
+
+table .lien_image>img {
+	margin: 4px;
+	padding: 5px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	}
+
+table .lien_image>img:hover {
+	margin: 4px;
+	padding: 5px;
+	border: 1px solid #e46e0a;
+	box-shadow: 2px 2px 2px #e46e0a;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                                Les images                                 */
+/* ------------------------------------------------------------------------- */
+img.img_centre {
+	display: block;
+	border: 1px dashed #163c99;
+	margin: 5px auto;
+	border-radius: 6px;
+	padding: 5px;
+	max-width: 75%;
+	text-align: center;
+	}
+	
+p img.logo,
+li img.logo,
+h2 img.logo {									/* images dans les paragraphes, dans les listes */
+	display: inline;
+	max-height: 40px;
+	margin: 5px;
+	padding: 0;
+	vertical-align: middle;
+	border: 0;
+	border-radius: 4px;
+	}
+	
+td img {									/* images dans les paragraphes, dans les listes */
+	display: inline;
+	max-height: 150px;
+	max-width: 230px;
+	margin: 5px;
+	vertical-align: middle;
+	border: 0;
+	border-radius: 0;
+	}
+
+img.img_flotte {							/* Image flottante à côté d'un paragraphe */
+	float: right;
+	max-width: 250px;
+	margin: 5px 5px 5px 30px;
+	padding: 5px;
+	border: 1px dashed #163c99;
+	border-radius: 6px;
+	}
+
+/* ------------------------------------------------------------------------- */
+/*                                Les listes                                 */
+/* ------------------------------------------------------------------------- */
+.enum li {
+	margin: 8px 10px 0 40px;
+	text-align: justify;
+	list-style-type: none;
+	}
+
+.enum li:before {
+    content: "\A4 \ "; /* caractère ISO 10646 */
+	}
+
+.enum2 li {
+	margin-left: 30px;
+	margin-top: 5px;
+	text-align:left;
+	list-style-type: none;
+	}
+
+.enum2 li:before {
+    content: "\20AA \ "; /* caractère ISO 10646 */
+	}
+
+.liste_num {
+	counter-reset: num_question;
+	margin-bottom: 30px;
+	}
+
+.liste_num>li {
+	margin: 8px 10px 0 40px;
+	text-align: justify;
+	list-style-type: none;
+	counter-increment : num_question;
+	}
+
+.liste_num>li::before {
+    content:counter(num_question)"°/ ";
+	font-weight: bold;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                               Les tableaux                                */
+/* ------------------------------------------------------------------------- */
+table.classique {
+	margin: 10px auto;
+	border: 2px solid #163c99;
+	border-radius: 8px;
+	}
+
+table.classique th {
+	padding: 5px;
+	vertical-align: middle;
+	border: 1px solid #e46e0a;
+	text-align: center;
+	font-weight: bold;
+	background-color: lightgrey;
+	}
+
+table.classique td {
+	text-align: center;
+	padding: 5px;
+	vertical-align: middle;
+	border: 1px solid #e46e0a;
+	}
+
+table.description {
+	margin: 10px auto;
+	border: 2px solid #007100;
+    }
+	
+table.description caption {
+	padding : 5px;
+	border-radius: 10px 10px 0 0;
+	color: #007100;
+	font-weight: bold;
+	background-color: #ffffff;
+	border: 2px solid #007100;
+    border-bottom: 0;
+    }	
+
+table.description th,
+table.description td{
+	border: 1px solid #007100;
+    padding : 5px;
+	}
+
+table.description th {
+	font-family: monospace, Courier New;
+	font-weight: bold;
+	text-align: center;
+	}	
+
+table.algorithme { 
+	margin: 10px auto;
+	width: 90%;
+	border: 2px solid #163c99;
+	} 
+
+table.algorithme th{
+	width: 30%;
+	padding: 5px;
+	font-weight: bold;
+	text-align: left;
+	border: 1px dashed lightgray;
+	} 
+
+table.algorithme td{
+	padding: 5px;
+	font-family: monospace, Courier New;
+	font-size: 0.9em;
+	border: 1px dashed lightgray;
+	}
+
+table.criteres {
+	margin: 10px 20px 25px 40px;
+	border: 2px solid #e46e0a;						/* Orange ISN */
+	border-radius: 8px;
+	}
+
+table.criteres tr {
+	height: 50px;
+	}
+
+table.criteres td {
+	padding: 5px;
+	vertical-align: middle;
+	border: 1px solid #163c99;
+	}
+
+table.criteres td:last-of-type {
+	width: 50px;
+	padding: 3px;
+	vertical-align: bottom;
+	text-align: right;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                                Les vidéos                                 */
+/* ------------------------------------------------------------------------- */
+video {
+	display: block;
+	margin: auto;
+	border: 3px solid #163c99;
+	border-radius: 6px;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                   Menu gauche - Navigation dans la page                   */
+/* ------------------------------------------------------------------------- */
+#navparagraphe {
+	position: fixed;								/* Position fixe à l'écran */
+	margin: -5px 0 0 -175px;						/* Marges extérieures top-right-bottom-left */
+	padding: 0;										/* Marges intérieures */
+	box-sizing : border-box;
+	width: 225px;									/* Largeur */
+    height: 100%;
+	border: 4px solid #ffffff;						/* Couleur des bordures */
+	background-color: rgba(22, 60, 153, 0.75);		/* Marron ISN en RGB avec 75% d'opacité */
+    background-image: url(Images_css/logo_menu.png);
+	background-position: 98% 1%;
+	background-repeat: no-repeat;
+    z-index: 6;
+	}
+
+#navparagraphe:hover {
+	background-image: none;
+	transform: translateX(175px);
+	transition: 1s;
+	}
+
+#navparagraphe #menu_accordeon {
+	display: none;
+	}
+
+#navparagraphe:hover #menu_accordeon {
+	display: block;
+	}
+
+#menu_accordeon {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 100%;
+	}
+
+#menu_accordeon a, #menu_accordeon span {
+	display: inline-block;
+	box-sizing : border-box;
+	margin-right: 4px;
+	padding: 2px;
+	width: 100%;
+	text-decoration: none;
+	font-weight: bold;
+	border: 2px solid transparent;
+	}
+
+#menu_accordeon .deroulant {
+	border: 5px solid transparent;
+    }
+
+#menu_accordeon .deroulant:hover {
+	border-bottom: 5px solid #163c99;
+    border-right: 5px solid #163c99;
+    border-left: 5px solid rgba(22, 60, 153, 0.75);
+    border-top: 5px solid rgba(22, 60, 153, 0.75);
+    background-color: #ffffff;
+	transition: 0.3s;
+    }
+
+#menu_accordeon .deroulant:hover>a,
+#menu_accordeon .deroulant:hover>span {
+	color: #163c99;
+    transition: 0.3s;
+    background-image: url(Images_css/Plus_dans_Rond_Bleu.svg);
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_accordeon .deroulant>a,
+#menu_accordeon .deroulant>span {
+	color: #ffffff;
+	font-variant: small-caps;
+	background-image: url(Images_css/Plus_dans_Rond_Blanc.svg);
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_accordeon .menu_ouvert {
+	border-bottom: 5px solid #163c99;
+    border-right: 5px solid #163c99;
+    border-left: 5px solid rgba(22, 60, 153, 0.75);
+    border-top: 5px solid rgba(22, 60, 153, 0.75);
+    background-color: #ffffff;
+	}
+	
+#menu_accordeon .menu_ouvert>a,
+#menu_accordeon .menu_ouvert>span {
+	color: #163c99;
+    background-image: url(Images_css/Moins_dans_Rond_Bleu.svg);
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_accordeon .menu_ouvert>a:hover,
+#menu_accordeon .menu_ouvert>span:hover {
+	color: #ffffff;
+	background-image: url(Images_css/Moins_dans_Rond_Blanc.svg);
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+    background-color: rgba(22, 60, 153, 0.5);
+    }
+
+#menu_accordeon .items li {
+	padding: 0;
+	margin: 0;
+	font-size: 0.85em;
+	text-align: right;
+	width: 100%;
+	}
+
+#menu_accordeon .items li a{
+	color: #163c99;
+    border: 3px solid transparent;
+    }
+
+#menu_accordeon .items li a:hover{
+	color: #ffffff;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+    border-right: 3px solid rgba(255, 255, 255, 0.25);
+    border-left: 3px solid #163c99;
+    border-top: 3px solid #163c99;
+	background-color: rgba(22, 60, 153, 0.5);
+    }
+
+
+/* ------------------------------------------------------------------------- */
+/*                   Menu droit - Passage d'une page à l'autre               */
+/* ------------------------------------------------------------------------- */
+#menu_droit {
+	position: fixed;								/* Position fixe à l'écran */
+	right: 5px;
+	bottom: 5px;
+	padding: 0;										/* Marges intérieures */
+	z-index: 6;
+	}
+
+#menu_droit a{
+	margin: 0;
+	padding: 0;
+	border: none;
+	}
+
+#menu_droit #haut {
+	width: 40px;									/* Largeur */
+    height: 40px;
+	background-image: url(Images_css/Fleche_Haute_Term_ISN.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_droit #haut:hover {
+	background-image: url(Images_css/Fleche_Haute_Term_ISN_2.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+	box-shadow: 0px 0px 10px #e46e0a;
+    }
+
+#menu_droit #precedent {
+	margin-top: 5px;
+	width: 40px;									/* Largeur */
+    height: 40px;
+	background-image: url(Images_css/Fleche_Gauche_Term_ISN.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_droit #precedent:hover {
+	background-image: url(Images_css/Fleche_Gauche_Term_ISN_2.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+	box-shadow: 0px 0px 10px #e46e0a;
+    }
+
+#menu_droit #suivant {
+	margin-top: 5px;
+	width: 40px;									/* Largeur */
+    height: 40px;
+	background-image: url(Images_css/Fleche_Droite_Term_ISN.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_droit #suivant:hover {
+	background-image: url(Images_css/Fleche_Droite_Term_ISN_2.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+	box-shadow: 0px 0px 10px #e46e0a;
+    }
+
+#menu_droit #retour_accueil {
+	margin-top: 5px;
+	width: 40px;									/* Largeur */
+    height: 40px;
+	background-image: url(Images_css/Menu_Principal_Term_ISN.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+    }
+
+#menu_droit #retour_accueil:hover {
+	background-image: url(Images_css/Menu_Principal_Term_ISN_2.svg);
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+	box-shadow: 0px 0px 10px #e46e0a;
+    }
+
+
+/* ------------------------------------------------------------------------- */
+/*                     Partie rédactionnelle principale                      */
+/* ------------------------------------------------------------------------- */
+#corps {
+	margin: auto;
+	margin-top: -15px;
+	width: 85%;
+	min-width: 810px;
+	background-color: #ffffff;
+	z-index: 4;
+	}
+
+section {
+	margin: 0;
+	text-align: justify;
+	padding: 10px;
+	padding-bottom: 20px;
+	min-height: 400px;
+	}
+
+section h1 {
+	color: #163c99;
+	font-family: FAFERS;
+	font-size: 36px;
+	font-weight: bold;
+	text-align: left;
+	background-image: url(Images_css/Sous_Titre.png);
+	background-position: 0% 99%;
+	background-repeat: no-repeat;
+	background-size: 800px;
+	line-height: 50px;
+  	margin: 50px 0 0 -15px;
+	padding: 0px 10px 0px 62px;
+	border: 0;
+	clear:both;
+	}
+
+section .exercice{
+	counter-increment : num_exo;						/* mise à jour du compteur de questions */
+	}
+
+section h1.exercice:before{
+	content : 'Exercice n°'counter(num_exo)' : ';		/* mise en forme du compteur num_exo */
+	}
+
+section h2 {
+	color: #007100;
+	text-align: left;
+	font-weight: bold;
+	text-decoration : underline;
+	margin: 30px 0 0 0;
+	padding: 0px 10px 0px 13px;
+	clear: both;						/* Stoppe les objets flottants */
+	}
+
+section h3 {
+	color: #e46e0a;
+	text-align: left;
+	font-weight: bold;
+	text-decoration : none;
+	margin: 22px 0 0 0;
+	padding: 0px 10px 0px 13px;
+	font-size:0.9em;
+	}
+
+article {
+	margin-top: 20px;
+	margin-bottom: 50px;
+	clear: both;						/* Stoppe les objets flottants */
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                           Fil d'ariane de la page                         */
+/* ------------------------------------------------------------------------- */
+#ariane {
+	width: 85%;
+	min-width: 800px;
+	margin: 5px auto;
+	padding: 0;
+	}
+
+#ariane li {
+	display: inline;
+	margin: 0 2px;
+	}
+
+#ariane li:before {
+	content: ' >> ';
+	font-weight: bold;
+	color: #163c99;
+	}
+
+#ariane li:first-of-type:before {
+	content: '';
+	}
+
+#ariane li:last-of-type {
+	font-weight: bold;
+	color: #163c99;
+	}
+
+#ariane li a {
+	display: inline-block;
+	margin: 2px 0;
+	padding: 0 2px;
+	text-decoration: none;				/* on enlève le soulignement automatique de tous les liens */
+	color: #163c99;						/* Couleur du texte - Bleu ISN */
+	border: 2px ridge #163c99;
+	border-radius: 8px;
+	}
+
+#ariane li a:hover {
+	color: #ffffff;						/* Couleur du texte - Orange ISN */
+	border: 2px ridge #ffffff;
+	border-top: 2px solid #163c99;
+	border-left: 2px solid #163c99;
+	background-color: #163c99; 
+	box-shadow: 4px 4px 4px #163c99;
+	transition: 0.3s;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                            Bannière de la page                            */
+/* ------------------------------------------------------------------------- */
+header {
+	margin: 5px auto;
+	height: 260px;						/* hauteur du bloc */
+	font-family: FAFERS;
+	font-weight: bold;
+	color: #163c99;
+	background-image: url(Images_css/Banniere_Site.png) ;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	z-index: 5;
+	}
+
+header>#entete {
+	margin: auto;
+	padding-top: 35px;
+	width: 650px;
+	}	
+
+header h1 {
+	font-size: 1.6em;					/* Taille de base de la police */
+	font-variant: small-caps;			/* Petites majuscules */
+	margin: 15px 0 0 10px;
+	}	
+
+header h1#oral:after {
+	content: ' 2017-2018';
+	}
+
+header p {
+	margin: 5px 65px 0 5px;
+	font-size: 2.4em;					/* Taille de base de la police */
+	text-align: center;					/* position horizontale du texte */
+	}
+	
+
+/* ------------------------------------------------------------------------- */
+/*                     Exemples non modifiables de codes                     */
+/* ------------------------------------------------------------------------- */
+div[class*="entoure"]{
+	position: relative;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	margin: 15px;
+	margin-top: 30px;
+	border: 2px solid #163c99;
+	clear: both;
+	}
+
+div[class*="entoure"]:after{
+	position: absolute;
+	top: -15px;
+	left: -2px;
+	width: 80px;
+	line-height: 15px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 0.7em;
+	background: #163c99;
+	}
+
+div.entoure_python:after{
+	content: "Python";
+	}
+
+div.entoure_html:after{
+	content: "Html";
+	}
+
+div.entoure_css:after{
+	content: "Css";
+	}
+
+div.entoure_js:after{
+	content: "Javascript";
+	}
+	
+
+/* ------------------------------------------------------------------------- */
+/*            Exemple d'affichage obtenu après exécution des codes Python          */
+/* ------------------------------------------------------------------------- */
+pre[class*="affichage"]{
+	position: relative;
+	box-sizing: border-box;
+	font-size: 1rem;
+	font-family: monospace, Courier New;
+	background-color: #ffffff;
+	margin: 15px;
+	margin-top: 25px;
+	padding: 5px;
+	border: 2px solid #007100;
+	clear: both;
+	}
+
+pre[class*="affichage"]:after{
+	position: absolute;
+	top: -15px;
+	right: -2px;
+	width: 200px;
+	line-height: 15px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 0.7em;
+	background: #007100;
+	}
+
+pre.affichage_python:after{
+	font-family: 'Helvetica', sans-serif;
+	content: "Python : affichage après exécution";
+	}
+
+pre.affichage_python{
+	background-color: #CDF4CD;
+	}
+
+	
+	
+	
+
+/* ------------------------------------------------------------------------- */
+/*                    Exécution des programmes en Python                     */
+/* ------------------------------------------------------------------------- */
+div[class*="programme"] {
+	margin: 15px;
+	clear: both;
+	}
+
+div.a_executer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+	}
+
+button.runner{
+	padding: 0.1em;
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #ffffff;
+	background: #163c99;
+	border-radius: 0 0 10px 10px;
+	cursor: pointer;
+	}
+
+div.execution{
+	width: 95%;
+	box-sizing : border-box;
+	min-height: 100px;
+	margin: 10px auto;
+	background-color: #CDF4CD;
+	border: 4px solid #007100;
+	border-radius: 15px;
+	box-shadow: 0 0 6px #007100;
+	}
+
+pre.sortie {
+	font-family: monospace, Courier New;
+	margin: 15px;
+	}
+
+div.tortue{
+	margin-top: 20px;
+	background-color: #ffffff;
+	border-radius: 0 0 12px 12px;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                    Affichage de l'interprêtation des codes HTML/CSS       */
+/* ------------------------------------------------------------------------- */
+div[class*="titrePanneau"] {
+	margin-top: -2px;
+	padding: 0 1px 2px 0;
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+	background-color: #163c99;
+	border: 2px solid #163c99;
+	}
+
+.titrePanneauPython {
+	border-radius: 8px 8px 0 0;
+	}
+
+.titrePanneauPython::after {
+	content: "Programme en Python";
+	}
+
+.titrePanneauHtml::after {
+	content: "Code HTML à modifier - Cliquer pour replier/déplier";
+	}
+
+.titrePanneauCss::after {
+	content: "Code CSS à modifier - Cliquer pour replier/déplier";
+	}
+
+.titrePanneauHtml_Non::after {
+	content: "Code HTML à NE PAS modifier - Cliquer pour replier/déplier";
+	}
+
+.titrePanneauCss_Non::after {
+	content: "Code CSS à NE PAS modifier - Cliquer pour replier/déplier";
+	}
+
+.titrePanneauHtml:hover,
+.titrePanneauCss:hover,
+.titrePanneauHtml_Non:hover,
+.titrePanneauCss_Non:hover {
+	color: #163c99;
+	background-color: #ffffff;
+	cursor: pointer;
+	}
+
+.panneau {
+	box-sizing : border-box;
+	background-color: #ffffff;
+	margin: -2px 0 0 0;
+	border: 2px solid #163c99;
+	vertical-align: middle;
+	clear: both;
+	}
+
+.panneau .CodeMirror,
+.correction_html .CodeMirror,
+.correction_css .CodeMirror {
+	margin: 0;
+	height: 250px;
+	}
+
+.ecran {
+	width: 95%;
+	box-sizing : border-box;
+	min-height: 110px;
+	margin: 10px auto;
+	padding: 5px 0;
+	background-color: #ffffff;
+	border: 4px solid #007100;
+	border-radius: 15px;
+	box-shadow: 0 0 6px #007100;
+	vertical-align: middle;
+	}
+
+.affichage_html,
+.affichage_css {
+	width: 99%;
+	padding: 0 10px;
+	vertical-align: middle;
+	}
+
+.affichage_cor_html,
+.affichage_cor_css {
+	width: 100%;
+	min-height: 300px;
+	}
+
+.correction_cache,
+.correction_cache .CodeMirror {
+	display: none;
+	height: 0;
+	border: none;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                              Boîte à onglets                              */
+/* ------------------------------------------------------------------------- */
+.boite_onglets {
+	clear: both;
+	width: 95%;
+	margin: 20px auto;
+	}
+
+ul.onglets {
+	display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+	padding: 0;
+	}
+ 
+ul.onglets li {
+	flex: 1 0 auto;
+	list-style: none;
+    height: 28px;
+	line-height: 28px;
+	margin: 2px 5px;
+	padding: 2px 5px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px black;
+	background: linear-gradient(#f89138, #e46e0a);
+	border-radius: 10px;
+	box-shadow: -1px 2px 5px #ffab63,
+                0 -1px 0 white;
+	cursor: pointer;
+	}
+
+ul.onglets li:hover {
+	color: #e46e0a;
+	background: #ffffff;
+	}
+
+ul.onglets li.active {
+	color: #e46e0a;
+	background: #ffffff;
+	box-shadow: 1px 1px 8px #f89138 inset, 
+                0 1px 0 white;
+	}
+
+ul.onglets li.active:hover {
+	color: #ffffff;
+	background: linear-gradient(#f89138, #e46e0a);
+	box-shadow: -1px 2px 5px #f89138,
+                0 -1px 0 white;
+	}
+
+.zone_boite {
+	box-sizing: border-box;
+	}
+
+.contenu {
+	margin: 5px;
+	padding: 8px;
+    background: white;
+	border: 2px solid #e46e0a;
+	border-radius: 10px;
+	box-shadow: 1px 1px 8px #f89138 inset, 
+                0 1px 0 white;
+	}
+
+.contenu>pre {
+	margin: 5px 0;
+	}
+
+.contenu .CodeMirror {
+	margin: 0;
+	height: 235px;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                      Les tuiles des pages d'accueil                       */
+/* ------------------------------------------------------------------------- */
+div.tuiles {
+	display: flex;
+	flex-wrap: wrap;
+    }
+
+div.tuile {
+	position: relative;
+	margin: 10px 15px;
+	}
+
+div.tuile>a {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	color: black;
+	border: 0;
+	cursor: pointer;
+	}
+
+div.tuile>a:hover {
+	border-radius: 0;
+	}	
+	
+div.tuile img{
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	width: 80px;
+	height: 80px;
+	background: white;
+	border: 1px solid #e46e0a;
+	border-radius: 8px;
+	}	
+
+div.tuile>a:hover img{
+	border: 1px solid transparent;
+	box-shadow: -1px 2px 5px #ffab63,
+                0 -1px 0 white;
+	transform: rotate(-15deg);
+	transition: 0.5s
+	}
+	
+div.tuile p {
+	box-sizing: border-box;
+	width: 200px;
+	height: 200px;
+	padding-top: 80px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px black;
+	background: linear-gradient(#f89138, #e46e0a);
+	border-radius: 10px;
+	box-shadow: -1px 2px 5px #ffab63,
+                0 -1px 0 white;
+	cursor: pointer;
+	}
+	
+div.tuile>a:hover p{
+	color: #e46e0a;
+	background: #ffffff;
+	transition: 0.5s
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*            Les tuiles du plan de la capsule en page d'accueil             */
+/* ------------------------------------------------------------------------- */
+div#plan {
+	display: flex;
+	flex-wrap: wrap;
+    align-items: flex-start
+	}
+
+ul.plan_label {
+	position: relative;
+	margin: 60px 50px 10px 100px;
+	border-left: 1px solid #e46e0a;
+	}
+
+ul.plan_label>li:first-of-type {
+	position: absolute;
+	display: block;
+	left: -100px;
+	top: -25px;
+	width: 200px;
+	min-height: 28px;
+	line-height: 28px;
+	padding: 2px 5px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px black;
+	background: linear-gradient(#f89138, #e46e0a);
+	border-radius: 10px;
+	box-shadow: -1px 2px 5px #ffab63,
+                0 -1px 0 white;
+	}
+
+ul.plan_label>li:nth-child(n+2)  {
+	position: relative;
+	padding: 10px 0 0 10px;
+	}
+
+ul.plan_label>li:nth-of-type(2)  {
+	margin-top: 30px;
+	}
+
+ul.plan_label>li:nth-child(n+2):before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid #e46e0a;
+  top: 60%;
+  left: 0;
+	}
+
+ul.plan_label>li:last-child:before {
+  border-left: 1px solid #ffffff;
+  height: 25px;
+  left: -1px;
+	}
+
+ul.plan_label>li:nth-child(n+2)>a {
+	display: inline-block;
+	margin: 2px 0;
+	padding: 2px;
+	min-width: 220px;
+	text-decoration: none;				/* on enlève le soulignement automatique de tous les liens */
+	color: #e46e0a;						/* Couleur du texte - Bleu ISN */
+	border: 2px ridge #e46e0a;
+	border-radius: 8px;
+	}
+
+ul.plan_label>li:nth-child(n+2)>a:hover {
+	color: #ffffff;
+	border: 2px ridge #ffffff;
+	border-top: 2px solid #e46e0a;
+	border-left: 2px solid #e46e0a;
+	background-color: #e46e0a; 
+	box-shadow: 4px 4px 4px #e46e0a;
+	transition: 0.3s;
+	}
+
+
+/* ------------------------------------------------------------------------- */
+/*                              Le pied de page                              */
+/* ------------------------------------------------------------------------- */
+footer {
+	box-sizing: border-box;
+	width: 85%;
+	min-width: 810px;
+	height: 35px;						/* hauteur du bloc */
+	line-height: 35px;					/* hauteur de ligne de texte - la même que celle du bloc */
+	margin: 5px auto;
+	padding: 0 5px 2px 5px;				/* marges intérieures du bloc */
+	color: #ffffff;						/* couleur du texte */
+	text-align: center;					/* position horizontal du texte */
+	background: #163c99;				/* couleur du fond */
+	background-image: url(Images_css/Licence03.svg);
+	background-position: 50% -1px;
+	background-repeat: no-repeat;
+	border: 2px solid #ffffff;			/* couleur des bordures */
+	border-radius: 0 0 15px 15px;		/* haut-gauche ; haut-droit ; bas-droit ; bas-gauche */
+	clear: both;						/* Stoppe les objets flottants */
+	}
+
+footer #a_gauche {
+	float: left;
+	text-align: left;
+	padding-left: 10px;
+	}
+
+footer #a_droite {
+	float: right;
+	text-align: right;
+	padding-right: 10px;
+	}
+
+footer #a_droite:after {
+	content: 'Lycée Lacassagne';
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
