@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/chaines/chaines_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:02 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Chaînes de Caractères<br>
+				Exercices pour progresser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Triangle d'étoiles</h1>
+		<article>
+			<p>
+				Concevoir une fonction qui permette d'afficher un triangle d'étoiles,
+				de une à <code>n</code> (<em>choisi par l'utilisateur</em>) lignes.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré la valeur
+				<code class="language-python">6</code> après le message incitatif.
+				Il est inutile de gérer les exceptions.
+			</p>
+			<pre class="affichage_python">Entrez un entier strictement positif : 6
+*
+**
+***
+****
+*****
+******</pre>
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Une variante</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							Il existe de très nombreuses méthodes. Voici deux possibilités :
+						</p>
+						<ul class="enum">
+							<li>En utilisant la multiplication pour répéter une chaîne de caractères ;</li>
+							<li>En utilisant une chaîne vide, remplie puis affichée au fur et à mesure.</li>
+						</ul>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile1(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de 1 à n étoiles."""
+    etoile ="*"
+    for i in range(1, n+1):
+        print(etoile*i)
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile1(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile1(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de 1 à n étoiles."""
+    etoile =""
+    for i in range(1, n+1):
+	    etoile += "*"
+        print(etoile)
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile1(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Triangle d'étoiles (bis)</h1>
+		<article>
+			<p>
+				Concevoir une fonction qui permette d'afficher un autre triangle d'étoiles,
+				de <code>n</code> (<em>choisi par l'utilisateur</em>) à une ligne.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré la valeur
+				<code class="language-python">6</code> après le message incitatif.
+				Il est inutile de gérer les exceptions.
+			</p>
+			<pre class="affichage_python">Entrez un entier strictement positif : 6
+******
+*****
+****
+***
+**
+*</pre>
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Une variante</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						En reprenant le code de l'exercice précédent, vous devez pouvoir
+						vous débrouiller...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile2(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de n à 1 étoiles."""
+    etoile ="*"
+    for i in range(n, 0, -1):
+        print(etoile*i)
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile2(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile2(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de n à 1 étoiles."""
+    etoile ="*"*n
+    for i in range(n):
+        print(etoile[:n-i])
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile2(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Triangle d'étoiles (ter)</h1>
+		<article>
+			<p>
+				Concevoir une fonction qui permette d'afficher un nouveau triangle d'étoiles,
+				avec des espaces, de <code>n</code> (<em>choisi par l'utilisateur</em>) à une
+				ligne.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré la valeur
+				<code class="language-python">4</code> après le message incitatif.
+				Il est inutile de gérer les exceptions.
+			</p>
+			<pre class="affichage_python">Entrez un entier strictement positif : 4
+* * * *
+ * * *
+  * *
+   *</pre>
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						Dans cet exercice, on peut utiliser le paramètre <code>sep</code>
+						de la fonction <code class="language-python">print()</code>.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Attention au nombre d'espaces devant la 1<sup>ère</sup> étoile à
+						afficher. Heureusement, un espace est un caractère comme un autre...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile3(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de n à 1 étoiles, séparées par des espaces."""
+    motif ="* "
+    for i in range(n):
+        print(" "*i, end="")        # D'abord 0, puis 1, puis 2, puis... espaces
+        print(motif*(n-i))          # On imprime le motif n fois puis (n-1) puis (n-2) puis ...
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile3(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Triangle d'étoiles (quater)</h1>
+		<article>
+			<p>
+				Concevoir une fonction qui permette d'afficher un dernier triangle d'étoiles,
+				avec des espaces, de une à <code>n</code> (<em>choisi par l'utilisateur</em>)
+				lignes.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré la valeur
+				<code class="language-python">4</code> après le message incitatif.
+				Il est inutile de gérer les exceptions.
+			</p>
+			<pre class="affichage_python">Entrez un entier strictement positif : 4
+   *
+  * *
+ * * *
+* * * *</pre>
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						C'est toujours le même principe. Attention aux espaces devant les étoiles.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Devant la 1<sup>ère</sup> étoile, il y a <code class="language-python">3</code>
+						espaces. Or l'utilisateur a entré le nombre <code class="language-python">4</code>.
+						On peut intuitivement en déduire que si l'utilisateur entre le nombre
+						<code>n</code>, il y aura <code>(n-1)</code>
+						espaces devant la 1<sup>ère</sup> étoile.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def etoile4(n):
+    """ Entrees : n est un entier strictement positif
+        Sorties : affichage d'un triangle constitué de 1 à n étoiles, séparées par des espaces."""
+    motif ="* "
+    for i in range(1, n+1):
+        print(" "*(n-i), end="")    # D'abord (n-1), puis (n-2), puis (n-3), puis... espaces
+        print(motif*i)              # On imprime le motif 1 fois puis 2 puis 3 puis ...
+
+
+##----- Programme principal ----- ##
+n = int(input('Entrez un entier strictement positif : '))
+etoile4(n)
+						</code></pre>
+					</div><!-- fin contenu -->
+
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Identfiant</h1>
+		<article>
+			<p>
+				L'utilisateur entre son nom et son prénom. Dans l'exemple d'affichage
+				ci-dessous, l'utilisateur a entré <code>bernard</code>
+				puis <code>alain</code> après les messages incitatifs :
+			</p>
+			<pre class="affichage_python">Quel est votre nom ? bernard
+Quel est votre prénom ? alain
+Votre login est : a.bernard
+Votre nom masqué est : b***d</pre>
+			
+			<ol class="liste_num">				
+				<li>Définir une fonction <code>login()</code> qui prend pour paramètres deux
+					chaînes de caractères et qui renvoie la 1<sup>ère</sup> lettre de la
+					1<sup>ère</sup> chaîne et la 2<sup>nde</sup> chaîne complète, séparées
+					par un point (<em>cf. l'affichge ci-dessus</em>).</li>
+				
+				<li>Définir une autre fonction <code>masquer()</code> qui prend pour variable
+					une chaîne de caractères et qui renvoie la 1<sup>ère</sup> et la dernière
+					lettre de cette chaîne de caractères, séparées par trois étoiles :
+					<code>***</code>.</li>
+				
+				<li>Compléter le programme par une interaction avec l'utilisateur.</li>
+			</ol>
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							Dans la fonction <code>login(chaine1, chaine2)</code>,
+						</p>
+						<ul class="enum">
+							<li>on extrait le 1<sup>er</sup> caractère de <code>ch1</code> avec
+								<code class="language-python">ch1[0]</code> ;</li>
+							<li>puis on renvoie une concaténation des caractères grâce à
+								l'opérateur &laquo;+&raquo;.</li>
+						</ul>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						C'est la même idée qui permet de définir la fonction <code>masquer()</code>.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def login(chaine1, chaine2):
+    """ Entrees : deux chaînes de caractères
+        Sorties : renvoie la 1ère lettre de chaine1 et chaine2 complet, séparés par un point."""
+    return chaine1[0] + '.' + chaine2
+
+
+def masquer(chaine):
+    """ Entrees : une chaîne de caractères
+        Sorties : renvoie la 1ère lettre et la dernière lettre de chaine, séparées par trois étoiles '***'."""
+    return chaine[0] + '***' + chaine[len(chaine)-1]
+
+
+##----- Programme principal ----- ##
+nom = input('Quel est votre nom ? ')
+prenom = input('Quel est votre prénom ? ')
+print('Votre login est : {}'.format(login(prenom, nom)))
+print('Votre nom masqué est : {}'.format(masquer(nom)))
+						</code></pre>
+					</div><!-- fin contenu -->
+
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/chaines/chaines_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:02 GMT -->
+</html>

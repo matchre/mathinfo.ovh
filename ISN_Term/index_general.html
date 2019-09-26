@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/index_general.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:39 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique : Index Général"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="images_index/Logo_Lacassagne.gif" />
+	<title> Spécialité ISN au Lycée Lacassagne </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../scripts/jquery.js"></script>
+	<script src="../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../codemirror/mode/xml/xml.js"></script>
+	<script src="../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../codemirror/mode/css/css.js"></script>
+	<script src="../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../scripts/prism.js"></script>  
+    <script src="../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../skulpt/skulpt.min.js"></script>  
+	<script src="../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../scripts/accordeon.js"></script>
+	 
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1>Spécialité I.S.N.</h1>
+			<p>
+				Site Ressource<!-- - Année 2017-2018 -->
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">
+		<li><a href="../index.html">Accueil</a></li>
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Accès rapide aux contenus</h1>
+		<article>
+			<p>
+				Cliquez sur une tuile pour accéder au thème correspondant.
+			</p>
+			
+			<div class="tuiles">
+				<!--<div class="tuile">
+					<a href="formation_squelette/accueil_squelette.html">
+						<img class="logo_tuile" src="images_index/logo_ISN-IREM_transparent.png" alt="logo IREM-ISN">
+						<p>
+							&laquo;Tutoriel&raquo; pour le squelette
+						</p>
+					</a>
+				</div>-->
+				
+				
+				<div class="tuile">
+					<a href="presentation_specialite/accueil_diaporama.html">
+						<img class="logo_tuile" src="images_index/Logo_Lacassagne.gif" alt="logo de la capsule">
+						<p>
+							Présentation de la Spécialité
+						</p>
+					</a>
+				</div>
+				
+				<div class="tuile">
+					<a href="cours_python_isn/accueil_cours_python_isn.html">
+						<img class="logo_tuile" src="images_index/icone_python.png" alt="logo de la capsule">
+						<p>
+							Apprendre à programmer en Python
+						</p>
+					</a>
+				</div>
+				
+				<!--<div class="tuile">
+					<a href="cours_html_css_isn/accueil_cours_html_css_isn.html">
+						<img class="logo_tuile" src="images_index/logo_HTML5.png" alt="logo de la capsule">
+						<p>
+							Concevoir un site en <span class="majuscules">Html</span>/<span class="majuscules">Css</span>
+						</p>
+					</a>
+				</div>
+				
+				<!--<div class="tuile">
+					<a href="cours_initiation_isn/accueil_initiation_isn.html">
+						<img class="logo_tuile" src="images_index/icone_python.png" alt="logo de la capsule">
+						<p>
+							Séance d'initiation en classe de Première S
+						</p>
+					</a>
+				</div>
+				
+				<!--<div class="tuile">
+					<a href="presentation_oral_bac/accueil_oral_bac_ISN.html">
+						<img class="logo_tuile" src="images_index/Logo_Lacassagne.gif" alt="logo de la capsule">
+						<p>
+							Entraînement à l'oral du baccalauréat
+						</p>
+					</a>
+				</div>-->
+			
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+
+		
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Crédits</h1>
+		<article>
+			<p>
+				La structure html/css/js est de Nicolas Buyle-Bodin avec l'aide de Jean-Manuel Mény sous licence Creative Commons BY-NC-SA.<br>
+				<em>Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique</em>
+			</p>
+			
+			<p>
+				Ces documents sont donc sous licence libre, modifiables et ré-utilisables à loisir.
+				Ils ont demandé plusieurs centaines d'heures de travail et de conception.
+				<strong>Merci de rappeler leur paternité originale si vous les ré-utilisez.</strong>
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/index_general.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:40 GMT -->
+</html>

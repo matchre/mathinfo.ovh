@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/fichiers/fichiers_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:06 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Les Fichiers<br>
+				Exercices pour débuter
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<ol class="liste_num">
+				<li>Téléchargez le texte original et non accentué du
+					<a href="fichiers_fichiers/Petit_Chaperon_Rouge_Sans_Accent.txt" download="Petit_Chaperon_Rouge.txt">Petit
+					Chaperon Rouge</a> écrit par Charles Perrault et libre de droit. Placez ensuite
+					ce fichier dans le répertoire courant.</li>
+				
+				<li>Compléter la défintion de la fonction <code>seul_mot()</code> qui prend
+					comme paramètres deux fichiers précédemment ouverts et qui recopie le
+					premier fichier dans le second, avec un seul mot par ligne.
+					<div class="entoure_python">
+						<pre class="line-numbers" data-start="1"><code class="language-python">
+def seul_mot(f, g):
+    """ Entrées : f est un fichier ouvert en mode lecture, g est un fichier en mode écriture
+        Sorties : f est recopié dans g, avec un seul mot par ligne."""
+						</code></pre>
+					</div></li>
+				
+				<li>Testez ensuite cette fonction dans un programme faisant appel au texte du
+					Petit Chaperon Rouge. Vérifiez que les premières lignes du nouveau fichier
+					sont bien :
+					<pre class="affichage">Il
+etait
+une
+fois
+une
+adorable
+petite
+fille</pre></li>
+			</ol>
+			
+
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Solution du 2°/</li>
+					<li class="onglet">Solution du 3°/</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							On considère la chaîne de caractère :
+						</p>
+						<pre><code class="language-python">
+texte = "Bonjour, comment ça va ?"</code></pre>
+						<p>
+							Que renvoie la console <span class="majuscules">Python</span>
+							après l'instruction :
+						</p>
+						<pre><code class="language-python">
+print(texte.split(" "))</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def seul_mot(f, g):
+    """ Entrées : f est un fichier ouvert en mode lecture, g est un fichier en mode écriture
+        Sorties : f est recopié dans g, avec un seul mot par ligne."""
+    for ligne in f:
+        for mot in ligne.split(" "):
+            g.write(mot+'\n')
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def seul_mot(f, g):
+    """ Entrées : f est un fichier ouvert en mode lecture, g est un fichier en mode écriture
+        Sorties : f est recopié dans g, avec un seul mot par ligne."""
+    for ligne in f:
+        for mot in ligne.split(" "):
+            g.write(mot+'\n')
+
+
+##----- Programme principal -----##
+f = open('Petit_Chaperon_Rouge.txt', 'r')
+g = open('Petit_Chaperon_Rouge_Seul_Mot.txt', 'w')
+seul_mot(f, g)
+
+
+##----- Fermeture des fichiers -----##
+f.close()
+g.close()
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				<code>dico.txt</code> est un fichier texte qui contient environ 336 500 mots
+				de la langue française, avec un mot écrit (<em>en minuscule et sans accent</em>)
+				par ligne. Vous pouvez le télécharger en
+				<a href="fichiers_fichiers/dico.txt" download="dico.txt">cliquant ici</a>.
+			</p>
+			<ol class="liste_num">
+				<li>Placez le fichier <code>dico.txt</code> dans le répertoire courant.</li>
+				<li>Copier puis compléter la définition de la fonction <code>majuscules()</code>
+					qui remplace la première lettre d'un texte entré comme paramètre par
+					sa majuscule.
+					<div class="entoure_python">
+						<pre class="line-numbers" data-start="1"><code class="language-python">
+##----- Définition des Fonctions -----##
+def majuscules(texte):
+    """ Entrées : texte est une chaîne de caractères
+        Sorties : renvoie texte dans lequel le premier caractère est remplacé par le caractère
+            correspondant."""
+    
+    # A compléter
+						</code></pre>
+					</div></li>
+				<li>Pour chaque mot lu dans le dictionnaire <code>dico.txt</code>,
+					le programme doit écrire, dans un fichier <code>dico3.txt</code>
+					à définir, ce mot en remplaçant sa première lettre par la majuscule
+					correspondante.<br>
+					Par exemple, si le mot d'origine était <code>caligraphie</code>,
+					le mot correspondant dans <code>dico3.txt</code> sera
+					<code>Caligraphie</code>.<br>
+					L'ordre des mots doit, bien évidemment, être respecté.
+					<div class="entoure_python">
+						<pre class="line-numbers" data-start="1"><code class="language-python">
+##----- Programme principal -----##
+f = open('dico.txt', 'r')
+g = 
+
+    
+    
+##----- Fermeture des fichiers -----##
+f.close()
+g.close()
+						</code></pre>
+					</div></li>
+			</ol>
+			
+
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Première solution</li>
+					<li class="onglet">Deuxième solution</li>
+					<li class="onglet">Troisième solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							Il existe de très nombreuses méthodes pour répondre à cet exercice.
+							En voici trois dont les solutions seront approfondies ci-après.
+						</p>
+						<ul class="enum">
+							<li>Méthode peu subtile : faire une liste des minuscules, une
+								liste des majuscules et faire correspondre les deux listes ;</li>
+							<li>Méthode astucieuse : aller faire un tour dans la documentation
+								pour voir s'il n'existe pas une fonction pré-implantée qui
+								permette de passer des minuscules aux majuscules ;</li>
+							<li>Méthode mathématique : exploiter les codes ASCII décimaux.</li>
+						</ul>
+							
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							On utilise la méthode <code>.index()</code> appliquée à une chaîne
+							de caractères qui renvoie l'indice du premier caractère de la chaîne
+							identique à celui donné en argument de la méthode.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def majuscules(texte):
+    """ Entrées : texte est une chaîne de caractères
+        Sorties : renvoie texte dans lequel le premier caractère est remplacé par le caractère
+            correspondant."""
+    minus="abcdefghijklmnopqrstuvwxyz"
+    majus="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    lettre = texte[0]
+    indice = minus.index(lettre)
+    return majus[indice] + texte[1:]
+
+
+##----- Programme principal -----##
+f = open('dico.txt', 'r')
+g = open('dico3.txt', 'w')
+
+for mot in f:
+    g.write(majuscules(mot))
+
+
+##----- Fermeture des fichiers -----##
+f.close()
+g.close()
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							On utilise la méthode <code>.upper()</code> appliquée à une chaîne
+							de caractères qui renvoie une chaîne identique mais entièrement
+							écrite avec des lettres majuscules. A noter qu'il existe aussi
+							la méthode <code>.lower()</code> qui fait le contraire...
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def majuscules(texte):
+    """ Entrées : texte est une chaîne de caractères
+        Sorties : renvoie texte dans lequel le premier caractère est remplacé par le caractère
+            correspondant."""
+    lettre = texte[0]
+    return lettre.upper() + texte[1:]
+
+
+##----- Programme principal -----##
+f = open('dico.txt', 'r')
+g = open('dico3.txt', 'w')
+
+for mot in f:
+    g.write(majuscules(mot))
+
+
+##----- Fermeture des fichiers -----##
+f.close()
+g.close()
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Dans le codage ASCII décimale, la lettre majuscule <code class="language-python">'A'</code>
+							est représentée par la valeur <code class="language-python">65</code> et la lettre
+							majuscule <code class="language-python">'a'</code> est représentée par la valeur
+							<code class="language-python">97</code>. Il suffit donc de <strong>soustraire 32</strong> à la
+							représentation décimale d'une lettre minuscule pour obtenir la majuscule correspondante.<br>
+							On rappelle que les fonctions <span class="majuscules">Python</span> qui permettent
+							cette conversion sont :
+						<p>
+						<ul class="enum">
+							<li><code>ord()</code> du caractère vers l'ASCII décimal ;</li>
+							<li><code>chr()</code> de l'ASCII décimal vers le caractère.</li>
+						</ul>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def majuscules(texte):
+    """ Entrées : texte est une chaîne de caractères
+        Sorties : renvoie texte dans lequel le premier caractère est remplacé par le caractère
+            correspondant."""
+    valeur = ord(texte[0])
+    return chr(valeur-32) + texte[1:]
+
+
+##----- Programme principal -----##
+f = open('dico.txt', 'r')
+g = open('dico3.txt', 'w')
+
+for mot in f:
+    g.write(majuscules(mot))
+
+
+##----- Fermeture des fichiers -----##
+f.close()
+g.close()
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Compter les lettres </h1>
+		<article>
+			<ol class="liste_num">
+				<li>Concevoir la fonction <code>compte_lettres()</code> qui prend pour paramètre
+					une chaîne de caractères correspondant à un nom de fichier, qui ouvre ce
+					fichier, qui lit le contenu de ce fichier et qui renvoie sous forme de liste
+					le nombre d'occurences de chaque lettre contenue dans ce fichier, c'est-à-dire
+					le nombre de <code class="language-python">'a'</code>, le nombre de
+					<code class="language-python">'b'</code>, le nombre de
+					<code class="language-python">'c'</code>, etc... Il ne faudra tenir compte
+					ni des espaces, ni de la ponctuation, ni des majuscules.</li>		
+			
+				<li>Placez le texte du &laquo; Petit Chaperon Rouge &raquo; dans le répertoire
+					courant.</li>		
+			
+				<li>Utiliser la fonction précédente pour écrire les occurences des lettres
+					contenues dans le &laquo; Petit Chaperon Rouge &raquo; dans un nouveau
+					fichier texte. Vérifier que le contenu de ce fichier commencera par :
+					<pre class="affichage">Le texte contient :
+551 a
+55 b
+130 c
+219 d
+1039 e</pre></li>
+			</ol>
+			
+			
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Fonction <code>compte_lettres()</code></li>
+					<li class="onglet">Programme de test</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<code class="language-python">list('abcdefghijklmnopqrstuvwxyz')</code>
+						est une instruction très intéressante pour ce programme...
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						Avoir un deuxième liste de stockage du nombre de chaque caractère semble
+						indispensable. Pour cela, l'instruction <code class="language-python">[0]*26</code>
+						est utile...
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def compte_lettres(nom_fichier):
+    """ Entrées : nom_fichier est une chaîne de caractères correspondant à un nom de fichier
+        Sorties : renvoie la liste des occurences de chaque lettre (minuscule) du fichier."""
+    liste = list('abcdefghijklmnopqrstuvwxyz')
+    fsource = open(nom_fichier, 'r')
+    occurences = [0]*26
+    
+    for ligne in fsource:
+        for carac in ligne:
+            if carac in liste:
+                indice = liste.index(carac)
+                occurences[indice] += 1
+    fsource.close()
+    return occurences</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def compte_lettres(nom_fichier):
+    """ Entrées : nom_fichier est une chaîne de caractères correspondant à un nom de fichier
+        Sorties : renvoie la liste des occurences de chaque lettre (minuscule) du fichier."""
+    liste = list('abcdefghijklmnopqrstuvwxyz')
+    fsource = open(nom_fichier, 'r')
+    occurences = [0]*26
+    
+    for ligne in fsource:
+        for carac in ligne:
+            if carac in liste:
+                indice = liste.index(carac)
+                occurences[indice] += 1
+    fsource.close()
+    return occurences
+
+	
+##----- Variables et constantes -----##
+liste = list('abcdefghijklmnopqrstuvwxyz')
+n_fichier = 'Petit_Chaperon_Rouge.txt'
+
+
+##----- Programme principal -----##
+occurences = compte_lettres(n_fichier)
+fresult = open('Occurences_'+n_fichier, 'w')
+
+fresult.write('Le texte contient :\n')
+for i, x in enumerate(liste):
+    fresult.write('{} {}\n'.format(occurences[i], x))
+
+fresult.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/fichiers/fichiers_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:10 GMT -->
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/accueil_cours_python_isn.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:39 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../scripts/jquery.js"></script>
+	<script src="../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../codemirror/mode/css/css.js"></script>
+	<script src="../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../scripts/prism.js"></script>  
+    <script src="../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../skulpt/skulpt.min.js"></script>  
+	<script src="../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Langage de Programmation
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+		
+			<img class="img_flotte" src="../images_index/icone_python.png" alt="Logo Python" style="width: 50px;">
+			<p>
+				Le langage de programmation <span class="majuscules">Python</span> a commencé à être
+				développé en 1989, par le
+				<a href="http://fr.wikipedia.org/wiki/Guido_van_Rossum" target="_blank">néerlandais
+				Guido Von Rossum</a>.
+				Ce langage est multi-plate-formes, c'est-à-dire disponible sur plusieurs systèmes
+				d'exploitation (<em>Windows, Linux, Mac, ...</em>).
+			</p>
+			<p>
+				Il existe plusieurs versions du langage <span class="majuscules">Python</span>.
+				C'est la version 3 qui sera utilisée dans les exercices de ce site.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Utiliser ce site</h1>
+		<article>
+			<p>
+				Ce site web est un recueil de cours et d'exercices corrigés permettant de
+				<strong>s'entraîner</strong> à maîtriser le langage <span class="majuscules">Python</span>.
+			</p>
+			<p>
+				Pour chacun des thèmes étudiés cette année, il faudra respecter le calendrier et
+				travailler pour la semaine suivante la leçon ainsi que les exercices de niveau
+				&laquo;Débuter&raquo; et &laquo;Progresser&raquo; signalés dans le calendrier.
+			</p>
+			<p>
+				Les exercices de niveau &laquo;Maîtriser&raquo; et &laquo;Aller plus loin&raquo;
+				seront très utiles pour vous donner des pistes de réflexion lors de la conception des
+				projets de fin d'année.
+			</p>
+			
+			<h2>Important</h2>
+			<img class="img_flotte" src="images_cours_python_isn/logo_menu_2.png" alt="Nav_dans_page">
+			<p>
+				On navigue dans ce site en passant la souris au dessus de l'icône représentée
+				ci-contre ou bien de page en page à l'aide des boutons en forme de flèches situés
+				en bas à droite de l'écran.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Prendre de bonnes habitudes pour bien programmer</h1>
+		<article>
+			<p>
+				Programmer ne s'improvise pas et nécessite de la rigueur. Il est souvent
+				<strong>nécessaire d'utiliser un papier et un crayon</strong> avant d'utiliser
+				un clavier et une souris. Le papier/crayon va permettre d'élaborer un
+				<strong>algorithme</strong>, qui est la démarche à mettre en oeuvre pour
+				résoudre le problème posé. La <strong>programmation</strong> vient ensuite ;
+				elle correspond à la traduction de l'algorithme dans un langage compréhensible
+				et interprétable par l'ordinateur (<em>en <span class="majuscules">Python</span> dans
+				le cas présent</em>).
+			</p>
+			<p>
+				Voici une liste d'actions qui, réalisées dans l'ordre, devrait permettre
+				d'organiser au mieux votre réflexion :
+			</p>
+			<ul class="enum">
+				<li>Commencez par schématiser (<em> avec un croquis, un tableau, un arbre,
+					etc... </em>) le problème proposé.</li>
+					
+				<li>Repérez, dans ce schéma :
+					<ul class="enum2">
+						<li>les éléments constants ;</li>
+						<li>les éléments qui sont modifiés ;</li>
+						<li>la &laquo;logique&raquo; de modification de ces éléments (<em>souvent
+							un calcul arithmétique...</em>) ;</li>
+						<li>les répétitions, tests de vérification et conditions induites</li>
+						<li>les éléments que doit entrer l'utilisateur et ceux qui seront
+							retournés à la fin de l'exécution du programme.</li>
+					</ul></li>
+					
+				<li>Donnez un nom explicite aux divers éléments ainsi repérés (<em>les constantes,
+					les variables, les fonctions</em>).</li>
+					
+				<li>Traduisez l'algorithme en <span class="majuscules">Python</span> et utilisez les
+					(<em>éventuels</em>) messages d'erreurs pour corriger le programme.</li>
+			</ul>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Un exemple de résolution de problème</h1>
+		<article>
+			<p>
+				Ci-dessous se trouve une interface permettant de programmer en
+				<span class="majuscules">Python</span> et de visualiser l'effet du programme.
+				Cette interface très pratique à pour inconvénient de ne pas signaler les
+				éventuelles erreurs. Si rien ne se passe, c'est donc que le code contient
+				une erreur...
+			</p>
+			<p>
+				Par contre, il est aussi possible (<em>et même recommandé</em>) de faire un
+				copier/coller du code afin de le compléter dans un éditeur de programme
+				<span class="majuscules">Python</span> comme
+				<a href="http://www.pyzo.org/" target="_blank">Pyzo</a> par exemple.
+			</p>
+			
+			<h2>Énoncé du problème</h2>
+			<img class="img_flotte" src="images_cours_python_isn/Spirale01.png" alt="Spirale">
+			<p class="enonce">
+				Compléter le programme ci-dessous.<br>
+				Ce programme doit permettre de réaliser le tracé ci-contre. Les longueurs en pixels
+				sont là pour aider à la conception du programme, il n'est pas nécessaire qu'elles
+				s'affichent à l'écran...
+			</p>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+from turtle import *
+t = Turtle()
+											
+##--- Ci-dessous, on complete le programme ---##
+											
+
+
+##--- Fin du programme ---##											
+exitonclick()
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+							
+			</div><!-- ferme div class="programme" -->
+
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Un schéma ?</li>
+					<li class="onglet">Une analyse ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">      
+					<div class="contenu">
+						Il faut chercher un &laquo;pattern&raquo;, c'est-à-dire un schéma répétitif
+						dans le motif. Pour cela, écrire sur une feuille ce qu'il se passe de nouveau
+						à chaque nouvelle étape.
+					</div><!-- fin contenu -->
+					     
+					<div class="contenu">
+						Décomposition des premiers mouvements à effectuer par le crayon :
+						<img class="img_centre" src="images_cours_python_isn/Spirale06.png" alt="Spirale décomposée">
+					</div><!-- fin contenu -->
+					     
+					<div class="contenu">
+						Le crayon doit...
+						<ul class="enum">
+							<li>avancer de 20 pixels ;</li>
+							<li>tourner à gauche de 90° ;</li>
+							<li>avancer de <strong>40 = 2 &times; 20</strong> pixels ;</li>
+							<li>tourner à gauche de 90° ;</li>
+							<li>avancer de <strong>60 = 3 &times; 20</strong> pixels ;</li>
+							<li>tourner à gauche de 90° ;</li>
+							<li>avancer de <strong>80 = 4 &times; 20</strong> pixels ;</li>
+							<li>tourner à gauche de 90° ;</li>
+							<li>etc...</li>
+						</ul>
+					</div><!-- fin contenu -->
+
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+t = Turtle()
+
+##--- Ci-dessous, on complete le programme ---##
+distance = 20                   # Longueur "constante" ajoutée au déplacement
+for i in range(9):              # Valeurs prises de 0 à 8
+	t.forward(distance*(i+1))	# donc i+1 va de 1 à 9...
+	t.left(90)
+
+##--- Fin du programme ---##											
+exitonclick()</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Plan du cours</h1>
+		<article>
+			
+			<div id="plan">
+			
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/accueil_cours_python_isn.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:39 GMT -->
+</html>

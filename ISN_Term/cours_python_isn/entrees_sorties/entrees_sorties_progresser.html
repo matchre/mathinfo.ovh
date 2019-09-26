@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/entrees_sorties/entrees_sorties_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:41 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Entrées/Sorties<br>
+				Exercices pour progresser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<h2>Conseils</h2>
+			<p>
+				Même si ce site permet de tester de petits programmes en <span class="majuscules">Python</span>,
+				il est <strong>fortement conseillé</strong> de sauvegarder ces programmes à
+				l'aide d'un environnement de programmation en <span class="majuscules">Python</span>
+				(<em>Pyzo, Geany, etc...</em>). Pour cela, il faut donner à chaque programme
+				un nom explicite puis les &laquo;organiser&raquo; dans les répertoires adéquats.
+			</p>
+			<p>
+				On pourra commencer par créer un dossier <code>[Entrées/sorties]</code>.
+				Ce dossier contiendra tous les programmes (<em>scripts</em>) rédigés à
+				partir de cette page.
+			</p>
+			<p>
+				Ensuite, il faut prendre l'habitude d'insérer des commentaires (<em>pertinents</em>)
+				dans son programme. En <span class="majuscules">Python</span>, ces commentaires sont
+				précédés d'un dièse &laquo;<code>#</code>&raquo;. Ils ne sont pas interprétés lors
+				de l'exécution des instructions.
+			</p>
+			
+			
+			<h2>Remarque importante</h2>
+			<p>
+				Les programmes en <span class="majuscules">Python</span> rédigés avec ce site
+				<strong class="majuscules">ne doivent pas comporter d'accents</strong> !
+				A cause d'un seul caractère accentué, le programme est susceptible de ne pas
+				être exécuté correctement.<br>
+				Ce problème d'encodage des caractères sera étudié plus tard au cours de l'année.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				Le programme de cet exercice demande un peu de bon sens et de &laquo;fair-play&raquo;.
+			</p>
+			<p>
+				L'utilisateur entre deux valeurs affectées aux variables <code>a</code>
+				et <code>b</code>. Dans l'exemple d'affichage ci-dessous, l'utilisateur
+				a entré <code class="language-python">7</code> pour la valeur de <code>a</code>
+				et <code class="language-python">2</code> pour la valeur de <code>b</code>.
+			</p>
+			<pre class="affichage_python">Entrer la valeur de a : 7
+Entrer la valeur de b : 2
+A present, a = 2 et b = 7</pre>
+			
+			<p>
+				Écrire un programme qui permet l'échange de ces valeurs, c'est-à-dire :
+			</p>
+			<ul class="enum">
+				<li>Si on ajoute l'instruction <code class="language-python">print(a)</code>
+					alors le programme affichera <code class="language-python">2</code> ;</li>
+				<li>Et si on ajoute l'instruction <code class="language-python">print(b)</code>
+					alors le programme affichera <code class="language-python">7</code>.</li>
+			</ul>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+a = input("Entrer la valeur de a : ")
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Un schéma ?</li>
+					<li class="onglet">Une analyse ?</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Une astuce ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Avec un verre de grenadine dans la main droite et un verre de menthe
+						à l'eau dans la main gauche, comment faire pour échanger les liquides de
+						verre sans que les liquides ne se mélangent ?
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Difficile d'échanger deux liquides sans un intermédiaire...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						On introduit une 3<sup>ème</sup> variable notée <code>c</code>. Alors
+						<ul class="enum">
+							<li>on place la valeur de <code>a</code> dans <code>c</code>
+								(<em>a et c ont pour valeur <code class="language-python">2</code></em>);</li>
+							<li>on place la valeur de <code>b</code> dans <code>a</code>
+								(<em>a et b ont pour valeur <code class="language-python">7</code></em>);</li>
+							<li>on place la valeur de <code>c</code> dans <code>b</code>
+								(<em>b et c ont pour valeur <code class="language-python">2</code></em>);</li>
+						</ul>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+a = input('Entrer la valeur de a : ')
+b = input('Entrer la valeur de b : ')
+c = a                                    # La grenadine va dans le 3eme verre
+a = b                                    # La menthe va dans le verre de la grenadine
+b = c                                    # On vide le 3eme verre dans l'ancien verre de la menthe
+
+print('A present, a = {0} et b = {1}'.format(a, b))
+	</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							En fait, il y a plus simple car <span class="majuscules">Python</span>
+							autorise l'affectation parallèle :
+						<p>
+						<pre class="line-numbers"><code class="language-python">
+a = input('Entrer la valeur de a : ')
+b = input('Entrer la valeur de b : ')
+a, b = b, a                            # a et b echangent de valeur en "parallele"
+
+print('A present, a = {0} et b = {1}'.format(a, b))
+	</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				Modifier le programme précédent pour échanger cette fois-ci les valeurs
+				de trois variables (<em>celle de <code>a</code> va dans <code>b</code> ;
+				celle de <code>b</code> va dans <code>c</code> et celle de <code>c</code>
+				va dans <code>a</code></em>).
+			</p>
+			<pre class="affichage_python">Entrer la valeur de a : 7
+Entrer la valeur de b : 2
+Entrer la valeur de c : 4
+A present, a = 4 et b = 7 et c = 2</pre>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Une astuce ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Difficile d'échanger des liquides sans intermédiaire...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						On introduit une variable supplémentaire et on reprend le raisonnement précédent.<br>
+						On peut aussi essayer l'affectation en parallèle !
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+a = input('Entrer la valeur de a : ')
+b = input('Entrer la valeur de b : ')
+c = input('Entrer la valeur de c : ')
+d = a
+a = c
+c = b
+b = d
+
+print('A present, a = {0}, b = {1} et c = {2}'.format(a, b, c))
+	</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							L'affectation parallèle marche encore :
+						<p>
+						<pre class="line-numbers"><code class="language-python">
+a = input('Entrer la valeur de a : ')
+b = input('Entrer la valeur de b : ')
+c = input('Entrer la valeur de c : ')
+a, b, c = b, c, a
+
+print('A present, a = {0}, b = {1} et c = {2}'.format(a, b, c))
+	</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/entrees_sorties/entrees_sorties_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:41 GMT -->
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/chaines/chaines_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:02 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Chaînes de Caractères<br>
+				Exercices pour débuter
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				Compléter la définition de la fonction <code>compter()</code> qui prend en
+				paramètres une chaîne de caractères et un caractère.
+				Cette fonction doit compter le nombre d'occurences (<em>le nombre de fois où
+				apparaît</em>) du caractère dans la chaîne.
+			</p>
+			<p>
+				Voici un exemple d'affichage où le programme demande à l'utilisateur d'entrer
+				une phrase (<em>ci-dessous <code class="language-python">'Ceci est un exemple.'</code></em>) et
+				un caractère (<em>ci-dessous <code class="language-python">'e'</code></em>) puis il retourne
+				le nombre d'occurences du caractère dans la phrase :
+			</p>
+			<pre class="affichage_python">Entrez une phrase : Ceci est un exemple.
+Entrez un caractère : e
+Il y a 5 "e" dans la phrase.</pre>
+			<p>
+				Ce programme doit évidemment faire appel à la fonction <code class="language-python">compter()</code>.
+				Il est par contre inutile de vérifier les exceptions.
+			</p>
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+##----- Définition des Fonctions ----- ##
+def compter(chaine, carac):
+    """ Entrees : chaine est une chaine de caracteres et carac est un caractere
+        Sorties : le nombre d'occurences de carac dans chaine."""
+    # A compléter...
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+lettre = input('Entrez un caractere : ')
+					</textarea>
+					<button class="runner" type="button">Lancer le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+							
+			</div><!-- ferme div class="programme" -->
+
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une dernière piste ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							Il y a deux façon de parcourir chaque caractère d'une chaîne :
+						</p>
+						<ul class="enum">
+							<li>Ou bien on parcourt chaque caractère à l'aide de l'opérateur d'inclusion
+							<code class="language-python">in</code>.</li>
+							<li>Ou bien on parcourt la liste des indices possibles, de
+							<code class="language-python">0</code> à <code class="language-python">len(chaîne)-1</code>
+							à l'aide de la fonction <code class="language-python">range()</code>.</li>
+						</ul>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						La fonction <code class="language-python">compter()</code> prend les entrées de
+						l'utilisateur comme paramètres et retourne un nombre qui sera affiché.
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<p>
+							La fonction <code class="language-python">compter()</code> se
+							conçoit en trois temps :
+						</p>
+						<ul class="enum">
+							<li>On parcourt chaque caractère de la chaîne ;</li>
+							<li>Lorsque le caractère est <code>carac</code>, on compte <code>1</code>
+								de plus ;</li>
+							<li>A la fin du parcours, on renvoie la valeur obtenue.</li>
+						</ul>	
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def compter(chaine, carac):
+    """ Entrees : chaine est une chaine de caracteres et carac est un caractere
+        Sorties : le nombre d'occurences de carac dans chaine."""
+    nombre = 0                  # Variable locale à la fonction qui stocke le nombre d'occurences
+    for lettre in chaine:       # On parcourt les lettres du texte
+        if lettre == carac:
+            nombre += 1
+    return nombre               # La fonction retourne le nombre d'occurences
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+lettre = input('Entrez un caractere : ')
+n = compter(texte, lettre)
+print('Il y a {} "{}" dans la phrase.'.format(n, lettre))
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				En reprenant le programme précédent, définir une fonction <code>remplacer()</code>
+				qui prend en paramètres une chaîne de caractères et deux caractères. Cette
+				fonction doit renvoyer la chaîne dans laquelle le 1<sup>er</sup> caractère est
+				remplacé par le 2<sup>nd</sup>.
+			</p>
+			<p>
+				Voici un exemple d'affichage où le programme demande à l'utilisateur d'entrer
+				une phrase (<em>ci-dessous <code class="language-python">'Ceci est un exemple.'</code></em>) et
+				deux caractères (<em>ci-dessous <code class="language-python">'e'</code> et
+				<code class="language-python">'i'</code></em>) puis il affiche la phrase modifié.
+			</p>
+			<pre class="affichage_python">Entrez une phrase : Ceci est un exemple.
+Entrez un caractère : e
+Entrez un autre caractère : i
+La phrase modifiée est : Cici ist un iximpli.</pre>
+			<p>
+				Ce programme doit évidemment faire appel à la fonction <code>remplacer()</code>.
+				Il est par contre inutile de vérifier les exceptions.
+			</p>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une dernière piste ?</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						On ne peut pas modifier une chaîne de caractères !!!
+						Il faut partir d'une chaîne vide et la remplir petit à petit.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						La fonction <code class="language-python">remplacer()</code> prend les
+						entrées de l'utilisateur comme paramètres et renvoie le texte modifié qui
+						sera affiché à l'écran.
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						Il faut retravailler l'exercice précédent si une aide plus poussée
+						vous semble nécessaire.
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def remplacer(texte, carac1, carac2):
+    """ Entrees : texte est une chaine de caracteres, carac1 et carac2 sont des un caracteres
+        Sorties : texte dans lequel chaque caractère carac1 est remplacé par carac2."""
+    chaine = ''                 # La chaîne qui sera retournée
+    for lettre in texte:       	# On parcourt les lettres du texte
+        if lettre == carac1:
+            chaine += carac2
+        else:
+            chaine += lettre
+    return chaine               # La fonction retourne le texte modifié
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+c1 = input('Entrez un caractère : ')
+c2 = input('Entrez un autre caractère : ')
+print('La phrase modifiée est :', remplacer(texte, c1, c2))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				Écrire un programme, <strong>utilisant une fonction</strong>, dans lequel
+				l'utilisateur entre un texte, puis le programme affiche ce texte en insérant
+				un espace entre chaque caractère.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré le texte 
+				&laquo;Ceci est un exemple&raquo; :
+			</p>
+			<pre class="affichage_python">Entrez une phrase : Ceci est un exemple
+La phrase modifiée est : C e c i   e s t   u n   e x e m p l e</pre>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Une amélioration</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						On ne peut pas modifier une chaîne de caractères, on l'a déjà dit !!!
+						Il faut donc partir d'une chaîne vide et la remplir petit à petit.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Prenez un papier, un crayon et dessinez un schéma illustrant étape
+							par étape les actions réalisées par le programme :
+						</p>
+						<ul class="enum">
+							<li>On définit une chaîne vide ;</li>
+							<li>On parcourt chaque caractère du texte ;</li>
+							<li>Chaque caractère est stocké dans la chaîne puis suivi d'un
+								espace ;</li>
+							<li>A la fin du parcours, on renvoie la chaîne (<em>qui n'est plus
+								vide !</em>).</li>
+						</ul>	
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def espacer(texte):
+    """ Entrees : texte est une chaine de caracteres
+        Sorties : texte dans lequel un espace a été inséré entre chaque caractère."""
+    chaine = ''                 # La chaîne qui sera retournée
+    for lettre in texte:       	# On parcourt les lettres du texte
+        chaine += lettre+" "
+    return chaine               # La fonction retourne le texte modifié
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+print('La phrase modifiée est :', espacer(texte))
+						</code></pre>
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<p>
+							Le programme précédent crée 3 espaces là où il y en avait un seul.
+							On peut gérer ces espaces avec un &laquo;Si... Alors...&raquo;.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def espacer(texte):
+    """ Entrees : texte est une chaine de caracteres
+        Sorties : texte dans lequel un espace a été inséré entre chaque caractère."""
+    chaine = ''                 # La chaîne qui sera retournée
+    for lettre in texte:
+        chaine += lettre        # On ajoute chaque caractère de texte
+        if lettre != ' ':
+            chaine += ' '       # On ajoute un espace si le caractère n'en était pas un
+    return chaine               # La fonction retourne le texte modifié
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+print('La phrase modifiée est :', espacer(texte))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				Écrire un programme, <strong>utilisant une fonction</strong>, dans lequel
+				l'utilisateur entre un texte, puis le programme affiche une
+				copie inversée de ce texte.
+			</p>
+			<p>
+				Dans l'exemple d'affichage ci-dessous, l'utilisateur a entré le texte 
+				&laquo;Ceci est un exemple&raquo; :
+			</p>
+			<pre class="affichage_python">Entrez une phrase : Ceci est un exemple
+La phrase modifiée est : elpmexe nu tse iceC</pre>
+			<p>
+				Il faudra ensuite que le programme indique si
+				le texte saisi est un palindrome (<em>un texte qui peut se lire dans les deux
+				sens, comme &laquo;radar&raquo; ou &laquo;s.o.s&raquo;</em>).
+			</p>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">On triche ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						On arrête avec les pistes : reprenez les conseils des exercices
+						précédents, un papier et un crayon, vous devriez y arriver !
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def inverser(texte):
+    """ Entrees : texte est une chaine de caracteres
+        Sorties : écriture "inversée" de texte."""
+    chaine = ''                 	# La chaîne qui sera retournée
+    for lettre in texte:
+        chaine = lettre + chaine	# La concaténation 'Rage'+'Cou' donne 'RageCou'
+    return chaine
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+reponse = inverser(texte)
+print('La phrase modifiée est :', reponse)
+if reponse == texte:
+    print('Cette phrase est un palindrome')
+else:
+    print('Cette phrase n\'est pas un palindrome')</code></pre>
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Grâce aux tranches, on peut parcourir les chaînes de caractères
+							à l'envers :D.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def inverser(texte):
+    """ Entrees : texte est une chaine de caracteres
+        Sorties : écriture "inversée" de texte."""
+    return texte[::-1]               # Parcours à l'envers de la chaîne de caractères
+
+
+##----- Programme principal ----- ##
+texte = input('Entrez une phrase : ')
+reponse = inverser(texte)
+print('La phrase modifiée est :', reponse)
+
+
+# Une autre méthode pour la recherche des palindromes, sans utiliser la chaîne inversée :
+dernier = len(texte)-1                  # Indice du dernier terme
+indice = 0                              # Indice en cours d'analyse
+while (texte[indice] == texte[dernier-indice]) and (indice &lt; dernier):
+    indice += 1
+
+if indice == dernier:
+    print('Cette phrase est un palindrome')
+else:
+    print('Cette phrase n\'est pas un palindrome')
+
+</code></pre>
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Un peu de Mathématiques</h1>
+		<article>
+			<p>
+				On appelle <strong>nombre narcissique</strong> tout entier égal à la somme
+				de ses <code class="language-python">n</code> chiffres chacun élevé
+				à la puissance <code class="language-python">n</code>. Par exemple :
+			</p>
+			<ul class="enum">
+				<li>153 est narcissique car il a <code class="language-python">3</code>
+					chiffres et 1<sup>3</sup> + 5<sup>3</sup> + 3<sup>3</sup> = 153.</li>
+				<li>8208 est narcissique car il a <code class="language-python">4</code>
+					chiffres et 8<sup>4</sup> + 2<sup>4</sup> + 0<sup>4</sup> + 8<sup>4</sup> = 8208.</li>
+			</ul>
+			<p>
+				Définir une fonction <code class="language-python">narcisse()</code> qui prend en paramètre
+				un entier positif et qui renvoie le booléen <code class="language-python">True</code>
+				lorsque l'entier est narcissique, <code class="language-python">False</code> sinon.
+			</p>
+			<p>
+				Utiliser ensuite cette fonction pour afficher tous les entiers narcissiques strictement
+				inférieurs à un entier <code class="language-python">N</code> saisi par l'utilisateur.
+				Il faudra bien gérer les éventuelles exceptions.
+			</p>
+			<p>
+				Ci-dessous, l'utilisateur a entré le nombre <code class="language-python">1000</code>.
+				Analyser l'affichage obtenu.
+			</p>
+			
+			<pre class="affichage_python">Entrez un entier positif : 1000.
+Les nombres narcissiques inférieurs à 1000 sont :
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+153
+370
+371
+407</pre>
+			
+			<p>
+				On pourra consulter cette <a href="https://fr.wikipedia.org/wiki/Nombre_narcissique">page
+				wikipédia</a> pour davantage de renseignements sur ces nombres.
+			</p>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une dernière piste ?</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						On peut passer des entiers <code class="language-python">int</code>
+						aux caractères <code class="language-python">str</code> puis revenir
+						aux entiers <code class="language-python">int</code>...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<ol class="liste_num">
+							<li>Combien l'entier a-t-il de chiffres ?</li>
+							<li>Quelle est la somme des puissances <code class="language-python">n</code>
+								de ces <code class="language-python">n</code> chiffres ?</li>
+							<li>Cette somme est-elle égale à l'entier d'origine ?</li>
+						</ol>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Pour éviter les aller-retour d'un type à l'autre, pourquoi ne pas
+						utiliser deux versions (<em>deux types</em>) pour un même nombre ?
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions ----- ##
+def narcisse(n):
+    """ Entrees : n est un entier naturel
+        Sorties : renvoie True si n est narcissique, c'est-à-dire un entier égal à la somme
+            de ses p chiffres chacun élevé à la puissance p. Renvoie False sinon."""
+    chaine = str(n)
+    p = len(chaine)
+    total = 0					# Somme des p (chiffres puissance p)
+    for chiffre in chaine:
+        total += int(chiffre)**p
+	
+    if total == n:
+        return True
+    else:
+        return False
+
+
+##----- Programme principal ----- ##
+while True:								# On contraint l'utilisateur
+    try:
+        n = int(input('Entrer un entier positif : '))
+        if n >= 0 :                     # positif ?
+            break                       # On sort de la boucle infinie
+    except:
+        print('Respecte les consignes, merci !')
+
+print('Les nombres narcissiques inférieurs à {} sont :'.format(n))
+for i in range(n):
+    if narcisse(i):
+        print(i)</code></pre>
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/chaines/chaines_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:02 GMT -->
+</html>

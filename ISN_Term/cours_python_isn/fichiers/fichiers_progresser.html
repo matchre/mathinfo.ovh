@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/fichiers/fichiers_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:10 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Les Fichiers<br>
+				Exercices pour progresser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Diaporama en <span class="majuscules">Html</span> </h1>
+		<article>
+			<p>
+				Concevoir un programme qui permet de générer de manière automatique
+				<code class="language-python">10</code> fichiers <code>.html</code>.
+			</p>
+			<p>
+				Ces fichiers seront nommés automatiquement <code>page_X.html</code> où
+				<code>X</code> correspond au numéro de la page. Ces pages sont destinées
+				à devenir un diaporama donc elles doivent toutes faire appel à un même
+				fichier <code>css_diaporama.css</code> téléchargeable en
+				<a href="fichiers_fichiers/css_diaporama.css" download="css_diaporama.css">cliquant
+				ici</a> et à placer dans le répertoire courant des fichiers créés par le programme.
+			</p>
+			<p>
+				De plus, chaque page <code>n</code> doit contenir un lien vers la page
+				suivante <code>n+1</code> et vers la page précédente <code>n-1</code>.
+				Attention, la page <code class="language-python">9</code> doit être reliée
+				à la page <code class="language-python">0</code> et vice-versa.
+			</p>
+			<p>
+				Il faut étudier le fichier <code>.css</code> afin de définir correctement
+				les balises nécessaires.
+			</p>
+			<p>
+				On présente ci-dessous l'aspect final de la page <code class="language-python">5</code>
+				ouverte dans un navigateur :
+			</p>
+			<img class="img_centre" src="images_fichiers/Diaporama.png"/>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution pour le programme n°2</li>
+					<li class="onglet">Remarque importante</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Un papier et un crayon permettront de détailler les balises
+							nécessaires à la conception des pages. Écrire ensuite ces
+							balises dans chaque fichier.
+						</p>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+n = 10					# Nombre de fichiers
+
+for i in range(n):
+    f = open('page_{}.html'.format(i), 'w')
+    
+    f.write('&lt;!DOCTYPE html> \n')
+    f.write('&lt;html lang="fr"> \n')
+    f.write('&lt;head> \n')
+    f.write('&lt;meta charset="utf-8"> \n')
+    f.write('&lt;title> Diaporama &lt;/title> \n')
+    f.write('&lt;link rel="stylesheet" href="css_diaporama.css"> \n')
+    f.write('&lt;/head> \n')
+    
+    f.write('&lt;body> \n')
+    f.write('&lt;header> Diaporama - Page {} &lt;/header> \n'.format(i))
+    f.write('&lt;article> \n')
+    f.write('&lt;p>Un paragraphe de blabla&lt;/p> \n')
+    f.write('&lt;/article> \n')
+    
+    if i != 0:
+        preced = i-1
+    else:
+        preced = 9
+    suivant = (i+1)%10
+    f.write('&lt;footer> \n')
+    
+    f.write('&lt;a id="a_gauche" href="page_{}.html"> \n'.format(preced))
+    f.write('Page pr&eacute;c&eacute;dente&lt;/a> \n')
+    
+    f.write('&lt;a id="a_droite" href="page_{}.html"> \n'.format(suivant))
+    f.write('Page suivante&lt;/a> \n')
+    f.write('&lt;/footer> \n')
+    
+    f.write('&lt;/body> \n')
+    f.write('&lt;/html> \n')
+    
+    f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Ouvrir le diaporama avec un navigateur internet. Y a-t-il un problème
+							avec les caractères accentués comme ci-dessous ?
+						</p>
+						<img class="img_centre" src="images_fichiers/Diaporama2.png"/>
+						<p>
+							Cette erreur provient de l'encodage du texte par défaut par le système
+							d'exploitation (<em>généralement Windows</em>). On peut la résoudre en
+							forçant le type d'encodage souhaité dès la création du fichier texte.
+							Ci-dessous, cette déclaration est faite en ligne 4:
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+n = 10					# Nombre de fichiers
+
+for i in range(n):
+    f = open('page_{}.html'.format(i), 'w', encoding='utf8')
+    
+    f.write('&lt;!DOCTYPE html> \n')
+    f.write('&lt;html lang="fr"> \n')
+    f.write('&lt;head> \n')
+    f.write('&lt;meta charset="utf-8"> \n')
+    f.write('&lt;title> Diaporama &lt;/title> \n')
+    f.write('&lt;link rel="stylesheet" href="css_diaporama.css"> \n')
+    f.write('&lt;/head> \n')
+    
+    f.write('&lt;body> \n')
+    f.write('&lt;header> Diaporama - Page {} &lt;/header> \n'.format(i))
+    f.write('&lt;article> \n')
+    f.write('&lt;p>Un paragraphe de blabla&lt;/p> \n')
+    f.write('&lt;/article> \n')
+    
+    if i != 0:
+        preced = i-1
+    else:
+        preced = 9
+    suivant = (i+1)%10
+    f.write('&lt;footer> \n')
+    
+    f.write('&lt;a id="a_gauche" href="page_{}.html"> \n'.format(preced))
+    f.write('Page pr&eacute;c&eacute;dente&lt;/a> \n')
+    
+    f.write('&lt;a id="a_droite" href="page_{}.html"> \n'.format(suivant))
+    f.write('Page suivante&lt;/a> \n')
+    f.write('&lt;/footer> \n')
+    
+    f.write('&lt;/body> \n')
+    f.write('&lt;/html> \n')
+    
+    f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Trier des informations </h1>
+		<article>
+			<p>
+				Le fichier <a href="fichiers_fichiers/materiel.txt" download="materiel.txt"><code>materiel.txt</code></a>
+				a été établi par un responsable informatique qui a établi une liste des
+				ordinateurs présents dans chaque salle. Chaque ligne du fichier est écrite
+				<strong>uniquement en lettres minuscules</strong> sous la forme :
+			</p>
+			<pre class="affichage">constructeur année_d_achat quantité caractéristiques</pre>
+			<p>
+				Chaque modèle d'ordinateur peut avoir plusieurs caractéristiques, séparées
+				par un espace comme les autres informations de la ligne.
+			</p>
+			<ol class="liste_num">
+				<li>Concevoir une fonction qui permette de connaître le nombre de machines
+					par constructeur. Si un constructeur est présent sur plusieurs lignes,
+					il faudra donc additionner les quantités correspondantes. Le fichier
+					<code>nb_materiel.txt</code> sera donc constitué des lignes :
+					<pre class="affichage">asus 193
+acer 209
+fujitsu 148
+hewlett-packard 184
+msi 182
+lenovo 260
+dell 178</pre>
+					</li>
+
+				<li>Parmi les caractéristiques, certains postes tournent sous système
+					d'exploitation <code>Linux</code>. Modifier le programme précédent
+					afin d'obtenir le fichier <code>materiel_linux.txt</code> qui sera
+					constitué, uniquement pour le matériel tournant sous <code>Linux</code>,
+					des lignes :
+					<pre class="affichage">acer 141
+fujitsu 64
+hewlett-packard 85
+lenovo 71
+asus 119
+msi 76
+dell 69</pre></li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une astuce ?</li>
+					<li class="onglet">Une solution pour le programme n°1</li>
+					<li class="onglet">Une solution pour le programme n°2</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							On considère la chaîne de caractère :
+						</p>
+						<pre><code class="language-python">
+texte = "Bonjour, comment ça va ?"</code></pre>
+						<p>
+							Que renvoie la console <span class="majuscules">Python</span>
+							après l'instruction :
+						</p>
+						<pre><code class="language-python">
+print(texte.split(" "))</code></pre>
+						
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def compte_matos(n_fic1, n_fic2, ind_info, ind_qtte):
+    """ Entrées : n_fic1 et n_fic2 sont des chaînes de caractères correspondant à des noms de fichier
+            info et qtte sont deux entiers donnant la position des informations et de la quantité à évaluer dans chaque ligne de n_fic1
+        Sorties : écrit dans n_fic2 les quantités correspondants aux informations identiques de n_fic1."""
+    #- Variables et constantes -#
+    liste_informations = []
+    liste_quantite = []
+    
+    #- Lecture des informations -#
+    fsource = open(n_fic1, 'r')
+    for ligne in fsource:
+        liste = ligne.split(" ")                                # Ligne transformée en liste de mots
+        if liste[ind_info] not in liste_informations:
+            liste_informations.append(liste[ind_info])
+            liste_quantite.append(int(liste[ind_qtte]))         # Quantité transformée en entier
+        else:
+            indice = liste_informations.index(liste[ind_info])  # Information déjà présente à l'indice indice
+            liste_quantite[indice] += int(liste[ind_qtte])
+    fsource.close()
+    
+    #- Ecriture des informations -#
+    fsortie = open(n_fic2, 'w')
+    for i in range(len(liste_informations)):
+        fsortie.write('{} {}\n'.format(liste_informations[i], liste_quantite[i]))
+    fsortie.close()
+    
+    
+
+##----- Variables et constantes -----##
+nom_lire = 'materiel.txt'
+nom_ecrire = 'nb_materiel.txt'
+ind_constructeur = 0
+ind_quantite = 2
+
+##----- Programme principal -----##
+compte_matos(nom_lire, nom_ecrire, ind_constructeur, ind_quantite)</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							On renomme la fonction en <code>compte_matos_2()</code> et on lui ajoute
+							un paramètre correspondant à la caractéristique recherchée (<em>ici
+							<code class="language-python">'linux'</code></em>).
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def compte_matos_2(n_fic1, n_fic2, ind_info, ind_qtte, carac):
+    """ Entrées : n_fic1 et n_fic2 sont des chaînes de caractères correspondant à des noms de fichier
+            info et qtte sont deux entiers donnant la position des informations et de la quantité à évaluer dans chaque ligne de n_fic1
+            carac est une chaîne de caractère recherchée pour sélectionner la ligne
+        Sorties : écrit dans n_fic2 les quantités correspondants aux informations identiques de n_fic1."""
+    #- Variables et constantes -#
+    liste_informations = []
+    liste_quantite = []
+    
+    #- Lecture des informations -#
+    fsource = open(n_fic1, 'r')
+    for ligne in fsource:
+        liste = ligne.split(" ")                                # Ligne transformée en liste de mots
+        if carac in liste:
+            if liste[ind_info] not in liste_informations:
+                liste_informations.append(liste[ind_info])
+                liste_quantite.append(int(liste[ind_qtte]))         # Quantité transformée en entier
+            else:
+                indice = liste_informations.index(liste[ind_info])  # Information déjà présente à l'indice indice
+                liste_quantite[indice] += int(liste[ind_qtte])
+    fsource.close()
+    
+    #- Ecriture des informations -#
+    fsortie = open(n_fic2, 'w')
+    for i in range(len(liste_informations)):
+        fsortie.write('{} {}\n'.format(liste_informations[i], liste_quantite[i]))
+    fsortie.close()
+    
+    
+
+##----- Variables et constantes -----##
+nom_lire = 'materiel.txt'
+nom_ecrire = 'materiel_linux.txt'
+ind_constructeur = 0
+ind_quantite = 2
+carac = 'linux'
+
+##----- Programme principal -----##
+compte_matos_2(nom_lire, nom_ecrire, ind_constructeur, ind_quantite, carac)</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/fichiers/fichiers_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:16 GMT -->
+</html>
