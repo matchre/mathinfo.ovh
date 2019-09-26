@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_maitriser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:57 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Le module <code>tkinter</code><br>
+				Maîtriser les événements - Exercices
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<h2>Attention !</h2>
+			<p>
+				Les erreurs de programmation avec les interfaces
+				graphiques sont souvent nombreuses. Lorsqu'elles se produisent, il faut
+				<strong>redémarrer le shell courant</strong> afin d'éviter &laquo;d'empiler
+				les erreurs&raquo;. Avec l'interface <code>Pyzo</code>,
+				cela se fait en cliquant sur le bouton
+				<img class="logo" src="images_interfaces/Bouton_Redemarre.png">.
+			</p>
+			<p>
+				Un petit résumé des instructions usuelles du module <code>tkinter</code>
+				est disponible, au format <code>.pdf</code> en
+				<a href="fichiers_interfaces/Resume_Tkinter.pdf" download="Resume_Tkinter.pdf">cliquant ici</a>.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Tracer un cercle</h1>
+		<article>
+			<p>
+				La fenêtre ouverte par le code ci-dessous contient un canevas, une zone
+				d'affichage de texte et un bouton [<em>Quitter</em>].
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Tracé de cercle')
+
+##----- Création et placement du bouton -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<img class="img_flotte" src="images_interfaces/Evenement01A.png">
+			<ol class="liste_num">
+				<li>Définir une fonction <code>tracer_cercle()</code> pour qu'elle fasse
+					apparaître un cercle rouge de rayon <code class="language-python">20</code>
+					pixels et d'épaisseur <code class="language-python">2</code> pixels à
+					l'endroit où l'utilisateur a effectué son clic.<br>
+					<em>Attention, le cercle doit être centré sur la pointe de la souris...</em></li>
+				
+				<li>De plus, cette fonction doit aussi mettre à jour la zone de texte pour que
+					les coordonnées du clic de souris dans le canevas soient affichées.</em></li>
+				
+				<li>Modifier ce script pour qu'un seul cercle (<em>le même</em>) soit affiché en même temps.
+					Si le bouton gauche de la souris est relâché puis cliqué à nouveau, le premier cercle
+					tracé sera re-dessiné à l'endroit du nouveau clic.<br>
+					On rappelle que la méthode <code>dessin.coords(item_nom, x1, y1, x2, y2)</code>
+					appliquée au canevas <code>dessin</code> permet de redéfinir les coordonnées
+					(<code>x1</code>, <code>y1</code>) et (<code>x2</code>, <code>y2</code>)
+					des &laquo;coins&raquo; opposés de l'item <code>item_nom</code>.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Encore une piste ?</li>
+					<li class="onglet">Version n°1 ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Il faut lier le clic gauche de la souris <code>'&lt;Button-1>'</code> à la
+						fonction <code>tracer_cercle()</code> en appliquant la méthode
+						<code>.bind()</code> au canevas.
+					</div>
+
+					<div class="contenu">
+						La fonction <code>tracer_cercle()</code> nécessite comme
+						<strong>unique</strong> paramètre <code>event</code>. Dès lors,
+						l'abscisse du clic de souris dans le canevas est obtenu par
+						<code>event.x</code> et son ordonnée par <code>event.y</code>.
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Tracé de cercle')
+
+##----- Définition des Fonctions -----##
+def tracer_cercle(event):
+    """ Entrées : Un évéenement - ici le clic de souris
+        Sorties : Trace un cercle rouge de centre le clic de souris détecté par le Canvas."""
+    xclic = event.x             # Abscisse du clic
+    yclic = event.y             # Ordonnée du clic
+    dessin.create_oval(xclic-20, yclic-20, xclic+21, yclic+21, width=2, outline='red')
+    message.configure(text='Clic en X = {} et en Y = {}'.format(xclic, yclic))
+
+##----- Création et placement du bouton -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Programme principal -----##
+dessin.bind('&lt;Button-1>', tracer_cercle)
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Tracé de cercle')
+
+##----- Définition des Fonctions -----##
+def tracer_cercle(event):
+    """ Entrées : Un évéenement - ici le clic de souris
+        Sorties : Trace un cercle rouge de centre le clic de souris détecté par le Canvas."""
+    xclic = event.x             # Abscisse du clic
+    yclic = event.y             # Ordonnée du clic
+    dessin.coords(cercle, xclic-20, yclic-20, xclic+21, yclic+21)
+    message.configure(text='Clic en X = {} et en Y = {}'.format(xclic, yclic))
+
+##----- Création et placement du bouton -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+# Cercle, "masqué" pour l'instant, dont les coordonnées seront redéfinies au fur et à mesure
+cercle = dessin.create_oval(0, 0, 0, 0, width=2, outline='red')
+
+##----- Programme principal -----##
+dessin.bind('&lt;Button-1>', tracer_cercle)
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>   
+				</div>
+			</div>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Un cercle stalker</h1>
+		<article>
+			<p>
+				On reprend l'interface graphique de l'exercice précédent :
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Cercle collant')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<ol class="liste_num">
+				<li>Nommer et tracer un cercle rouge de rayon <code class="language-python">10</code>
+					pixels et d'épaisseur <code class="language-python">2</code> pixels au centre du
+					canevas.</li>
+				
+				<li>Définir une fonction <code>cercle_souris()</code> pour que le cercle rouge soit
+					en permanence &laquo;sous&raquo; la souris lorsqu'elle se déplace. La zone de texte
+					doit aussi afficher &laquo;en continu&raquo; les coordonnées du pointeur de la souris
+					dans le canevas.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Encore une piste ?</li>
+					<li class="onglet">La fonction <code>cercle_souris()</code> ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Il faut lier le clic gauche de la souris <code>'&lt;Motion>'</code> à la
+						fonction <code>cercle_souris()</code> en appliquant la méthode
+						<code>.bind()</code> au canevas.
+					</div>
+					<div class="contenu">
+						La fonction <code>cercle_souris()</code> nécessite comme
+						<strong>unique</strong> paramètre <code>event</code>. Les
+						coordonnées de la souris dans le canevas sont alors
+						<code>event.x</code> et <code>event.y</code>.
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def cercle_souris(event):
+    """ Entrées : Un évéenement - ici le déplacement de la souris
+        Sorties : Fait coller en permanence un cercle rouge sous la souris dans le Canvas.
+            Elle affiche aussi en permanence ses coordonnées dans la zone de texte"""
+    abscisse = event.x               # Abscisse de la souris
+    ordonnee = event.y               # Ordonnée de la souris
+    dessin.coords(cercle, abscisse-10, ordonnee-10, abscisse+10, ordonnee+10)
+    message.configure(text='Souris en X = {} et en Y = {}'.format(abscisse, ordonnee))
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Cercle collant')
+
+##----- Définition des Fonctions -----##
+def cercle_souris(event):
+    """ Entrées : Un évéenement - ici le déplacement de la souris
+        Sorties : Fait coller en permanence un cercle rouge sous la souris dans le Canvas.
+            Elle affiche aussi en permanence ses coordonnées dans la zone de texte"""
+    abscisse = event.x               # Abscisse de la souris
+    ordonnee = event.y               # Ordonnée de la souris
+    dessin.coords(cercle, abscisse-10, ordonnee-10, abscisse+10, ordonnee+10)
+    message.configure(text='Souris en X = {} et en Y = {}'.format(abscisse, ordonnee))
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Création des figures -----##
+cercle = dessin.create_oval(152-10, 152-10, 152+10, 152+10, width=2, outline='red')
+
+##----- Programme principal -----##
+dessin.bind('&lt;Motion>', cercle_souris)
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>   
+				</div>
+			</div>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Cercle déplaçable et drapeau</h1>
+		<article>
+			<p>
+				On repart d'une fenêtre contenant un canevas, une zone de texte et
+				un bouton [<em>Quitter</em>].
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Déplacer un cercle')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<p>
+				A partir de cette interface de référence, concevoir un script qui affiche
+				un cercle rouge à l'emplacement du clic de la souris et qui permet à
+				l'utilisateur de déplacer ce cercle <strong>tant que</strong> le bouton de
+				la souris n'a pas été relâché. Ce script nécessite de définir trois fonctions :
+			</p>
+			<ul class="enum">
+				<li>La fonction <code>cliquer()</code> se déclenche au clic de la souris.
+					Elle doit tracer un cercle rouge sous la souris et &laquo;lève&raquo;
+					un drapeau (<em>valeur <code>True</code></em>) autorisant le déplacement
+					du cercle.</li>
+				
+				<li>La fonction <code>lacher()</code> se déclenche lorsque le bouton gauche
+					de la souris n'est plus enfoncé. Cette fonction abaisse le drapeau
+					(<em>valeur <code>False</code></em>) et n'autorise plus le déplacement
+					du cercle.</li>
+				
+				<li>La fonction <code>deplacer()</code> qui se déclenche lorsque la souris se
+					déplace au-dessus du canevas <strong>et lorsque</strong> le drapeau autorisant
+					le déplacement est levé (<em>valeur <code>True</code></em>). Cette fonction
+					redéfinit les coordonnées du cercle.</li>
+			</ul>
+			<p>
+				Ni piste, ni aide, ni étape ne sont proposées cette fois-ci.
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Définition des Variables globales -----##
+cercle = 0          					# D'abord 0 avant d'être une figure
+drapeau = False     					# Variable globale
+
+##----- Définition des Fonctions -----##
+def cliquer(event):
+    """ Entrées : Un événement - ici un clic gauche de souris
+        Sorties  : Trace un cercle rouge sous la souris dans le Canvas."""
+    global drapeau, cercle
+    drapeau = True              # On lève le drapeau
+    abscisse = event.x          # Abscisse de la souris
+    ordonnee = event.y          # Ordonnée de la souris
+    cercle = dessin.create_oval(abscisse-10, ordonnee-10, abscisse+10, ordonnee+10,width=2,outline='red')
+
+
+def lacher(event):
+    """ Entrées : Un événement - ici un bouton (gauche) de la souris relâché
+        Sorties : Relâche le cercle."""
+    global drapeau
+    drapeau = False             # On baisse le drapeau      
+
+
+def deplacer(event):
+    """ Entrées : Un événement - ici un bouton (gauche) de la souris enfoncé
+        Sorties : Conserve le cercle rouge sous la souris tant que..."""
+    global drapeau, cercle
+    if drapeau:                 # Si le drapeau est levé
+        abscisse = event.x      # Abscisse de la souris
+        ordonnee = event.y      # Ordonnée de la souris
+        # Re-définition des coordonnées du cercle :
+        dessin.coords(cercle, abscisse-10, ordonnee-10, abscisse+10, ordonnee+10)
+        message.configure(text = 'Souris en X = {0} et Y = {1}'.format(abscisse, ordonnee))
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Déplacer un cercle')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Texte à modifier.')
+message.grid(row = 1, column = 0, sticky = W+E)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=300, height=300)
+dessin.grid(row = 0, column = 0, columnspan = 2, padx=5, pady=5)
+
+##----- Programme principal -----##
+dessin.bind('&lt;Button-1>', cliquer)
+dessin.bind('&lt;ButtonRelease-1>', lacher)
+dessin.bind('&lt;Motion>', deplacer)
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>   
+				</div>
+			</div>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Logiciel de dessin</h1>
+		<article>
+			<p class="centrer">
+				<em>Idée originale de P. <span class="majuscules">Busac</span>, enseignant au Lycée
+				Herriot de Lyon.</em>
+			</p>
+			<p>
+				Vous allez réaliser votre premier logiciel de dessin !<br>
+				L'idée est de dessiner une ligne lorsque le bouton de la souris reste
+				enfoncé. Voici ce que vous devrez obtenir :
+			</p>
+			<img class="img_centre" src="images_interfaces/Logiciel_Dessin.png">
+									
+			<div class="entoure_python">
+		<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Définition des Variables globales -----##
+x1 = 0				# Mémorisation de la position antérieure de la souris 
+y1 = 0 
+l, h = 480, 320		# Largeur et hauteur du canevas
+
+
+##----- Définition des Fonctions -----##
+def clic(event):
+    """ Prise en compte de l'événement clic gauche sur la zone graphique """
+    # Ecrivez votre code ici
+
+
+def deplace_clic(event):
+    """ Prise en compte de l'événement déplacement de la souris avec clic gauche enfoncé
+        jusqu'au relâchement du clic gauche."""
+    # Ecrivez votre code ici
+
+
+def effacer():
+    """ Efface la zone graphique """
+    zone_dessin.delete(ALL)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Dessin')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row=1, column = 1, padx = 5, pady = 5)
+bouton_effacer = Button(fen, text='Effacer', command=effacer)
+bouton_effacer.grid(row=1, column = 0, padx = 5, pady = 5)
+
+##----- Création du canevas -----##
+zone_dessin = Canvas(fen, width = l, height = h, bg ='white')
+zone_dessin.grid(row=0, column = 0, columnspan = 2, padx =5, pady =5)
+
+##----- Programme principal -----##
+
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+						
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste pour dessiner ?</li>
+					<li class="onglet">Une piste pour l'événement ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				
+				<div class="zone_boite"> 
+					<div class="contenu">
+						<p>
+							En fait, on ne trace que des &laquo; micro-lignes &raquo; dans le canevas.
+							Pour dessiner, il faut utiliser la méthode <code>.create_line(x1, y1, x2, y2)</code>
+							de où $M_1$(<code>x1</code> ; <code>y1</code>) et $M_2$(<code>x2</code> ; <code>y2</code>)
+							sont les deux extrémités du segment tracé.
+						</p>
+						<p>
+							Il faudra donc mémoriser à la fois la position actuelle de la souris et
+							sa position antérieure afin de tracer le segment entre les deux positions.
+							Recourir à des variables globales semble alors nécessaire...
+					</div>
+					<div class="contenu">
+						<p>
+							Voici les événements à prendre en compte :
+						</p>
+						<ul class="enum">
+							<li><code>&lt;Button-1&gt;</code> identifie le clic gauche de la souris.</li>
+							<li><code>&lt;B1-Motion&gt;</code> identifie le mouvement de la souris
+								alors que le bouton gauche est enfoncé, jusqu'au relâchement de ce bouton.</lir>
+						</ul>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Définition des Variables globales -----##
+x1 = 0				# Mémorisation de la position antérieure de la souris 
+y1 = 0 
+l, h = 480, 320		# Largeur et hauteur du canevas
+
+
+##----- Définition des Fonctions -----##
+def clic(event):
+    """ Prise en compte de l'événement clic gauche sur la zone graphique """
+    global x1, y1
+    # position du clic
+    x1 = event.x
+    y1 = event.y
+
+
+def deplace_clic(event):
+    """ Prise en compte de l'événement déplacement de la souris avec clic gauche enfoncé
+        jusqu'au relâchement du clic gauche."""
+    global x1, y1
+    # nouvelle position après déplacement de la souris - bouton enfoncé
+    x2 = event.x
+    y2 = event.y
+    # on dessine une ligne
+    zone_dessin.create_line(x1, y1, x2, y2, fill='green')
+    x1 = x2
+    y1 = y2
+
+
+def effacer():
+    """ Efface la zone graphique """
+    zone_dessin.delete(ALL)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Dessin')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row=1, column = 1, padx = 5, pady = 5)
+bouton_effacer = Button(fen, text='Effacer', command=effacer)
+bouton_effacer.grid(row=1, column = 0, padx = 5, pady = 5)
+
+##----- Création du canevas -----##
+zone_dessin = Canvas(fen, width = l, height = h, bg ='white')
+zone_dessin.grid(row=0, column = 0, columnspan = 2, padx =5, pady =5)
+
+##----- Programme principal -----##
+zone_dessin.bind('&lt;Button-1>', clic)            # pour le premier clic
+zone_dessin.bind('&lt;B1-Motion>', deplace_clic)   # pour le déplacement bouton enfoncé
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+
+			</div>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_maitriser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:00 GMT -->
+</html>

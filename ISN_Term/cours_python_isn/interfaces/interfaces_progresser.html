@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:50 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Le module <code>tkinter</code><br>
+				Exercices pour progresser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<h2>Attention !</h2>
+			<p>
+				Les erreurs de programmation avec les interfaces
+				graphiques sont souvent nombreuses. Lorsqu'elles se produisent, il faut
+				<strong>redémarrer le shell courant</strong> afin d'éviter &laquo;d'empiler
+				les erreurs&raquo;. Avec l'interface <code>Pyzo</code>,
+				cela se fait en cliquant sur le bouton
+				<img class="logo" src="images_interfaces/Bouton_Redemarre.png">.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Carrés et cercles</h1>
+		<article>
+			<p>
+				La fenêtre ouverte par le code ci-dessous contient un canevas
+				et un bouton [<em>Quitter</em>].
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200)
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<img class="img_flotte" src="images_interfaces/Canevas01A.png">
+			<ol class="liste_num">
+				<li>Le canevas ne se distingue pas du fond de la fenêtre.
+					Changez sa couleur de fond (<em>attribut <code>bg</code> pour
+					&laquo; background &raquo;</em>) lors de la création du
+					canevas <code>dessin</code>.</li>
+					
+				<li>Encadrer le canevas par un rectangle noir d'épaisseur de
+					côté <code class="language-python">1</code> et de mêmes
+					dimensions que le canevas. Les coordonnées
+					(<code>x<sub>0</sub></code> ; <code>y<sub>0</sub></code>)
+					seront (<code class="language-python">0</code> ; <code class="language-python">0</code>).
+					Que constate-t-on ?<br>
+					Modifier les coordonnées (<code>x<sub>0</sub></code> ; <code>y<sub>0</sub></code>)
+					et (<code>x<sub>1</sub></code> ; <code>y<sub>1</sub></code>) de sorte que
+					le rectangle &laquo;colle&raquo; parfaitement au contour du canevas.</li>
+					
+				<li>Dans le canevas, tracer un carré de bords noirs mesurant
+					<code class="language-python">100</code> pixels, d'épaisseur
+					<code class="language-python">2</code> avec un fond jaune.</li>
+					
+				<li><code>.create_oval()</code> permet de tracer un cercle en l'insérant dans
+					un carré de côté <em>2R</em>. Compléter les pointillés de la figure ci-contre
+					pour déduire de cette figure l'instruction permettant de tracer un cercle
+					rouge dans le carré jaune définie à la question précédente.</li>
+					
+				<li>Un cercle peut aussi être défini par son centre
+					<code>I</code>(<code>x<sub>I</sub></code> ; <code>y<sub>I</sub></code>) et son
+					rayon <em>R</em>. Compléter la 2<sup>nde</sup> figure pour en déduire l'instruction
+					permettant de tracer un cercle ayant pour centre le point de coordonnées
+					(<code>350</code> ; <code>100</code>) et de rayon <code class="language-python">40</code>.</li>
+			</ol>
+			<table class="classique">
+				<tr><th>Image à compléter de la question 4°/</th>
+					<th>Image à compléter de la question 5°/</th></tr>
+				<tr><td><img src="images_interfaces/Canevas01B.png"></td>
+					<td><img src="images_interfaces/Canevas01C.png"></td></tr>
+			</table>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Étape n°1</li>
+					<li class="onglet">Étape n°2</li>
+					<li class="onglet">Étape n°3</li>
+					<li class="onglet">Étape n°4</li>
+					<li class="onglet">Étape n°5</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Attribut <code>bg</code> (<em>background</em>)
+							lors de la création du canevas <code>dessin</code> :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<p>
+							Méthode <code>.create_rectangle()</code>
+							appliquée au canevas <code>dessin</code>.
+							Selon le système d'exploitation, le coin
+							haut-gauche du canevas aura pour coordonnées
+							<code class="language-python">(1, 1)</code>
+							(<em>sous Linux</em>) ou bien
+							<code class="language-python">(2, 2)</code>
+							(<em>sous Windows</em>).
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Création des figures-----##
+entoure = dessin.create_rectangle(2, 2, 401, 201)
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<p>
+							Attributs <code>outline</code> et <code>fill</code>
+							de la méthode <code>.create_rectangle()</code> :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Création des figures-----##
+entoure = dessin.create_rectangle(2, 2, 401, 201)
+carre = dessin.create_rectangle(50, 50, 100, 100, width=3, outline='black', fill='yellow')
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<img class="img_centre" src="images_interfaces/Canevas01D.png" style="width: 250px;">
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Création des figures-----##
+entoure = dessin.create_rectangle(2, 2, 401, 201)
+carre = dessin.create_rectangle(50, 50, 100, 100, width=3, outline='black', fill='yellow')
+
+cercle1 = dessin.create_oval(50, 50, 100, 100, width=3, outline='red')
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<img class="img_centre" src="images_interfaces/Canevas01E.png" style="width: 250px;">
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+
+##-----Création de la fenêtre-----##
+fen = Tk()
+fen.title('Carrés et Cercles')
+
+##-----Création des boutons-----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##-----Création des canevas-----##
+dessin = Canvas(fen, width=400, height=200, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2)
+
+##-----Création des figures-----##
+entoure = dessin.create_rectangle(2, 2, 401, 201)
+carre = dessin.create_rectangle(50, 50, 100, 100, width=3, outline='black', fill='yellow')
+
+cercle1 = dessin.create_oval(50, 50, 100, 100, width=3, outline='red')
+
+cercle2 = dessin.create_oval(350-40, 100-40, 350+40+1, 100+40+1, width=3, outline='#e46f0a')
+
+##-----Programme principal-----##
+fen.mainloop()                          # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Une liste de carrés</h1>
+		<article>
+			<div style="text-align: center;">
+				<img class="img_centre" src="images_interfaces/Canevas02A.png" style="display: inline;">
+				<img class="img_centre" src="images_interfaces/Canevas02B.png" style="display: inline;">
+			</div>
+			<p>
+				Le quadrillage ci-dessus (<em>à gauche</em>) rentre
+				parfaitement dans le canevas.
+				Pour cela, on a défini comme variables la longueur
+				<code>c</code> d'un côté d'une case et le nombre
+				<code>n</code> de cases par ligne et par colonne :
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Variables globales -----##
+c = 30                          # Longueur d'un côté d'une case
+n = 8                           # Nombre de cases par ligne et par colonne
+cases = []                      # Liste contenant les objets cases
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Damier')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.quit)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width= , height= , bg='white')
+dessin.grid(row = 0, column = 0, columnspan=2, padx=3, pady=3)
+
+##----- Création des figures -----##
+for ligne in range(n):          # Les cases de chaque ligne seront stockées dans "transit"
+    transit=[]
+    for colonne in range(n):    # Conception des cases d'une ligne
+        transit.append(dessin.create_rectangle( ))
+    cases.append(transit)       # Ajout de la ligne à la liste principale
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<ol class="liste_num">
+				<li>Le programme ci-dessus est incomplet. Complétez les
+					paramètres <code>width</code> et <code>height</code> du
+					canevas à la ligne <code>18</code> (<em>ne pas oublier le
+					décalage constaté lors de l'exercice précédent, décalage
+					qui dépend du système d'exploitation</em>).</li>
+					
+				<li>Les carrés qui constituent les cases doivent être
+					stockés dans une liste de listes. A la ligne
+					<code>25</code>, déterminez les coordonnées permettant
+					de tracer chaque carré en fonction des numéros de
+					<code>ligne</code>, des numéros de <code>colonne</code>
+					et de la variable <code>c</code> (<em>ne pas oublier le
+					décalage constaté lors de l'exercice précédent, décalage
+					qui dépend du système d'exploitation</em>).</li>
+				
+				<li>La question précédente permet d'obtenir le quadrillage.
+					En utilisant la méthode <code>.itemconfigure()</code>
+					qui permet de modifier les paramètres d'un item déjà
+					créé, afficher le damier désiré.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Étape n°1</li>
+					<li class="onglet">Étape n°2</li>
+					<li class="onglet">Étape n°3</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Solution sous système d'exploitation Windows,
+							avec un décalage de <code>+2</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Variables globales -----##
+c = 30                          # Longueur d'un côté d'une case
+n = 8                           # Nombre de cases par ligne et par colonne
+cases = []                      # Liste contenant les objets cases
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Damier')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width = n*c+2, height = n*c+2, bg = 'white')
+dessin.grid(row = 0, column = 0, columnspan=2, padx=3, pady=3)
+
+##----- Création des figures -----##
+for ligne in range(n):          # Les cases de chaque ligne seront stockées dans "transit"
+    transit=[]
+    for colonne in range(n):    # Conception des cases d'une ligne
+        transit.append(dessin.create_rectangle( ))
+    cases.append(transit)       # Ajout de la ligne à la liste principale
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<p>
+							Solution sous système d'exploitation Windows,
+							avec un décalage de <code>+2</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Variables globales -----##
+c = 30                          # Longueur d'un côté d'une case
+n = 8                           # Nombre de cases par ligne et par colonne
+cases = []                      # Liste contenant les objets cases
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Damier')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width = n*c+2, height = n*c+2, bg = 'white')
+dessin.grid(row = 0, column = 0, columnspan=2, padx=3, pady=3)
+
+##----- Création des figures -----##
+for ligne in range(n):          # Les cases de chaque ligne seront stockées dans "transit"
+    transit=[]
+    for colonne in range(n):    # Conception des cases d'une ligne
+        transit.append(dessin.create_rectangle(colonne*c+2, ligne*c+2, (colonne+1)*c+2, (ligne+1)*c+2))
+    cases.append(transit)       # Ajout de la ligne à la liste principale
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<p>
+							Solution sous système d'exploitation Windows,
+							avec un décalage de <code>+2</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Variables globales -----##
+c = 30                          # Longueur d'un côté d'une case
+n = 8                           # Nombre de cases par ligne et par colonne
+cases = []                      # Liste contenant les objets cases
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Damier')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 1, sticky=W+E, padx=3, pady=3)
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width = n*c+2, height = n*c+2, bg = 'white')
+dessin.grid(row = 0, column = 0, columnspan=2, padx=3, pady=3)
+
+##----- Création des figures -----##
+for ligne in range(n):          # Les cases de chaque ligne seront stockées dans "transit"
+    transit=[]
+    for colonne in range(n):    # Conception des cases d'une ligne
+        transit.append(dessin.create_rectangle(colonne*c+2, ligne*c+2, (colonne+1)*c+2, (ligne+1)*c+2))
+    cases.append(transit)       # Ajout de la ligne à la liste principale
+
+##----- Modification des figures créées -----##
+for ligne in range(n):
+    for colonne in range(n):
+        if (ligne+colonne)%2 == 0:      # Parité
+            dessin.itemconfigure(cases[ligne][colonne], outline='black', fill='black')
+        else:
+            dessin.itemconfigure(cases[ligne][colonne], outline='white')
+	
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Les boutons aux commandes</h1>
+		<article>
+			<img class="img_flotte" src="images_interfaces/Canevas03A.png">
+			<p>
+				L'interface graphique du programme ci-après est constituée
+				d'une fenêtre contenant un canevas et quatre boutons :
+			</p>
+			<ul class="enum">
+				<li>le bouton [<em>Tracer un cercle</em>] doit afficher,
+					dans le canevas, un cercle, d'épaisseur
+					<code class="language-python">2</code> pixels,
+					dont les coordonnées (<em>entre
+					<code class="language-python">50</code>
+					et <code class="language-python">250</code></em>) du
+					centre et le rayon (<em>entre
+					<code class="language-python">10</code> et
+					<code class="language-python">40</code></em>) sont
+					aléatoires ;</li>
+				<li>le bouton [<em>Changer de couleur</em>] doit modifier
+					aléatoirement la couleur des tracés suivants.
+					Les différentes couleurs possibles sont définies dans
+					la liste : <code class="language-python">['purple',
+					'cyan', 'green', 'red', 'blue', 'orange', 'black']</code> ;</li>
+				<li>le bouton [<em>Effacer</em>] doit effacer tous les
+					cercles déjà tracés. Il doit ré-initialiser la couleur
+					du tracé suivant à <code>'blue'</code>.</li>
+			</ul>
+			
+			<p>
+				Complétez la définition des fonctions pilotées par ces
+				boutons pour que le programme &laquo;fonctionne&raquo;
+				correctement.
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+
+##----- Variables globales -----##
+couleur = 'blue'                      	# Couleur par défaut
+
+##-----Définition des fonctions-----##
+def tracer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Trace dans le canevas un cercle de couleur, de centre un
+            point de coordonnées aléatoires (entre 50 et 250) et de rayon
+            aléatoire (entre 10 et 40)."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+
+
+def change_couleur():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Permet le changement aléatoire de couleur parmi les 7 d'une liste donnée."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+
+
+def effacer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Efface toutes les figures déjà tracée dans le canevas."""
+    global couleur
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Cercles')
+
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx=3, pady=3)
+
+bouton_tracer = Button(fen, text='Tracer un cercle', command=tracer)
+bouton_tracer.grid(row = 1, column = 0, padx=3, pady=3)
+
+bouton_changer = Button(fen, text='Nouvelle couleur', command=change_couleur)
+bouton_changer.grid(row = 1, column = 1, padx=3, pady=3)
+
+bouton_effacer = Button(fen, text='Effacer', command=effacer)
+bouton_effacer.grid(row = 1, column = 2, padx=3, pady=3)
+
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width=302, height=302, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=4, padx=3, pady=3)
+
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Fonction n°1</li>
+					<li class="onglet">Fonction n°2</li>
+					<li class="onglet">Fonction n°3</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Il ne faut pas oublier d'importer le module
+							<code>random</code> !!!
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+def tracer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Trace dans le canevas un cercle de couleur, de centre un
+            point de coordonnées aléatoires (entre 50 et 250) et de rayon
+            aléatoire (entre 10 et 40)."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+    x0, y0 = randint(50,250), randint(50,250)
+    r = randint(10,40)
+    dessin.create_oval(x0-r, y0-r, x0+r+1, y0+r+1, width=2, outline=couleur)
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def change_couleur():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Permet le changement aléatoire de couleur parmi les 7 d'une liste donnée."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+    couleur=choice(['purple', 'cyan', 'green', 'red', 'blue', 'orange', 'black'])
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def effacer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Efface toutes les figures déjà tracée dans le canevas."""
+    global couleur
+    dessin.delete(ALL)
+    couleur='blue'
+						</code></pre>
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import *
+
+
+##----- Variables globales -----##
+couleur = 'blue'                      	# Couleur par défaut
+
+##-----Définition des fonctions-----##
+def tracer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Trace dans le canevas un cercle de couleur, de centre un
+            point de coordonnées aléatoires (entre 50 et 250) et de rayon
+            aléatoire (entre 10 et 40)."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+    x0, y0 = randint(50,250), randint(50,250)
+    r = randint(10,40)
+    dessin.create_oval(x0-r, y0-r, x0+r+1, y0+r+1, width=2, outline=couleur)
+	
+
+def change_couleur():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Permet le changement aléatoire de couleur parmi les 7 d'une liste donnée."""
+    global couleur              		# Variable globale, modifiée dans le programme principal
+    couleur=choice(['purple', 'cyan', 'green', 'red', 'blue', 'orange', 'black'])
+
+
+def effacer():
+    """ Entrées : Fonction déclenchée par le bouton - pas d'entrée
+        Sorties : Efface toutes les figures déjà tracée dans le canevas."""
+    global couleur
+    dessin.delete(ALL)
+    couleur='blue'
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Cercles')
+
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx=3, pady=3)
+
+bouton_tracer = Button(fen, text='Tracer un cercle', command=tracer)
+bouton_tracer.grid(row = 1, column = 0, padx=3, pady=3)
+
+bouton_changer = Button(fen, text='Nouvelle couleur', command=change_couleur)
+bouton_changer.grid(row = 1, column = 1, padx=3, pady=3)
+
+bouton_effacer = Button(fen, text='Effacer', command=effacer)
+bouton_effacer.grid(row = 1, column = 2, padx=3, pady=3)
+
+
+##----- Création des canevas -----##
+dessin = Canvas(fen, width=302, height=302, bg='white')
+dessin.grid(row = 0, column = 0, columnspan=4, padx=3, pady=3)
+
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:56 GMT -->
+</html>

@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/images_matricielles/images_maitriser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:57:23 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Les images<br>
+				Exercices pour maîtriser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<p>
+				Dans les exercices de cette page, on ne fait plus appel au module PIL.
+				Les images seront créées/modifiées à partir de simples fichiers textes
+				(<em>images non compressées au format <span class="majuscules">Pbm</span>,
+				<span class="majuscules">Pgm</span> ou <span class="majuscules">Ppm</span></em>)
+				ou en utilisant le module <code>turtle</code> (<em>dernier exercice</em>).
+			</p>
+			<p>
+				Une image au format <span class="majuscules">Pbm</span>,
+				<span class="majuscules">Pgm</span> ou <span class="majuscules">Ppm</span> est
+				un fichier texte codé ligne par ligne en partant du haut. Chaque ligne est écrite
+				et lue de gauche à droite. Puisque chaque ligne du fichier texte comporte au
+				maximum <code>70</code> caractères, <strong>il peut être très intéressant de passer
+				à la ligne pour séparer chaque pixel plutôt qu'utiliser des espaces</strong>.				 
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Tracés rectilignes</h1>
+		<article>
+			<p>
+				Le format <code>.pbm</code> est un format simple d'image matricielle en noir
+				et blanc, c'est-à-dire formée d'un rectangle de pixels.
+			</p>
+			<p>
+				Une image de 10 pixels sur 10 pixels au format <code>.pbm</code> est tout
+				simplement un fichier texte contenant 10 lignes, chacune de ces lignes étant
+				constituée de 10 caractères <code class="language-python">'0'</code> et/ou de
+				<code class="language-python">'1'</code>. Dans ce format, chaque
+				<code class="language-python">'0'</code> est interprété par un pixel blanc et
+				chaque <code class="language-python">'1'</code> par un pixel noir. 
+			</p>
+			<p>
+				Voici un exemple de script <span class="majuscules">Python</span> permettant
+				de concevoir une image au format <code>.pbm</code> :
+			</p>
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur = 10
+hauteur = 10
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Lignes_Horizontales.pbm', 'w')
+
+##------ En-tête ------##
+f.write('P1 \n')								# P1 en ligne 1 pour déclarer le format .pbm puis passage à la ligne
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for colonne in range(largeur):
+		if ligne%2 == 0:						# Lorsque le numéro de ligne est pair
+			f.write('0')
+		else:
+			f.write('1')
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+			</div>
+			
+			<img class="img_flotte" src="images_matricielles_images/Lignes_Horizontales.png"/>
+			<p>
+				En ouvrant ce fichier avec un logiciel de visualisation d'image, on obtient
+				l'alternance de lignes horizontales ci-contre (<em>sans les pointillés</em>).
+			</p>
+			<p>
+				En ouvrant ce fichier avec un éditeur de texte, on obtient l'affichage
+				ci-dessous :				
+			</p>
+			<pre class="encadre" style="font-size: 0.8em;"><code>P1 
+10 10 
+0000000000
+1111111111
+0000000000
+1111111111
+0000000000
+1111111111
+0000000000
+1111111111
+0000000000
+1111111111</code></pre>
+			
+			<p>
+				Concevoir les programmes en <span class="majuscules">Python</span> permettant
+				d'obtenir les images suivantes, de dimensions <code>150*150</code> :
+			<p>
+			<table class="classique">
+				<tr><th>Un carré noir</th>
+					<th>Colonnes noires et blanches</th>
+					<th>Croix sur fond blanc</th>
+					<th>Losange noir évidé</th></tr>
+				<tr><td><img src="images_matricielles_images/Carre_Noir.png"/></td>
+					<td><img src="images_matricielles_images/Colonnes.png" style="width: 150px;"/></td>
+					<td><img src="images_matricielles_images/Croix.png"/></td>
+					<td><img src="images_matricielles_images/Losange_Noir_Vide.png"/></td></tr>
+			</table>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Image n°1</li>
+					<li class="onglet">Image n°2</li>
+					<li class="onglet">Image n°3</li>
+					<li class="onglet">Image n°4</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Pour le carré noir, tout va bien :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur = 150
+hauteur = 150
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Carre_Noir.pbm', 'w')
+
+##------ En-tête ------##
+f.write('P1 \n')								# P1 en ligne 1 pour déclarer le format .pbm puis passage à la ligne
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for colonne in range(largeur):
+		f.write('1')
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					  
+					<div class="contenu">
+						<p>
+							On reprend l'exemple et on teste la parité sur les numéros de
+							colonne, avec une petite astuce supplémentaire...
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur = 150
+hauteur = 150
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Lignes_Verticales.pbm', 'w')
+
+##------ En-tête ------##
+f.write('P1 \n')								# P1 en ligne 1 pour déclarer le format .pbm puis passage à la ligne
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for colonne in range(largeur):
+		f.write(str(colonne%2))					# On inscrit 0 lorsque colonne est pair, 1 sinon
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Pour la croix, un peu de mathématiques s'imposent :
+						</p>
+						<ul class="enum">
+							<li>Un pixel est sur la diagonale &laquo;descendante&raquo; lorsque son numéro
+								de ligne est égal à son numéro de colonne ;</li>
+							<li>Un pixel est sur la diagonale &laquo;montante&raquo; lorsque son numéro
+								de ligne ajouté à son numéro de colonne donne la longueur d'un côté du carrée.</li>
+						</ul>
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur = 150
+hauteur = 150
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Croix.pbm', 'w')
+
+##------ En-tête ------##
+f.write('P1 \n')								# P1 en ligne 1 pour déclarer le format .pbm puis passage à la ligne
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for colonne in range(largeur):
+		if (ligne == colonne) or (ligne+colonne == hauteur-1):
+            f.write('1')
+        else :
+            f.write('0')
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->  
+					<div class="contenu">
+						<p>
+							Pour le losange, ce sont les mêmes mathématiques que pour la croix,
+							en séparant la première de la deuxième moitié des lignes.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur = 150
+hauteur = 150
+demi = hauteur//2
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Losange_Vide.pbm', 'w')
+
+##------ En-tête ------##
+f.write('P1 \n')								# P1 en ligne 1 pour déclarer le format .pbm puis passage à la ligne
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+
+##------ Instructions principales ------##
+for ligne in range(demi):						# Parcours de la 1ère moitié des lignes
+	for colonne in range(largeur):
+		if (colonne+ligne == demi-1) or (colonne-ligne == demi-1):	# 2ème diagonale du demi-carré et 1ère diagonale
+            f.write('1 \n')
+        else :
+			f.write('0 \n')
+			
+for ligne in range(demi):						# Parcours de la 2nde moitié des lignes
+	for colonne in range(largeur):
+		if (colonne == ligne) or (colonne+ligne == largeur-1):		# 1ère diagonale et 2nde diagonale
+            f.write('1 \n')
+        else :
+			f.write('0 \n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Images en couleurs</h1>
+		<article>
+			<img src="images_matricielles_images/Mario.gif" class="img_flotte" />
+			<p>
+				L'image ci-contre illustre la lecture linéaire (<em>ou l'écriture</em>) des
+				pixels dans une image matricielle. Pour concevoir ce type d'image dans un
+				fichier texte, il faut donc &laquo;encoder&raquo; les composantes de ces
+				pixels depuis le pixel situé <strong>en haut à gauche</strong>.
+			</p>
+			<p>
+				Les images au format <code>.ppm</code> doivent comporter sur les trois
+				premières lignes :
+			</p>
+			<ul class="enum">
+				<li><code>P3</code> pour encoder le fichier au format <code>.ppm ASCII</code> ;</li>
+				<li>la largeur puis la hauteur de l'image, séparées par un espace ;</li>
+				<li>la valeur maximale utilisée pour estimer l'intensité maximale de chaque
+					composante RVB (<em>généralement, ce sera <code>255</code></em>).</li>
+			</ul>
+			
+			<p>	
+				<img src="images_matricielles_images/Degrade_Rouge.png" style="height: 75px; float: left; margin-right: 30px;"/>
+				Concevoir un programme qui permet d'obtenir l'image d'un rectangle de
+				<code>100</code> pixels de largeur et
+				<code>256</code> pixels de hauteur, de couleur dégradée (<em>linéaire</em>)
+				du noir (<em>en haut</em>) vers le rouge.
+			</p>
+			
+			<p>	
+				Essayer ensuite de produire d'autres dégradés plus originaux.
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une autre piste</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Variante plus originale</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Le saut à la ligne compte comme un espace. Le plus intéressant est donc d'écrire :
+						</p>
+						<ul class="enum">
+							<li>sur la 4<sup>ème</sup> ligne les trois composantes RVB (<em>séparées par des
+								espaces</em>) du 1<sup>er</sup> pixel ;</li>
+							<li>sur la 5<sup>ème</sup> ligne les trois composantes RVB (<em>séparées par des
+								espaces</em>) du 2<sup>ème</sup> pixel ;</li>
+							<li>sur la 6<sup>ème</sup> ligne les trois composantes RVB (<em>séparées par des
+								espaces</em>) du 3<sup>ème</sup> pixel ;</li>
+							<li>etc...</li>
+						</ul>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							La 1<sup>ère</sup> ligne comporte <code class="language-python">100</code> pixels
+							noirs de composantes <code class="language-python">'0 0 0'</code>.
+						</p>
+						<p>
+							La dernière ligne comporte <code class="language-python">100</code> pixels
+							rouges de composantes <code class="language-python">'255 0 0'</code>.
+						</p>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur, hauteur = 100, 256						# Largeur et hauteur de l'image, en pixels
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Degrade_Rouge.ppm', 'w')
+
+##------ En-tête ------##
+f.write('P3 \n')								# Format .ppm
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+f.write('255 \n')								# Maximum d'intensité des composantes
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for colonne in range(largeur):
+		f.write('{} 0 0 \n'.format(ligne))		# Du noir '0 0 0' au rouge '255 0 0'
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<img src="images_matricielles_images/Degrade_Original.png" class="img_flotte" style="height: 100px;" />
+						<p>
+							Seule la ligne <code>13</code> a été ajoutée, suivie des
+							indentations nécessaires et d'un renommage du fichier à
+							obtenir.
+						</p>
+						<div class="entoure_python">
+							<pre class="line-numbers"><code class="language-python">
+##----- Ouverture des fichiers -----##
+fsource = open('materiel.txt', 'r')
+fsortie = open('materiel_linux.txt', 'w')
+
+##----- Variables et constantes -----##
+liste_constructeurs = []
+liste_quantite = []
+
+
+##----- Programme principal -----##
+for ligne in fsource:
+    liste = ligne.split(" ")                    # Ligne transformée en liste de mots
+    if 'linux' in liste:
+        if liste[0] not in liste_constructeurs:
+            liste_constructeurs.append(liste[0])
+            liste_quantite.append(int(liste[2]))    # Quantité transformée en entier
+        else:
+            indice = liste_constructeurs.index(liste[0])
+            liste_quantite[indice] += int(liste[2])
+
+for i in range(len(liste_constructeurs)):
+    fsortie.write(liste_constructeurs[i])
+    fsortie.write(" ")
+    fsortie.write(str(liste_quantite[i]))
+    fsortie.write("\n")
+    
+##----- Fermeture des fichiers -----##
+fsource.close()
+fsortie.close()</code></pre>
+						</div>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Empilement de carrés</h1>
+		<article>
+			<img src="images_matricielles_images/Carres_Empiles.png" class="img_flotte" style="height: 150px;"/>
+			<p>
+				L'image ci-contre est constituée de sept carrés de couleur noir, rouge, vert,
+				jaune, bleu, magenta et cyan.
+			</p>
+
+			<ol class="liste_num">
+				<li>Rappeler les triplets RVB permettant de représenter les couleurs
+					précédentes.</li>
+				<li>Concevoir une fonction <code>carre(f, r, v, b)</code> qui permet
+					d'ajouter au fichier <code>f</code> un carré de <code>100</code>
+					pixels de côtés et de couleur unie.</li>
+				<li>Utiliser cette fonction pour obtenir l'image ci-contre.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Un rappel</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Une variante originale</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<table class="classique">
+							<tr><th>Couleur</th>
+								<th>Composante R</th>
+								<th>Composante V</th>
+								<th>Composante B</th></tr>
+							<tr><td>Noir</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Rouge</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Vert</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Jaune</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Bleu</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td></tr>
+							<tr><td>Magenta</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td></tr>
+							<tr><td>Cyan</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">255</code></td></tr>
+						</table>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def carre(f, r, v, b):
+    """ Entrees : Un fichier f et trois entiers r, v et b compris entre 0 et 255
+		Sorties : Ajoute au fichier f un carré de 100 pixels de côté et de couleur unie."""
+    for i in range(100) :
+        for j in range(100) :
+            f.write('{0} {1} {2} \n'.format(r, v, b))
+
+##----- Variables et constantes -----##
+largeur, hauteur = 100, 700						# Largeur et hauteur de l'image, en pixels
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Carres_Empiles.ppm', 'w')
+
+##------ En-tête ------##
+f.write('P3 \n')								# Format .ppm
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+f.write('255 \n')								# Maximum d'intensité des composantes
+
+##------ Instructions principales ------##
+carre(f, 0, 0, 0)
+carre(f, 255, 0, 0)
+carre(f, 0, 255, 0)
+carre(f, 255, 255, 0)
+carre(f, 0, 0, 255)
+carre(f, 255, 0, 255)
+carre(f, 0, 255, 255)
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Cette variante mise sur une astuce et sur la lecture des nombres binaires.
+							En effet,
+						</p>
+						<ul class="enum">
+							<li>l'entier <code class="language-python">0</code> a pour écriture binaire
+								<code class="language-python">'000'</code> ;</li>
+							<li>l'entier <code class="language-python">1</code> a pour écriture binaire
+								<code class="language-python">'001'</code> ;</li>
+							<li>l'entier <code class="language-python">2</code> a pour écriture binaire
+								<code class="language-python">'010'</code> ;</li>
+							<li>l'entier <code class="language-python">3</code> a pour écriture binaire
+								<code class="language-python">'011'</code> ;</li>
+							<li>l'entier <code class="language-python">4</code> a pour écriture binaire
+								<code class="language-python">'100'</code> ;</li>
+							<li>l'entier <code class="language-python">5</code> a pour écriture binaire
+								<code class="language-python">'101'</code> ;</li>
+							<li>l'entier <code class="language-python">6</code> a pour écriture binaire
+								<code class="language-python">'110'</code> ;</li>
+						</ul>
+						<p>
+							Dans les écritures binaires ci-dessus, les <code class="language-python">'1'</code>
+							sont positionnés de manière &laquo;symétrique&raquo; avec les
+							<code class="language-python">255</code> des codes RVB des couleurs utilisées pour
+							cette image. On définit donc une fonction <code class="language-python">binaire()</code>
+							qui renvoie sous forme de liste l'écriture binaire d'un entier.
+						</p>
+						<p>
+							Dans les écritures binaires ci-dessus, les <code class="language-python">'1'</code>
+							sont positionnés de façon identique aux <code class="language-python">255</code>
+							des codes RGB des couleurs utilisées pour cette image :
+						</p>
+						<ul class="enum">
+							<li>&Agrave; <code class="language-python">'000'</code> correspondra le code RGB (0,0,0) du noir.</li>
+							<li>&Agrave; <code class="language-python">'100'</code> correspondra le code RGB (255, 0, 0) du rouge.</li>
+							<li>&Agrave; <code class="language-python">'110'</code> correspondra le code RGB (255, 255, 0) du jaune.</li>
+							<li>etc...</li>
+						</ul>
+						<p>
+							On définit donc une fonction <code class="language-python">binaire()</code>
+							qui renvoie sous forme de liste l'écriture binaire d'un entier.
+						</p>
+						
+						
+						<pre class="line-numbers"><code class="language-python">
+##----- Définition des Fonctions -----##
+def carre(f, r, v, b):
+    """ Entrees : Un fichier f et trois entiers r, v et b compris entre 0 et 255
+		Sorties : Ajoute au fichier f un carré de 100 pixels de côté et de couleur unie."""
+    for i in range(100) :
+        for j in range(100) :
+            f.write('{0} {1} {2} \n'.format(r, v, b))
+
+def binaire(n):
+    """ Entrees : Un entier n
+		Sorties : renvoie les chiffres de l'écriture binaire "inversée" de n sous
+			la forme d'une liste (le chiffre de poids k est en indice k)"""
+    l = []
+    while n!=0:
+        l.append(n%2)
+        n = n//2
+    while len(l)<3:                         # Pour avoir au minimum un triplet
+        l.append(0)
+    return l
+
+##----- Variables et constantes -----##
+largeur, hauteur = 100, 700						# Largeur et hauteur de l'image, en pixels
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Carres_Empiles.html', 'w')
+
+##------ En-tête ------##
+f.write('P3 \n')								# Format .ppm
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+f.write('255 \n')								# Maximum d'intensité des composantes
+
+##------ Instructions principales ------##
+for i in range(7) :                     		# Petite astuce : écriture binaire des nombres de 0 à 6...
+    triplet = binaire(i)
+    carre(f, 255*triplet[0], 255*triplet[1], 255*triplet[2])
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Tracer un cercle</h1>
+		<article>
+			<p>
+				Comment tracer l'image d'un cercle dans une grille composée de pixels carrés ?
+			</p>
+			<p>
+				On rappelle que, dans un repère, l'équation du cercle de centre \(I (x_I ; y_I \)
+				et de rayon \(r\) est \( (x-x_I)^2+(y-y_I)^2 = r^2\).
+			</p>
+			<p>
+				Recopier puis compléter le programme ci-dessous	pour qu'il conçoive
+				une image au format <span class="majuscules">.Pm</span> de dimensions
+				<code>50 &times; 50</code>.
+				Cette image doit représenter un cercle de centre le pixel au centre de
+				l'image et de rayon <code>20</code> pixels.
+			</p>
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##------Initialisation de l'image------##
+largeur = 50					# largeur de l'image, en pixels
+hauteur = 50					# hauteur de l'image, en pixels
+n = largeur*hauteur				# dimensions de l'image, en pixels
+
+f = open('Cercle01.pbm', 'w')	# Ouverture (création) d’un fichier image .pbm en mode écriture ("w")
+
+f.write('P1 \n')				# P1 : format .pbm
+f.write('{} {} \n'.format(largeur, hauteur))
+
+
+##------ Tracé du cercle ------##
+r = 20                          # rayon du cercle
+abscisse = largeur//2           # abscisse du centre du cercle
+ordonnee = hauteur//2         	# ordonnee du centre du cercle
+
+#
+#	Partie à compléter...
+#
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+			</div>
+			
+			<img src="images_matricielles_images/Cercle02.png" class="img_flotte"/>
+			<p>
+				L'image à obtenir est représentée ci-contre. Si vous n'obtenez pas
+				cette image, alors il peut être judicieux de jeter un oeil aux indications
+				ci-dessous...
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une autre piste</li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Solution plus intéressante</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<img src="images_matricielles_images/Cercle01.png" class="img_flotte"/>
+						<p>
+							Il est fort probable que l'image obtenue soit celle représentée ci-contre.
+							Cette figure permet de visualiser la différence entre pixel (<em>plus petit
+							élément d’une image</em>) et point mathématique. Pour obtenir un &laquo;cercle
+							épais&raquo;, il faut utiliser une égalité plus permissive, c'est-à-dire un
+							intervalle de valeurs &laquo;autour&raquo; de \( r^2 \).
+						</p>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Pour l'égalité stricte, il suffit d'une simple instruction conditionnelle :
+							&laquo;si la somme des carrés est égale au carré du rayon alors...&raquo;
+						</p>
+						<p>
+							Pour l'égalité &laquo;large&raquo;, la condition peut porter sur plusieurs
+							tests grâce à l'opérateur <code class="language-python">or</code> ou bien sur
+							un intervalle en utilisant à bon escient l'opérateur <code class="language-python">in</code>
+							et la fonction <code class="language-python">range()</code>.
+						</p>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Solution avec l'égalité stricte (<em>quelques points sont tracés</em>).
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##------Initialisation de l'image------##
+largeur = 50					# largeur de l'image, en pixels
+hauteur = 50					# hauteur de l'image, en pixels
+n = largeur*hauteur				# dimensions de l'image, en pixels
+
+f = open('Cercle01.pbm', 'w')	# Ouverture (création) d’un fichier image .pbm en mode écriture ("w")
+
+f.write('P1 \n')				# P1 : format .pbm
+f.write('{} {} \n'.format(largeur, hauteur))
+
+
+##------ Tracé du cercle ------##
+r = 20                          # rayon du cercle
+abscisse = largeur//2           # abscisse du centre du cercle
+ordonnee = hauteur//2         	# ordonnee du centre du cercle
+
+for i in range(hauteur):        # Pour chaque numéro de ligne,
+    for j in range(largeur):    # pour chaque numéro de colonne,
+
+        if (j-abscisse)**2+(i-ordonnee)**2 == r**2: 
+            f.write('1 \n')     # pixel noir
+        else :
+            f.write('0 \n')     # pixel blanc
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Solution avec l'égalité large (<em>le cercle entier est tracé</em>).
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##------Initialisation de l'image------##
+largeur = 50					# largeur de l'image, en pixels
+hauteur = 50					# hauteur de l'image, en pixels
+n = largeur*hauteur				# dimensions de l'image, en pixels
+
+f = open('Cercle02.pbm', 'w')	# Ouverture (création) d’un fichier image .pbm en mode écriture ("w")
+
+f.write('P1 \n')				# P1 : format .pbm
+f.write('{} {} \n'.format(largeur, hauteur))
+
+
+##------ Tracé du cercle ------##
+r = 20                          # rayon du cercle
+abscisse = largeur//2           # abscisse du centre du cercle
+ordonnee = hauteur//2         	# ordonnee du centre du cercle
+
+a=int((r-0.5)**2)               # distance minimale entre un pixel et le centre
+b=int((r+0.5)**2)               # distance maximale entre un pixel et le centre
+
+for i in range(hauteur):        # Pour chaque numéro de ligne,
+    for j in range(largeur):    # pour chaque numéro de colonne,
+
+        if (j-abscisse)**2+(i-ordonnee)**2 in range(a,b+1): # Pixel entre 19 et 21 pixels du centre
+            f.write('1 \n')     # pixel noir
+        else :
+            f.write('0 \n')     # pixel blanc
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Un dégradé déjà étudié</h1>
+		<article>
+			<p>
+				Cet exercice a pour but de concevoir le dégradé ci-dessous de 100 pixels
+				de hauteur et composé de 1280 couleurs, du rouge au violet (<em>en fait,
+				il n'y aura que 1276 couleurs différentes si on chipote</em>) :
+			</p>
+			<img class="img_centre" src="images_matricielles_images/Arc_en_Ciel.png" alt="Image dégradée" />
+			<p>
+				Pour cela, on étudie une représentation graphique possible des
+				composantes R, G, B dans un repère du plan pour un tel dégradé
+				où deux composantes restent constantes tandis que la 3<sup>ème</sup>
+				varie de 0 à 255 ou de 255 à 0.
+			</p>
+			<img class="img_centre" src="images_matricielles_images/Composantes_Degrade.png" alt="Image dégradée" />
+			
+			<p>
+				Programmer l'algorithme permettant d'obtenir cette image au format
+				<span class="majuscules">Ppm</span> bien plus rapidement qu'avec le module <code>turtle</code>.
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une autre piste</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Soit <code>x</code> la colonne du pixel à tracer. Déterminer les valeurs des
+							composantes R, G, B de ce pixel en fonction de <code>x</code> en complétant
+							le tableau suivant :
+						</p>
+						<table class="classique">
+							<tr><th>Intervalle</th>
+								<th>Composante R</th>
+								<th>Composante G</th>
+								<th>Composante B</th></tr>
+							<tr><td>\(0 &#x2A7D; x &#x2A7D; 255 \)</td>
+								<td>\( 255 \)</td>
+								<td>\( x \)</td>
+								<td>\(0\)</td></tr>
+							<tr><td>\(256 &#x2A7D; x &#x2A7D; ... \)</td>
+								<td> ..... </td>
+								<td> ..... </td>
+								<td> ..... </td></tr>
+							<tr><td>\(... &#x2A7D; x &#x2A7D; ... \)</td>
+								<td> ..... </td>
+								<td> ..... </td>
+								<td> ..... </td></tr>
+							<tr><td>\(... &#x2A7D; x &#x2A7D; ... \)</td>
+								<td> ..... </td>
+								<td> ..... </td>
+								<td> ..... </td></tr>
+							<tr><td>\(... &#x2A7D; x &#x2A7D; ... \)</td>
+								<td> ..... </td>
+								<td> ..... </td>
+								<td> ..... </td></tr>
+						</table>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Le même tableau, complété cette fois-ci.
+						</p>
+						<table class="classique">
+							<tr><th>Intervalle</th>
+								<th>Composante R</th>
+								<th>Composante G</th>
+								<th>Composante B</th></tr>
+							<tr><td>\(0 &#x2A7D; x &#x2A7D; 255 \)</td>
+								<td>\( 255 \)</td>
+								<td>\( x \)</td>
+								<td>\(0\)</td></tr>
+							<tr><td>\(256 &#x2A7D; x &#x2A7D; 511 \)</td>
+								<td>\( 511-x \)</td>
+								<td>\( 255 \)</td>
+								<td>\( 0 \)</td></tr>
+							<tr><td>\(512 &#x2A7D; x &#x2A7D; 767 \)</td>
+								<td>\( 0 \)</td>
+								<td>\( 255 \)</td>
+								<td>\( x-512 \)</td></tr>
+							<tr><td>\(768 &#x2A7D; x &#x2A7D; 1023 \)</td>
+								<td>\( 0 \)</td>
+								<td>\( 1023-x \)</td>
+								<td>\( 255 \)</td></tr>
+							<tr><td>\(1024 &#x2A7D; x &#x2A7D; 1279 \)</td>
+								<td>\( x-1024 \)</td>
+								<td>\( 0 \)</td>
+								<td>\( 255 \)</td></tr>
+						</table>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Variables et constantes -----##
+largeur, hauteur = 1280, 100					# Largeur et hauteur de l'image, en pixels
+
+##----- Ouverture/création des Fichiers -----##
+f = open('Arc_En_Ciel.ppm', 'w')
+
+##------ En-tête ------##
+f.write('P3 \n')								# Format .ppm
+f.write('{} {} \n'.format(largeur, hauteur))	# Largeur et hauteur de l'image, séparées par un espace
+f.write('255 \n')								# Maximum d'intensité des composantes
+
+##------ Instructions principales ------##
+for ligne in range(hauteur):
+	for x in range(largeur):
+		if (0 <= x) and (x <= 255):
+			r, v, b = 255, x, 0
+		elif (256 <= x) and (x <= 511):
+			r, v, b = 511-x, 255, 0
+		elif (512 <= x) and (x <= 767):
+			r, v, b = 0, 255, x-512
+		elif (768 <= x) and (x <= 1023):
+			r, v, b = 0, 1023-x, 255
+		else:
+			r, v, b = x-1024, 0, 255
+		
+		f.write('{} {} {} \n'.format(r, v, b))
+	f.write('\n')
+
+##----- Fermeture des Fichiers -----##
+f.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Du Gris vers le Noir & Blanc </h1>
+		<article>
+			<a class="lien_image" href="images_a_telecharger/Logo_Python_gris.pgm" download="Logo_Python_gris-2.html">
+				<img src="images_matricielles_images/Logo_Python_gris.png" class="img_flotte" style="width: 150px;"/>
+			</a>
+			
+			<p>
+				Cliquer sur l'image ci-contre pour télécharger le logo
+				<span class="majuscules">Python</span> au
+				format <code>.pgm</code>. L'image a été &laquo;préparée&raquo; : sur chaque ligne
+				du fichier, un seul pixel est encodé en intensité de gris (<em>le maximum est 255</em>).
+			</p>
+			<p>
+				Concevoir un programme permettant d'obtenir ce logo en noir et blanc.
+				Pour cela, fixer un seuil d'intensité (<em>ici élevée</em>) en-deçà duquel
+				le pixel sera affiché en noir, sinon il sera affiché en blanc.
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Image finale</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Voici l'image finale à obtenir avec le seuil <code>208</code> :
+						</p>
+						<img class="img_centre" src="images_matricielles_images/Logo_Python_n%26b.png" style="width: 150px;"/>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Ouverture des Fichiers -----##
+fsource = open('Logo_Python.pgm', 'r')		# Ouverture (lecture) du fichier
+fresult = open('Logo_Python_n_b.pgm', 'w')	# Ouverture (création) du fichier
+
+##------ En-tête ------##
+for i in range(3):                          # Les 3 lignes d'en-tête à recopier :
+    fresult.write(fsource.readline())       # P2, dimensions, valeur max correspondant au blanc
+
+##------ Instructions principales ------##
+seuil = 208                                 # seuil d'intensité
+for element in fsource:
+	if int(element) < seuil:
+		fresult.write('0 \n')
+	else:
+		fresult.write('255 \n')
+
+##----- Fermeture des Fichiers -----##
+fsource.close()
+fresult.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Permutation circulaire </h1>
+		<article>
+			<a class="lien_image" href="images_a_telecharger/Logo_Python_Compo.ppm" download="Logo_Python_Compo.html">
+				<img class="img_flotte" src="images_matricielles_images/Logo_Python.png" style="width: 150px;"/></a>
+				
+			<p>
+				Cliquer sur l'image ci-contre pour télécharger le logo
+				<span class="majuscules">Python</span> au format <span class="majuscules">Ppm</span>.
+				Le fichier a été modifié pour que, sur chaque ligne, se trouve une unique
+				composante couleur d'un pixel (<em>une ligne pour la composante
+				rouge, une ligne pour la composante verte, une ligne pour la composante bleue puis
+				on passe à celles du pixel suivant...</em>).
+			</p>
+			<p>
+				Concevoir un programme qui permute les composantes de chaque pixel.
+			</p>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Image finale</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<p>
+							Voici l'image finale à obtenir avec la permutation RVB &rarr; BRV :
+						</p>
+						<img class="img_centre" src="images_matricielles_images/Logo_Python_Permut.png" style="width: 150px;"/>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Ouverture des Fichiers -----##
+fsource = open('Logo_Python_Compo.ppm', 'r')		# Ouverture (lecture) du fichier
+fresult = open('Logo_Python_Permut.ppm', 'w')		# Ouverture (création) du fichier
+
+##------ En-tête ------##
+for i in range(3):                          		# Les 3 lignes d'en-tête à recopier :
+    fresult.write(fsource.readline())      			# P3, dimensions, valeur max correspondant au blanc
+
+##------ Instructions principales ------##
+temp = []											# Stockage temporaire des composantes
+for element in fsource:								# Chaque ligne est une chaîne de caractères
+	if len(temp) == 3:
+		r, v, b = temp[0], temp[1], temp[2]
+		fresult.write('{0} {1} {2} \n'.format(b, r, v))
+		temp = [element]
+	else:
+		temp.append(element)
+
+##----- Fermeture des Fichiers -----##
+fsource.close()
+fresult.close()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Image cachée ?</h1>
+		<article>
+			<p>
+				Dans cet exercice, une chaîne de caractère va servir d'instruction au
+				crayon du module <code>turtle</code>. Le programme à concevoir doit :
+			</p>
+			<ul class="enum">
+				<li>Demander à l'utilisateur un texte uniquement composé de
+					<code class="language-python">'0'</code> et de <code class="language-python">'1'</code>
+					(<em>inutile de gérer les exceptions</em>) ;</li>
+				<li>Parcourir les caractères du texte ;</li>
+				<li>Dessiner un petit point blanc (<em>rayon 3</em>) pour chaque
+					<code class="language-python">'0'</code> lu ;</li>
+				<li>Dessiner un gros point noir (<em>rayon 20</em>) pour chaque
+					<code class="language-python">'1'</code> lu ;</li>
+				<li>Avancer de <code class="language-python">1</code> entre deux caractères ;</li>
+				<li>Aller au début de la ligne suivante tous les 20 caractères.</li>
+			</ul>
+			
+			<p>
+				On donne ci-dessous un début de programme, à compléter en utilisant
+				<strong>au moins</strong> une fonction.
+			</p>
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+# A compléter...
+
+##----- Programme Principal -----##
+setworldcoordinates(-32,-32, 12,12)					# Pour un affichage optimal
+stylo = Pen()
+stylo.speed(0)
+stylo.up()
+stylo.setposition(-20, 0)
+
+# A compléter...
+
+stylo.hideturtle()
+exitonclick()</code></pre>
+			</div>
+			
+			<p>
+				Testez le programme en copiant/collant les exemples ci-dessous
+				(<em>inutile de tenir compte des backlash &laquo;<code>\</code>&raquo; :
+				ils seront ignorés par <span class="majuscules">Python</span> et ne sont
+				là que pour faciliter la mise en page</em>) :
+			</p>
+			<ul class="enum">
+				<li style="text-align: left;"><code class="language-python">'0000000001000000000000000000101000000000000000010001000000000000001000\
+0010000000000001000000010000000000100000000010000000010000000000010000\
+0010000000000000100001000000000000000100100000000000000000101000000000\
+0000000001010000000000000000100010000000000000010000010000000000001000\
+0000100000000001000000000100000000100000000000100000010000000000000100\
+00100000000000000010010000000000000000011000000000'</code></li>
+				<li style="text-align: left;"><code class="language-python">'0000001000000100000000000010000001000000000000100000010000000000001000\
+0001000000000000100000010000000000001000000100000011111111111111111111\
+0000001000000100000000000010000001000000000000100000010000000000001000\
+0001000000000000100000010000000000001000000100000011111111111111111111\
+0000001000000100000000000010000001000000000000100000010000000000001000\
+00010000000000001000000100000000000010000001000000'</code></li>
+				<li style="text-align: left;"><code class="language-python">'0000000111111000000000000111101111100000000011000000001110000011100000\
+0000001100001100000000000001000110000100000100011001000111100011100011\
+1100011100011110001111000001000001000001100000000000000000111100000000\
+0000000001110010000000000100111100010000000010001101000110000001100011\
+0110001110011100001000110001111110001100000110000000000011000000110000\
+00001110000000011110101110000000000001111111000000'</code></li>
+			</ul>
+			
+				
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Dessin n°1</li>
+					<li class="onglet">Dessin n°2</li>
+					<li class="onglet">Dessin n°3</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<img class="img_centre" src="images_matricielles_images/Im_Cache_01.png">
+						<div class="entoure_python">
+							<pre class="line-numbers"><code class="language-python">
+##----- Importation des modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+def dessiner(t, car):
+	"""Cette fonction force le crayon t à tracer un petit
+		point blanc lorsque car vaut '0' et un gros point
+		noir lorsque car vaut '1'."""
+	if car == '0':
+		t.dot(3, "white")
+	else:
+		t.dot(20, "black")
+
+
+def deplacer(t, n):
+	"""Cette fonction déplace le crayon t selon la valeur
+		de l'entier n. Lorsque n est un multiple de 20
+		(n = 20*k), on replace le crayon aux coordonnées
+		(-20, -k) sinon le crayon avance de 1."""
+	t.up()
+	if n%20 == 0:
+		t.goto(-20, -n//20)
+	else:
+		t.forward(1)
+
+
+
+##----- Programme Principal -----##
+setworldcoordinates(-32,-32, 12,12)					# Pour un affichage optimal
+stylo = Pen()
+stylo.speed(0)
+stylo.up()
+stylo.setposition(-20, 0)
+
+texte = '0000000001000000000000000000101000000000000000010001000000000000001000\
+0010000000000001000000010000000000100000000010000000010000000000010000\
+0010000000000000100001000000000000000100100000000000000000101000000000\
+0000000001010000000000000000100010000000000000010000010000000000001000\
+0000100000000001000000000100000000100000000000100000010000000000000100\
+00100000000000000010010000000000000000011000000000'
+
+for i in range(len(texte)):
+	dessiner(stylo, texte[i])
+	deplacer(stylo, i+1)							# Obligatoire pour une division correcte par 20
+
+stylo.hideturtle()
+exitonclick()</code></pre>
+						</div>
+					</div> <!-- Fin contenu -->
+					
+					  
+					<div class="contenu">
+						<img class="img_centre" src="images_matricielles_images/Im_Cache_02.png">
+						<div class="entoure_python">
+							<pre class="line-numbers"><code class="language-python">
+##----- Importation des modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+def dessiner(t, car):
+	"""Cette fonction force le crayon t à tracer un petit
+		point blanc lorsque car vaut '0' et un gros point
+		noir lorsque car vaut '1'."""
+	if car == '0':
+		t.dot(3, "white")
+	else:
+		t.dot(20, "black")
+
+
+def deplacer(t, n):
+	"""Cette fonction déplace le crayon t selon la valeur
+		de l'entier n. Lorsque n est un multiple de 20
+		(n = 20*k), on replace le crayon aux coordonnées
+		(-20, -k) sinon le crayon avance de 1."""
+	t.up()
+	if n%20 == 0:
+		t.goto(-20, -n//20)
+	else:
+		t.forward(1)
+
+
+
+##----- Programme Principal -----##
+setworldcoordinates(-32,-32, 12,12)					# Pour un affichage optimal
+stylo = Pen()
+stylo.speed(0)
+stylo.up()
+stylo.setposition(-20, 0)
+
+texte = '0000001000000100000000000010000001000000000000100000010000000000001000\
+0001000000000000100000010000000000001000000100000011111111111111111111\
+0000001000000100000000000010000001000000000000100000010000000000001000\
+0001000000000000100000010000000000001000000100000011111111111111111111\
+0000001000000100000000000010000001000000000000100000010000000000001000\
+00010000000000001000000100000000000010000001000000'
+
+for i in range(len(texte)):
+	dessiner(stylo, texte[i])
+	deplacer(stylo, i+1)							# Obligatoire pour une division correcte par 20
+
+stylo.hideturtle()
+exitonclick()</code></pre>
+						</div>
+					</div> <!-- Fin contenu -->
+					
+					  
+					<div class="contenu">
+						<img class="img_centre" src="images_matricielles_images/Im_Cache_03.png">
+						<div class="entoure_python">
+							<pre class="line-numbers"><code class="language-python">
+##----- Importation des modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+def dessiner(t, car):
+	"""Cette fonction force le crayon t à tracer un petit
+		point blanc lorsque car vaut '0' et un gros point
+		noir lorsque car vaut '1'."""
+	if car == '0':
+		t.dot(3, "white")
+	else:
+		t.dot(20, "black")
+
+
+def deplacer(t, n):
+	"""Cette fonction déplace le crayon t selon la valeur
+		de l'entier n. Lorsque n est un multiple de 20
+		(n = 20*k), on replace le crayon aux coordonnées
+		(-20, -k) sinon le crayon avance de 1."""
+	t.up()
+	if n%20 == 0:
+		t.goto(-20, -n//20)
+	else:
+		t.forward(1)
+
+
+
+##----- Programme Principal -----##
+setworldcoordinates(-32,-32, 12,12)					# Pour un affichage optimal
+stylo = Pen()
+stylo.speed(0)
+stylo.up()
+stylo.setposition(-20, 0)
+
+texte = '0000000111111000000000000111101111100000000011000000001110000011100000\
+0000001100001100000000000001000110000100000100011001000111100011100011\
+1100011100011110001111000001000001000001100000000000000000111100000000\
+0000000001110010000000000100111100010000000010001101000110000001100011\
+0110001110011100001000110001111110001100000110000000000011000000110000\
+00001110000000011110101110000000000001111111000000'
+
+for i in range(len(texte)):
+	dessiner(stylo, texte[i])
+	deplacer(stylo, i+1)							# Obligatoire pour une division correcte par 20
+
+stylo.hideturtle()
+exitonclick()</code></pre>
+						</div>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/images_matricielles/images_maitriser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:58:31 GMT -->
+</html>

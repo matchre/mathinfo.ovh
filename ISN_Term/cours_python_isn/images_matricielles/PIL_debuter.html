@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/images_matricielles/PIL_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:16 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Module PIL<br>
+				Exercices pour débuter
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<p>
+				Le module <code>PIL</code> manipule tout type de fichier image, des plus
+				classiques (<em><code>.jpg</code>, <code>.png</code>, <code>.gif</code></em>)
+				au moins courants (<em>comme le <code>Portable Bitmap</code></em>).
+				Les informations récupérées sur l'image sont :
+			</p>
+
+			<ul class="enum">
+				<li>soit des chaînes de caractères (<em>extension du fichier, encodage
+					des couleurs, ...</em>) ;</li>
+				<li>soit des <strong>tuples</strong> de nombres, que l'on peut interpréter
+					grossièrement comme des listes de nombres non modifiables
+					(<em>dimensions de l'image, intensité des composantes RVB</em>).</li>
+			</ul>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Filtrer les composantes </h1>
+		<article>
+			<p>
+				Dans cet exercice, on prend pour image de référence la bannière du Lycée au format
+				<code>.jpg</code>. Si vous ne l'avez pas, il suffit de cliquer sur l'image ci-dessous
+				pour la télécharger.
+			</p>
+			<a class="lien_image" href="images_a_telecharger/Ban_Lacassagne.jpg" download="Ban_Lacassagne.jpg">
+				<img class="img_centre" src="images_matricielles_images/Ban_Lacassagne.jpg"/>
+			</a>
+			<p>
+				Concevoir un programme permettant d'afficher trois images distinctes, chacune
+				représentant les composantes rouge, vert et bleu de l'image d'origine :	
+			</p>
+			
+			<table class="classique">
+				<tr><th>Composante rouge</th>
+					<th>Composante verte</th>
+					<th>Composante bleue</th></tr>
+				<tr><td><img src="images_matricielles_images/Ban_Lac_Rouge.jpg"/></td>
+					<td><img src="images_matricielles_images/Ban_Lac_Verte.jpg"/></td>
+					<td><img src="images_matricielles_images/Ban_Lac_Bleue.jpg"/></td></tr>
+			</table>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une autre piste</li>
+					<li class="onglet">Une solution classique</li>
+					<li class="onglet">Une solution plus originale</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Le programme lit les caractéristiques de l'image d'origine et
+							doit concevoir trois images distinctes, enregistrées dans trois
+							variables distinctes (<em>voire mieux, cf. la solution plus
+							originale</em>).
+						</p>
+					</div> <!-- Fin contenu -->
+					   
+					<div class="contenu">
+						<p>
+							Les dimensions des images sont celles de l'image
+							d'origine, l'encodage couleur des images est
+							celui de l'image d'origine...
+						</p>
+						<p>
+							On parcourt chaque pixel de l'image d'origine et
+							on enregistre les composantes <code>r</code>,
+							<code>v</code>, <code>b</code> de ce pixel.
+							La l<sup>ère</sup> image créée ne reçoit que la
+							composante rouge. Quelle valeur peut-on alors
+							donner aux composantes vertes et bleues de cette image ?
+						</p>
+					</div> <!-- Fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image                             # Ne pas oublier de l'importer pour un programme indépendant
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Ban_Lacassagne.jpg')
+couleur = im.mode
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+im_rouge = Image.new(couleur, (l, h))             # Composante rouge
+im_verte = Image.new(couleur, (l, h))             # Composante verte
+im_bleue = Image.new(couleur, (l, h))             # Composante bleue
+
+for x in range(l):
+    for y in range(h):                            # On parcourt chaque pixel de l'image analysée plus haut
+        r, v, b = im.getpixel((x, y))             # On récupère le triplet de couleur
+        
+        im_rouge.putpixel((x, y), (r, 0, 0))      # Il faut un tuple pour les intensités de couleur 
+        im_verte.putpixel((x, y), (0, v, 0)) 
+        im_bleue.putpixel((x, y), (0, 0, b))
+
+##----- Sauvegarde et affichage -----##
+im_rouge.save('Ban_Lac_Rouge.jpg')
+im_verte.save('Ban_Lac_Verte.jpg')
+im_bleue.save('Ban_Lac_Bleue.jpg')
+im_rouge.show()
+im_verte.show()
+im_bleue.show()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image                              # Ne pas oublier de l'importer pour un programme indépendant
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Ban_Lacassagne.jpg')
+couleur = im.mode
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+liste=[0, 0, 0]                                    # Future liste des images_composantes
+
+for i in range(3):
+    liste[i] = Image.new(couleur, (l, h))          # Chaque élément de la liste est une image en devenir
+    
+for x in range(l):
+    for y in range(h):
+        triplet = im.getpixel((x, y))              # Composantes sous forme de liste
+        
+        for i in range(3):
+            a=[0, 0]                               # On insère la composante R, V ou B dans la liste selon la valeur de i
+            a.insert(i, triplet[i])
+            liste[i].putpixel((x, y), tuple(a))    # Il faut un tuple pour les intensités de couleur 
+
+##----- Sauvegarde et affichage -----##
+for i in range(3):
+    liste[i].save('Ban_Lacassagne_{0}.jpg'.format(i))
+    liste[i].show()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Quelques nuances de gris </h1>
+		<article>
+			<p>
+				Dans une image en couleur, un pixel dispose des trois
+				composantes RVB. Un pixel dont les trois valeurs RVB sont
+				identiques sera affiché dans une nuance de gris. Pour
+				convertir une image couleur en niveaux de gris, on peut :
+			</p>
+			<ol class="liste_num">
+				<li>utiliser la moyenne des trois composantes RVB :
+					\(G = \frac {R+V+B} {3}\).</li>
+				<li>utiliser la formule recommandée (<em>recommandation
+					601</em>) par la C.I.E (<em>Commission Internationale
+					de l'Éclairage</em>) pour les couleurs non-linéaires
+					(<em>image vue à partir d'un écran vidéo</em>) :
+					\(G = 0,299 R + 0,587 V + 0,114 B\).</li>
+			</ol>
+			<p>	
+				Concevoir un programme qui permette d'obtenir l'image ci-dessous selon la
+				1<sup>ère</sup> et/ou la 2<sup>nde</sup> méthode.
+			</p>
+			<img class="img_centre" src="images_matricielles_images/Ban_Lac_Grise.jpg"/>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Il y a deux possibilités pour l'image à concevoir :
+						</p>
+						<ul class="enum">
+							<li>Ou bien on la définit avec le mode couleur <code class="language-python">'RGB'</code>
+								et les trois composantes du triplet doivent prendre la même valeur ;</li>
+							<li>Ou bien on la définit avec le mode couleur <code class="language-python">'L'</code>
+								et il suffit de donner une unique valeur pour la nuance de gris.</li>
+						</ul>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Ban_Lacassagne.jpg')
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+im_gris = Image.new('L', im.size)					# Image en nuances de gris
+
+for x in range(l):
+    for y in range(h):                              # On parcourt chaque pixel de l'image ouverte plus haut
+        r, v, b = im.getpixel((x, y))               # On récupère le triplet de couleur
+        # g=(r+v+b)//3                              # Quotient pour obtenir une valeur entière...
+        g = int(0.299*r + 0.587*v + 0.114*b)
+                
+        im_gris.putpixel((x, y), g)
+
+im_gris.save('Ban_Lac_Grise.jpg')
+im_gris.show()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Carrés empilés</h1>
+		<article>
+			<img class="img_flotte" src="images_matricielles_images/Carres_Empiles.png" style="height: 150px;">
+			<p>
+				L'image ci-contre est constituée de sept carrés de couleur noir, rouge, vert,
+				jaune, bleu, magenta et cyan. 
+			</p>
+			
+			<ol class="liste_num">
+				<li>Rappeler les triplets RGB permettant de représenter les couleurs précédentes.</li>
+				<li>Concevoir une fonction <code class="language-python">carre()</code> qui permet
+					d'ajouter à une image un carré de <code class="language-python">100</code> pixels
+					de côté et de couleur unie.</li>
+				<li>Utiliser cette fonction pour obtenir l'image ci-contre.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Les triplets</li>
+					<li class="onglet">La fonction <code>carre()</code></li>
+					<li class="onglet">Une solution</li>
+					<li class="onglet">Une variante</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<table class="classique">
+							<tr><th>Couleur</th>
+								<th>Composante R</th>
+								<th>Composante V</th>
+								<th>Composante B</th></tr>
+							<tr><td>Noir</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Rouge</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Vert</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Jaune</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td></tr>
+							<tr><td>Bleu</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td></tr>
+							<tr><td>Magenta</td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td></tr>
+							<tr><td>Cyan</td>
+								<td><code class="language-python">0</code></td>
+								<td><code class="language-python">255</code></td>
+								<td><code class="language-python">255</code></td></tr>
+						</table>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def carre(im, h, r, v, b):
+    """ Entrees : im est une image, h est une ordonnée, (r, v, b) est un triplet d'entiers entre 0 et 255
+		Sorties : Ajoute à une image im (à partir de l'ordonnée h) un carré de 100 pixels de côté et de
+			couleur ayant pour composantes (r, v, b)."""
+    for x in range(100) :
+        for y in range(h*100, (h+1)*100) :
+            im.putpixel((x, y), (r, v, b))</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image                               # Ne pas oublier de l'importer pour un programme indépendant
+
+##------ Définition des Fonctions ------##
+def carre(im, h, r, v, b):
+    """Cette fonction ajoute à une image im un carré de 100 pixels
+    de côté et de couleur unie."""
+    for x in range(100) :
+        for y in range(h*100, (h+1)*100) :
+            im.putpixel((x, y), (r, v, b))
+
+##------ Programme principal ------##
+##----- Informations sur l'image -----##
+largeur = 100                                       # largeur de l'image, en pixels
+hauteur = 700                                       # hauteur de l'image, en pixels
+couleur = 'RGB'
+
+##----- Conception de la nouvelle image -----##
+im = Image.new(couleur, (largeur, hauteur))
+
+carre(im, 0, 0, 0, 0)
+carre(im, 1, 255, 0, 0)
+carre(im, 2, 0, 255, 0)
+carre(im, 3, 255, 255, 0)
+carre(im, 4, 0, 0, 255)
+carre(im, 5, 255, 0, 255)
+carre(im, 6, 0, 255, 255)
+
+im.save('Carres_Empiles.jpg')
+im.show()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image                               # Ne pas oublier de l'importer pour un programme indépendant
+
+##------ Définition des Fonctions ------##
+def carre(im, h, r, v, b):
+    """Cette fonction ajoute à une image im un carré de 100 pixels
+    de côté et de couleur unie."""
+    for x in range(100) :
+        for y in range(h*100, (h+1)*100) :
+            im.putpixel((x, y), (r, v, b))
+
+##------ Programme principal ------##
+##----- Informations sur l'image -----##
+largeur = 100                                       # largeur de l'image, en pixels
+hauteur = 700                                       # hauteur de l'image, en pixels
+couleur = 'RGB'
+
+##----- Conception de la nouvelle image -----##
+im = Image.new(couleur, (largeur, hauteur))
+
+h = 0
+for i in range(2):
+    for j in range(2):
+        for k in range(2):
+            if not(i == j == k == 1):
+                carre(im, h, 255*k, 255*j, 255*i)
+                h += 1
+
+im.save('Carres_Empiles.jpg')
+im.show()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Symétrie(<em>s</em>) </h1>
+		<article>
+			<p>
+				L'image ci-dessous représente la bannière du Lycée après une symétrie horizontale.
+			</p>
+			<img class="img_centre" src="images_matricielles_images/Ban_symetrie_hori.jpg"/>
+
+			<ol class="liste_num">
+				<li>Un pixel de l'image d'origine a pour coordonnées <code>(x, y)</code>.
+					Quelles sont les coordonnées du pixel correspondant dans l'image à
+					obtenir ?</li>
+				<li>En déduire le programme permettant d'obtenir cette image.</li>
+				<li>Concevoir un 2<sup>nd</sup> programme permettant de réaliser une
+					symétrie verticale de l'image d'origine.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une animation</li>
+					<li class="onglet">Une solution horizontale</li>
+					<li class="onglet">Une solution verticale</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Les composantes couleurs des pixels ne changent pas. Seule leur position
+						est modifiée. Comme la symétrie est horizontale, la colonne <code>x</code>
+						du pixel n'est pas modifiée. Par contre, sa ligne <code>y</code> a été modifiée.
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<img class="img_centre" src="images_matricielles_images/Symetries.gif" >
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Ban_Lacassagne.jpg')
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+im_hori = Image.new(im.mode, im.size)             	# Symetrie horizontale
+
+for x in range(l):
+    for y in range(h):                            	# On parcourt chaque pixel de l'image analysée plus haut
+        triplet = im.getpixel((x, y))             	# On récupère le triplet de couleur
+        
+        im_hori.putpixel((x, h-1-y), triplet)     	# La ligne du bas a pour ordonnée h-1...
+
+im_hori.save('Ban_symetrie_hori.jpg')
+im_hori.show()</code></pre>
+					</div> <!-- Fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Ban_Lacassagne.jpg')
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+im_verti = Image.new(im.mode, im.size)             	# Symetrie verticale
+
+for x in range(l):
+    for y in range(h):                            	# On parcourt chaque pixel de l'image analysée plus haut
+        triplet = im.getpixel((x, y))             	# On récupère le triplet de couleur
+        
+        im_hori.putpixel((l-1-x, y), triplet)     	# La colonne de droite a pour abscisse l-1...
+
+im_hori.save('Ban_symetrie_verti.jpg')
+im_hori.show()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"> Rotation d'image </h1>
+		<article>
+			<p>
+				La transposition c'est bien, la rotation c'est mieux.
+				Le programme à réaliser doit :
+			</p>
+
+			<ol class="liste_num">
+				<li>Récupérer les informations d'une image existante ;</li>
+				<li>Créer une nouvelle image avec le même encodage couleur,
+					de largeur et hauteur échangées ;</li>
+				<li>Faire en sorte que l'image obtenue soit l'image
+					d'origine soumise à une rotation de 90° dans le sens
+					direct ;</li>
+				<li>Afficher l'image ainsi &laquo;tournée&raquo;.</li>
+			</ol>
+			<p>
+				Programmer cette rotation à partir de l'image du logo
+				<span class="majuscules">Python</span> de gauche (<em>téléchargeable en
+				cliquant dessus</em>) afin d'obtenir l'image de droite.
+			</p>
+			<table class="classique">
+				<tr><th>Image d'origine au format <code>.png</code></th>
+					<th>Image après la rotation</th></tr>
+				<tr><td style="width: 50%;"><a class="lien_image" href="images_a_telecharger/Logo_Python.png" download="Logo_Python.html">
+							<img src="images_matricielles_images/Logo_Python.png"/>
+						</a></td>
+					<td style="width: 50%;"><img src="images_matricielles_images/Logo_Python_Tourne.png"/></td></tr>
+			</table>
+
+			
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste</li>
+					<li class="onglet">Une illustration</li>
+					<li class="onglet">Une solution</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Pour n'importe quelle transformation d'image, il faut toujours se poser
+						la même question : &laquo; quelles sont les valeurs modifiées ? &raquo;<br>
+						Ce sont souvent les coordonnées de chaque pixel et/ou ses composantes couleur. 
+					</div> <!-- Fin contenu -->
+					  
+					<div class="contenu">
+						<p>
+							L'image n'est pas modifiée, elle est simplement tournée. Ce ne sont donc pas les composantes
+							couleur qu'il faut modifier mais plutôt les coordonnées de chaque pixel. Pour trouver
+							les opérations méthématiques à effectuer, le plus simple est de faire un schéma de l'image
+							dans lequel on place un pixel de coordonnées <code>(x, y)</code> <strong>avant</strong> la
+							rotation, puis le même pixel <strong>après</strong> la rotation. En déterminant ses nouvelles
+							coordonnées à partir du pixel haut-gauche de l'image tournée, on peut en déduire les calculs
+							à effectuer sur les coordonnées <code>(x, y)</code> d'origine.
+						</p>
+						<p>
+							On en déduit l'illustration ci-dessous. Les figures de couleurs représentent
+							les pixels des 4 coins de l'image, avec leurs coordonnées avant pui
+							après la rotation. Le pixel quelconque de coordonnées <code>(x, y)</code>
+							est représenté par la carré rouge &laquo;évidé&raquo;.
+						</p>
+						<img class="img_centre" src="images_matricielles_images/Rotation2.png"/>
+					</div> <!-- Fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from PIL import Image                             # Ne pas oublier de l'importer pour un programme indépendant
+
+##----- Informations sur l'image d'origine -----##
+im = Image.open('Logo_Python.png')
+couleur = im.mode
+l, h = im.size
+
+##----- Conception de la nouvelle image -----##
+im2 = Image.new(couleur, (h, l))                  # Création d'une image encodée en RGB, de largeur h et de hauteur l
+
+for x in range(l):
+    for y in range(h):                            # On parcourt chaque pixel de l'image analysée plus haut
+        triplet = im.getpixel((x, y))             # On récupère son "code couleur"
+        im2.putpixel((y, l-1-x), triplet)         # Attention à la numérotation des pixels, de 0 à l-1 en abscisses...
+
+im2.save('Logo_Python_Tourne.png')
+im2.show()</code></pre>
+					</div> <!-- Fin contenu -->
+				</div>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/images_matricielles/PIL_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:55 GMT -->
+</html>

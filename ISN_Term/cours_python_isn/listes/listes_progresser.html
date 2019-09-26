@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/listes/listes_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:46 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Les Listes<br>
+				Exercices pour progresser
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Un exercice au long cours</h1>
+		<article>
+			<p>
+				Certains exercices de ce site se suivent et doivent être réalisés dans
+				l'ordre. Leur but est de commencer à appréhender la notion de création
+				d'un programme petit à petit, en améliorant ses fonctionnalités au fur
+				et à mesure.
+			</p>
+			<p>
+				Le programme en question consiste à concevoir une &laquo;chasse
+				au trésor&raquo; dont l'idée générale est la suivante :
+			</p>
+			<ul class="enum">
+				<li>Le programme génère une liste de <code>n</code> éléments, où <code>n</code>
+					sera un entier saisi par l'utilisateur.</li>
+				<li>Tous les éléments sont égaux à <code class="language-python">0</code>,
+					mis à part un élément de la liste, choisi au hasard par le programme,
+					qui aura pour valeur <code class="language-python">1</code>.<br>
+					Bien évidemment, l'utilisateur ne pourra pas voir cette liste à l'écran.</li>
+				<li>L'utilisateur devra alors, sur invitation du programme, essayer de deviner
+					quel est l'indice du nombre <code class="language-python">1</code>.</li>
+				<li>Dans le cas où l'utilisateur donne un indice trop petit, le programme
+					lui répond &laquo;Cherche a droite&raquo;. Lorsque l'indice est trop grand,
+					le programme affiche &laquo;Cherche a gauche&raquo;.</li>
+				<li>Le programme s'interrompt lorsque l'utilisateur propose le bon indice.
+					Un message de félicitations apparaît alors, accompagné du nombre total
+					de propositions données par l'utilisateur.</li>
+			</ul>
+			<p>
+				Allez à <a href="#chasse1">l'exercice n°3</a> pour la première étape de cette
+				recherche de programme.
+			</p>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Remplir une liste de listes</h1>
+		<article>
+			<ol class="liste_num">
+				<li>On considère une liste contenant <code class="language-python">5</code>
+					listes ayant chacune <code class="language-python">3</code> éléments.</li>
+				
+				<li>Remplir cette liste avec des entiers dans l'ordre croissant de
+					<code>1</code> en <code>1</code>, en commençant à
+					<code class="language-python">1</code> puis afficher
+					<strong>correctement</strong> cette liste de listes.<br>
+					La question précédente conduit à l'affichage :
+					<pre class="affichage_python">[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+[10, 11, 12]
+[13, 14, 15]</pre></li>
+				
+				<li>A présent, générer deux entiers aléatoires compris entre
+					<code class="language-python">1</code> et
+					<code class="language-python">10</code>. Le premier correspond au nombre
+					de listes et le second, au nombre d'éléments de chaque liste.<br>
+					Adaptez les deux questions précédentes pour que la liste soit
+					remplit par des entiers dans l'ordre croissant.</li>
+				
+			</ol>
+			
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Solution du 2°/ ?</li>
+					<li class="onglet">Une meilleure solution pour le 2°/ ?</li>
+					<li class="onglet">Une piste pour le 3°/ ?</li>
+					<li class="onglet">Solution du 3°/ ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						Avant de se lancer dans la programmation, il faut
+						<strong>anticiper</strong> ! Posez-vous la question :
+						comment calculer la valeur de chaque élément contenu dans
+						cette liste de liste ?
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<p>
+							Vous pouvez...
+						</p>
+						<ul class="enum">
+							<li>soit partir d'une liste de listes remplis de
+								<code class="language-python">0</code> puis modifier la valeur
+								de leurs éléments</li>
+							<li>soit compléter la liste au fur et à mesure de la &laquo;création&raquo;
+								de la valeur de ses éléments.</li>
+						</ul>
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<p>
+							Dans cette solution, la liste est remplie de
+							<code class="language-python">0</code> &laquo;à la main&raquo;,
+							ce qui n'est <strong>ni efficace, ni recommandé !</strong>
+						</p>
+						<p>
+							Pour remplir la liste, on &laquo;triche&raquo; : on part d'une
+							variable <code>valeur</code> initialisée à
+							<code class="language-python">1</code> puis, on augmente cette
+							valeur de <code class="language-python">1</code> après avoir
+							modifié la valeur de l'élément correspondant dans la liste.<br>
+							Pour se faire, on parcourt d'abord les lignes (<em>les sous-listes</em>)
+							de la liste puis chaque élément de la ligne parcourue.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Initialisation des variables -----##
+liste = [[0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0]]
+n = 1								# Valeur des éléments
+
+##----- Remplissage de la liste -----##
+for i in range(5):					# Parcours des sous-listes
+    for j in range(3):				# Parcours des éléments de chaque sous-liste
+        liste[i][j] = n
+        n += 1
+
+##----- Affichage -----##
+for sous_liste in liste:
+    print(sous_liste)
+						</code></pre>
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<p>
+							Dans cette solution, la liste est construite plus efficacement,
+							directement à partir des valeurs finales des éléments de la liste.
+							Cette valeur est obtenu par calcul arithmétique
+							en fonction du numéro de la ligne (<em>multiplié par
+							<code class="language-python">3</code> car il y a
+							<code class="language-python">3</code> éléments par ligne</em>)
+							puis de l'indice de l'élément (<em>le numéro de la colonne</em>).
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Initialisation des variables -----##
+liste = []
+
+##----- Remplissage de la liste -----##
+for i in range(5):					# Parcours des sous-listes
+    liste.append([])				# Création d'une nouvelle sous-liste
+    for j in range(3):				# Parcours des éléments de chaque sous-liste
+        liste[i].append(3*i+j+1)
+
+##----- Affichage -----##
+for sous_liste in liste:
+    print(sous_liste)
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Le module <code>random</code> permet d'utiliser des fonctions
+						qui génèrent du pseudo-hasard. Pour générer un entier aléatoire
+						compris entre <code>a</code> et <code>b</code> (<em>inclus</em>),
+						il faut faire appel à la fonction
+						<code class="language-python">randint(a, b)</code>.
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<p>
+							Notez dans cette solution le nom explicite des variables utilisées.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Initialisation des variables -----##
+liste = []
+nb_listes = randint(1, 10)
+taille = randint(1, 10)
+
+
+##----- Remplissage de la liste -----##
+for i in range(nb_listes):					# Parcours des sous-listes
+    liste.append([])						# Création d'une nouvelle sous-liste
+    for j in range(taille):					# Parcours des éléments de chaque sous-liste
+        liste[i].append(taille*i+j+1)		# Chaque sous-liste contient taille éléments
+
+##----- Affichage -----##
+for sous_liste in liste:
+    print(sous_liste)
+						</code></pre>
+					</div><!-- fin contenu -->
+				
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Numéro de ligne, de colonne</h1>
+		<article>
+			<p>
+				En repartant de l'exercice précédent, concevoir les programmes
+				qui permettent d'afficher les listes de listes ci-dessous.
+			</p>
+			<p>
+				Les deux premières sont des &laquo;listes carrées&raquo; contenant
+				8 sous-listes de 8 éléments tandis que la dernière contient 7 sous-listes
+				de 7 éléments.
+			</p>
+			
+			<div style="display: flex; justify-content: center; width: 95%; margin: auto;">
+				<pre class="affichage_python" style="flex: 1 0 auto; margin: 2px 5px;">
+[1, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 0]
+[0, 0, 0, 1, 0, 0, 0, 0]
+[0, 0, 0, 0, 1, 0, 0, 0]
+[0, 0, 0, 0, 0, 1, 0, 0]
+[0, 0, 0, 0, 0, 0, 1, 0]
+[0, 0, 0, 0, 0, 0, 0, 1]</pre>
+
+				<pre class="affichage_python" style="flex: 1 0 auto; margin: 2px 5px;">
+[0, 0, 0, 0, 0, 0, 0, 1]
+[0, 0, 0, 0, 0, 0, 1, 0]
+[0, 0, 0, 0, 0, 1, 0, 0]
+[0, 0, 0, 0, 1, 0, 0, 0]
+[0, 0, 0, 1, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 0, 0, 0]</pre>
+
+				<pre class="affichage_python" style="flex: 1 0 auto; margin: 2px 5px;">
+[0, 0, 0, 1, 0, 0, 0]
+[0, 0, 1, 0, 1, 0, 0]
+[0, 1, 0, 0, 0, 1, 0]
+[1, 0, 0, 0, 0, 0, 1]
+[0, 1, 0, 0, 0, 1, 0]
+[0, 0, 1, 0, 1, 0, 0]
+[0, 0, 0, 1, 0, 0, 0]</pre>
+			</div>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Liste n°1 ?</li>
+					<li class="onglet">Liste n°2 ?</li>
+					<li class="onglet">Liste n°3 ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+liste=[]
+
+for i in range(8):			# Numéro de ligne
+    liste.append([])		# Ajout d'une liste vide
+    for j in range(8):		# Numéro de colonne
+        if j != i:
+            liste[i].append(0)
+        else:
+            liste[i].append(1)
+
+for ligne in liste:
+    print(ligne)
+						</code></pre>
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+liste=[]
+
+for i in range(8):			# Numéro de ligne
+    liste.append([])		# Ajout d'une liste vide
+    for j in range(8):		# Numéro de colonne
+        if j != 7-i:		# Testez sur quelques exemples
+            liste[i].append(0)
+        else:
+            liste[i].append(1)
+
+for ligne in liste:
+    print(ligne)
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+liste=[]
+
+for i in range(4):			# Première moitié de ligne (de 0 à 3)
+    liste.append([])
+    for j in range(7):
+        if j+i == 3 or j-i == 3:
+            liste[i].append(1)
+        else:
+            liste[i].append(0)
+
+for i in range(4, 7):			# Numéro de ligne
+    liste.append([])		# Ajout d'une liste vide
+    for j in range(7):		# Numéro de colonne
+        if i-j == 3 or j+i == 9:
+            liste[i].append(1)
+        else:
+            liste[i].append(0)
+
+for ligne in liste:
+    print(ligne)
+						</code></pre>
+					</div><!-- fin contenu -->
+				
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice" id="chasse1">Chasse au trésor (1)</h1>
+		<article>
+			
+			
+			<p>
+				Pour cette première partie, le programme doit :
+			</p>
+			<ol class="liste_num">
+				<li>demander à l'utilisateur un entier <code>n</code> puis générer une
+					liste contenant <code>n</code> &laquo;zéros&raquo;.</li>
+				<li>donner aléatoirement la valeur <code class="language-python">1</code>
+					à un des éléments de cette liste.</li>
+				<li>demander <strong>une fois</strong> à l'utilisateur à quel indice se
+					situe cette valeur <code class="language-python">1</code> dans la liste.</li>
+				<li>répondre &laquo;Cherche a droite&raquo;, &laquo;Cherche a gauche&raquo;
+					ou &laquo;Bravo !&raquo; selon la proposition de l'utilisateur.</li>
+				<li>afficher la liste pour vérifier cette réponse.</li>
+			</ol>
+			
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						Lisez bien l'énoncé, relisez aussi le cours sur les listes.
+						Cet exercice est à la portée de tous si l'on est patient et
+						<strong>organisé</strong>. Courage !
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						N'oubliez pas que les indices d'une liste sont numérotés à
+						partir de <code class="language-python">0</code>...
+					</div><!-- fin contenu -->
+				
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Programme principal -----##
+n = int(input("Entrez la valeur d'un entier : "))
+liste = [0]*n						# Liste de n zéros
+
+indice = randint(0, n-1)			# Indice de "1" dans la liste
+liste[indice] = 1
+
+prop = int(input("Donner un indice entre {} et {} : ".format(0, n-1)))
+if prop == indice:
+    print('Bravo !')
+elif prop > indice:
+    print('Cherche a gauche')
+else:
+    print('Cherche a droite')
+
+print(liste)						# Vérification
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			<p>
+				La suite de cet exercice sera proposée 
+				<a href="../tant_que/tant_que_debuter.html#chasse2" target=_blank>ici</a>
+				mais il vaut mieux avoir des connaissances sur la boucle
+				<code class="language-python">while</code> avant de l'aborder...
+			</p>
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Liste de crayons</h1>
+		<article>
+			<img class="img_flotte" src="images_listes/Turtle_Rosaces03.png">
+			<p>
+				La rosace ci-contre a été dessinée en utilisant un liste de crayons.
+				Chaque &laquo;pétale&raquo; a été tracé par un crayon différent.
+				Voici quelques pistes pour reproduire cette figure :
+			</p>
+			<ol class="liste_num">
+				<li>Demander à l'utilisateur le nombre de pétales désirés.</li>
+				<li>Définir une liste vide qui contiendra les futurs crayons.</li>
+				<li>En utilisant une boucle, créer un nouveau crayon, définir ses caractéristiques
+					(<em>épaisseur, couleur, orientation, etc...</em>) puis ajouter ce crayon à la
+					liste précédente.</li>
+				<li>Chaque crayon effectue ensuite une succession de déplacements de
+					<code class="language-python">15</code> pixels, entrecoupés d'une rotation dont
+					l'angle va de <code class="language-python">0</code> à
+					<code class="language-python">16</code> degrés puis revient à
+					<code class="language-python">0</code> degrés avec un pas de 
+					<code class="language-python">1</code>.</li>
+			</ol>
+			
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+##----- Importation des Modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+
+
+##----- Déclaration/initialisation des Variables -----##
+
+
+##----- Création de la liste de crayons -----##
+
+
+##----- Tracé de la rosace -----##
+
+
+exitonclick()
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Encore une piste ?</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Une autre solution ?</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						Pour les couleurs, utilisez une liste de couleurs nommées pré-définies.
+						Par exemple : <code class="language-python">['blue', 'orange', 'green',
+						'red', 'brown', 'pink', ...]</code>. S'il y a plus de tortues que de
+						couleurs, il faudra revenir à la première couleur de la liste puis
+						continuer...						
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Chaque nouveau crayon inséré dans la liste doit avoir une orientation
+						différente des crayons précédents. On rappelle qu'un plan est partagé en
+						<code class="language-python">360</code> degrés : papier, crayon et
+						mathématiques seront nécessaires !
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						Définir une fonction qui pilotera le déplacement de chaque crayon
+						de la liste, comme spécifié dans l'énoncé.
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+def deplacer(liste_crayons, longueur, angle):
+    """ Entrees : Une liste de crayons, longueur et angle sont des entiers
+        Sorties : Deplacement de chaque crayon puis rotation sur lui-meme"""
+    for stylo in liste_crayons:
+        stylo.forward(longueur)
+        stylo.left(angle)
+
+##----- Déclaration/initialisation des Variables -----##
+couleurs = ['blue', 'orange', 'green', 'red', 'brown', 'pink', 'black', 'purple']
+nb_couleurs = len(couleurs)
+liste_stylos = []
+n = int(input('Donnez le nombre de crayons a manipuler : '))
+
+angle = 360/n                                       # Ecart angulaire entre chaque crayon
+orientation = 0                                     # Orientation du 1er crayon
+
+##----- Création de la liste de crayons -----##
+for i in range(n):
+    stylo = Turtle()                                # Un crayon quelconque
+    stylo.setheading(orientation)                   # On oriente
+    stylo.width(2)                                  # Un peu d'épaisseur
+    stylo.pencolor(couleurs[i%nb_couleurs])			# Un peu d'arithmétique
+    stylo.speed(0)                                  # Vitesse maximale
+    liste_stylos.append(stylo)
+    orientation += angle
+
+##----- Tracé de la rosace -----##
+for i in range(16):
+    deplacer(liste_stylos, 15, i)
+
+for i in range(16, -2, -1):
+    deplacer(liste_stylos, 15, i)
+
+for stylo in liste_stylos:
+    stylo.hideturtle()
+
+exitonclick()
+						</code></pre>
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<p>
+							Les couleurs du tracé peuvent aussi être définies aléatoirement
+							en ayant recours au format RGB. L'instruction
+							<code class="language-python">colormode(255)</code>
+							initialise ce type de couleurs. Il ne reste qu'à utiliser
+							<code class="language-python">stylo.pencolor(r, g, b)</code> où
+							<code class="language-python">r</code>, <code class="language-python">g</code>
+							et <code class="language-python">b</code> sont trois entiers compris
+							entre <code class="language-python">0</code> et
+							<code class="language-python">255</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from turtle import *
+
+##----- Définition des Fonctions -----##
+def deplacer(liste_crayons, longueur, angle):
+    """ Entrees : Une liste de crayons, longueur et angle sont des entiers
+        Sorties : Deplacement de chaque crayon puis rotation sur lui-meme"""
+    for stylo in liste_crayons:
+        stylo.forward(longueur)
+        stylo.left(angle)
+
+##----- Déclaration/initialisation des Variables -----##
+liste_stylos = []
+n = int(input('Donnez le nombre de crayons a manipuler : '))
+
+angle = 360/n                                       # Ecart angulaire entre chaque crayon
+orientation = 0                                     # Orientation du 1er crayon
+
+##----- Création de la liste de crayons -----##
+for i in range(n):
+    stylo = Turtle()                                # Un crayon quelconque
+    stylo.setheading(orientation)                   # On oriente
+    stylo.width(2)                                  # Un peu d'épaisseur
+    stylo.pencolor(255*1/(i+1), 255*1/(n-i), 255*(n-i)/n)
+    stylo.speed(0)                                  # Vitesse maximale
+    liste_stylos.append(stylo)
+    orientation += angle
+
+##----- Tracé de la rosace -----##
+for i in range(16):
+    deplacer(liste_stylos, 15, i)
+
+for i in range(16, -2, -1):
+    deplacer(liste_stylos, 15, i)
+
+for stylo in liste_stylos:
+    stylo.hideturtle()
+
+exitonclick()
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/listes/listes_progresser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:46 GMT -->
+</html>

@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/listes/listes_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:46 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Les Listes<br>
+				Exercices pour débuter
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1>Le module <code>random</code></h1>
+		<article>
+			<p>
+				Pour tester le bon comportement de certains programmes, il peut être utile de
+				générer des nombres pseudo-aléatoires. En <span class="majuscules">Python</span>,
+				le module <code>random</code> remplit ce rôle. Parmi les différentes fonctions
+				qu'il contient, il faut particulièrement bien connaître :
+			</p>
+			<ul class="enum">
+				<li><code class="language-python">randint(a, b)</code> qui renvoie un entier compris
+					entre les entiers <code class="language-python">a</code> et
+					<code class="language-python">b</code> (<em>inclus</em>).</li>
+				<li><code class="language-python">shuffle(liste)</code> qui
+					&laquo;mélange sur place&raquo; les éléments de la liste
+					<code class="language-python">liste</code>.</li>
+			</ul>
+			<p>
+				Apprendre à programmer, c'est aussi savoir reconstituer des fonctions
+				déjà programmées par ailleurs. Une partie des exercices de cette page
+				sont à réaliser dans cette optique.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				<strong>Cet exercice est important : il va servir de base aux trois exercices qui
+				suivront.</strong>
+			</p>
+			<ol class="liste_num">
+				<li>Compléter la définition de la fonction
+					<code class="language-python">liste_alea(n = 10, p = 100)</code>
+					qui renvoie une liste de <code class="language-python">n</code>
+					entiers aléatoires choisis entre <code class="language-python">1</code>
+					et <code class="language-python">p</code>.</li>
+					
+				<li>Entrer <code class="language-python">print(liste_alea(8, 20))</code>
+					dans le &laquo;Programme Principal&raquo;.<br>
+					A quelle situation pourrait correspondre la liste ainsi affichée ?</li>
+				
+				<li>Entrer <code class="language-python">print(liste_alea(20, 6))</code>
+					dans le &laquo;Programme Principal&raquo;.<br>
+					A quelle situation pourrait correspondre la liste ainsi affichée ?</li>
+			</ol>
+			
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+##----- Importation des modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : 
+        Sorties : """
+
+
+##----- Programme Principal -----##
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Solution du 1°/</li>
+					<li class="onglet">Solution du 2°/</li>
+					<li class="onglet">Solution du 3°/</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						On crée une liste vide puis on ajoute des éléments à la fin de
+						cette liste avec la méthode	<code class="language-python">.append()</code>.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						On génère un nouvel entier aléatoire, on l'ajoute à la liste ;
+						on génère un nouvel entier aléatoire, on l'ajoute à la liste ;
+						etc...
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+##----- Programme principal -----##
+print(liste_alea(8, 20))
+print(liste_alea(20, 6))
+						</code></pre>
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<code class="language-python">liste_alea(8, 20)</code> peut
+						représenter une liste de <code class="language-python">8</code>
+						notes sur <code class="language-python">20</code>.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<code class="language-python">liste_alea(20, 6)</code> peut
+						représenter une liste de <code class="language-python">20</code>
+						lancers d'un dé à <code class="language-python">6</code> faces.
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Somme des éléments</h1>
+		<article>
+			<p>
+				Concevoir la fonction <code class="language-python">somme(liste)</code>
+				qui renvoie la somme des éléments de la liste
+				<code class="language-python">liste</code>. On admet que les éléments de
+				<code class="language-python">liste</code> sont tous numériques (<em>mais
+				pas forcément des entiers...</em>).
+			</p>
+			<p>
+				Dans le &laquo;programme principal&raquo;, utiliser la fonction
+				<code class="language-python">liste_alea()</code> de l'exercice
+				précédent pour créer une liste aléatoire de
+				<code class="language-python">10</code> entiers compris entre
+				<code class="language-python">1</code> et <code class="language-python">10</code>.
+				Afficher ensuite la somme des termes de cette liste pour
+				tester la fonction
+				<code class="language-python">somme()</code>.
+			</p>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" -->
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Truc/Astuce (<em>après avoir terminé !!!</em>)</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+def somme(liste):
+    """ Entrees : une liste de nombres entiers ou flottants
+        Sorties : la somme de ces nombres"""
+    s = 0
+    for i in liste:
+        s += i
+    return s
+
+##----- Programme principal -----##
+test = liste_alea(10, 10)
+print(test)
+print('La somme des elements de cette liste est {}'.format(somme(test)))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							La méthode pré-programmée en <code>Python</code> qui permet
+							d'effectuer cette somme est <code class="language-python">sum()</code> :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+##----- Programme principal -----##
+test = liste_alea(10, 10)
+print(test)
+print('La somme des elements de cette liste est {}'.format(sum(test)))
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Insérer un élément</h1>
+		<article>
+			<p>
+				Concevoir la fonction <code class="language-python">inserer(liste, position, element)</code>
+				qui renvoie la liste <code class="language-python">liste</code> dans laquelle
+				l'élément <code class="language-python">element</code> a été inséré à
+				l'indice <code class="language-python">position</code>.
+			</p>
+			<p>
+				<strong>Attention !</strong> Il faut bien vérifier que
+				l'élément peut être inséré. En effet, l'indice donné
+				par <code class="language-python">position</code> dépasse
+				peut-être la taille de la liste.
+			</p>
+			<p>
+				Dans le &laquo;programme principal&raquo;, utiliser la fonction
+				<code class="language-python">liste_alea()</code> de l'exercice n°1
+				pour créer une liste aléatoire de <code class="language-python">10</code>
+				entiers compris entre <code class="language-python">1</code> et
+				<code class="language-python">6</code>. Afficher ensuite cette liste
+				puis la même liste dans laquelle on a inséré la valeur
+				<code class="language-python">-1</code> à l'indice
+				<code class="language-python">4</code>.
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+
+				</code></pre>
+			</div>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Une autre solution ?</li>
+					<li class="onglet">Truc/Astuce (<em>après avoir terminé !!!</em>)</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						La méthode <code class="language-python">.append()</code> ajoute un
+						élément en fin de liste. Dans cet exercice, il faut plutôt utiliser
+						la concaténation &laquo;<code class="language-python">+</code>&raquo;
+						entre deux listes.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Pensez à tester les positions extrêmes pour la fonction
+						<code class="language-python">inserer()</code> :
+						<code class="language-python">0</code>,
+						<code class="language-python">len(liste)-1</code>,
+						<code class="language-python">len(liste)</code>...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def inserer(liste, position, element):
+    """ Entrees : une liste, position est un entier, element est non vide
+                  position doit etre compris entre 0 (insertion en début de liste)
+                  et len(liste) (insertion en fin de liste).
+        Sorties : Renvoie la liste dans laquelle element est insere a l'indice position."""
+    longueur = len(liste)
+    if position <= 0:
+        position = 0
+    elif position >= longueur:
+        position = longueur
+
+    resultat = [0]*(longueur +1)			# Liste de 0 avec un élément de plus
+    for i in range(position):
+        resultat[i] = liste[i]				# Les premiers éléments sont recopiés
+    resultat[position] = element
+    for i in range(position, longueur):
+        resultat[i+1] = liste[i]			# Les derniers élements sont décalés de 1
+
+    return resultat
+	
+
+##----- Programme principal -----##
+test = liste_alea(10, 6)
+print(test)
+print('L\'insertion dans la liste donne {}'.format(inserer(test, 4, -1)))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">					
+						<p>
+							En utilisant les &laquo;tranches&raquo; :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def inserer(liste, position, element):
+    """ Entrees : une liste, position est un entier, element est non vide
+                  position doit etre compris entre 0 (insertion en début de liste)
+                  et len(liste) (insertion en fin de liste).
+        Sorties : Renvoie la liste dans laquelle element est insere a l'indice position."""
+    longueur = len(liste)
+    if position <= 0:
+        position = 0
+    elif position >= longueur:
+        position = longueur
+
+    return liste[:position] + [element] + liste[position:]
+	
+
+##----- Programme principal -----##
+test = liste_alea(10, 6)
+print(test)
+print('L\'insertion dans la liste donne {}'.format(inserer(test, 4, -1)))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							La méthode pré-programmée en <code>Python</code> qui permet
+							d'effectuer cette insertion est
+							<code class="language-python">.insert(position, element)</code> :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+test = liste_alea(10, 6)
+print(test)
+test.insert(4, -1)
+print('L\'insertion dans la liste donne {}'.format(test))
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Inverser les éléments d'une liste</h1>
+		<article>
+			<p>
+				Concevoir la fonction <code class="language-python">renverse(liste)</code>
+				qui renvoie la liste <code class="language-python">liste</code> &laquo;inversée&raquo; :
+				le 1<sup>er</sup> élément devient le dernier, le 2<sup>ème</sup> avant-dernier...
+			</p>
+			<p>
+				<strong>Attention !</strong> Il faut bien vérifier que
+				l'élément peut être inséré. En effet, l'indice donné
+				par <code class="language-python">position</code> dépasse
+				peut-être la taille de la liste.
+			</p>
+			<p>
+				Dans le &laquo;programme principal&raquo;, utiliser la fonction
+				<code class="language-python">liste_alea()</code> de l'exercice n°1
+				pour créer une liste aléatoire de <code class="language-python">15</code>
+				entiers compris entre <code class="language-python">1</code> et
+				<code class="language-python">100</code>. Afficher ensuite cette liste
+				puis la liste &laquo;renversée&raquo; pour tester la fonction
+				<code class="language-python">renverse()</code>.
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+
+				</code></pre>
+			</div>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Truc/Astuce (<em>après avoir terminé !!!</em>)</li>
+					<li class="onglet">Top du Top</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						On peut (<em>re</em>)construire une liste du dernier terme au premier...
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def renverse(liste):
+    """ Entrees : une liste.
+        Sorties : renvoie la liste «inversee» : le 1er element devient le dernier,
+                  le 2eme devient avant-dernier..."""
+    resultat = []
+    for i in liste:
+        resultat = [i]+resultat		# On ajoute l'element en premiere position
+    return resultat
+	
+
+##----- Programme principal -----##
+test = liste_alea(15, 100)
+print(test)
+test = renverse(test)
+print('La liste renversee est : {}'.format(test))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">					
+						<p>
+							La méthode pré-programmée en <code>Python</code> qui permet
+							de renverser la liste &laquo;sur place&raquo; est
+							<code class="language-python">.reverse()</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+test = liste_alea(15, 100)
+print(test)
+test.reverse()
+print('La liste renversee est {}'.format(test))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Le top du top : parcourir la liste à l'envers grâce aux tranches.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+test = liste_alea(15, 100)
+print(test)
+test = test[::-1]
+print('La liste renversee est {}'.format(test))
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Valeur maximale dans une liste</h1>
+		<article>
+			<ol class="liste_num">
+				<li>Concevoir la fonction <code class="language-python">maxi(liste)</code> qui
+					renvoie le plus grand élément de <code class="language-python">liste</code>.<br>
+					<em>On admet que les éléments de <code class="language-python">liste</code>
+					sont tous numériques.</em></li>
+				<li>Dans le &laquo;programme principal&raquo;, utiliser la fonction
+					<code class="language-python">liste_alea()</code> de l'exercice n°1
+					pour créer une liste aléatoire de <code class="language-python">15</code>
+					entiers compris entre <code class="language-python">1</code> et
+					<code class="language-python">100</code> pour tester la fonction
+					<code class="language-python">maxi()</code>.
+					<div class="entoure_python">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+##----- Programme principal -----##
+
+						</code></pre>
+					</div></li>
+				<li>Cette fonction renvoie juste un nombre pour l'instant.<br>
+					Améliorer cette fonction afin qu'elle renvoie une liste contenant
+					le maximum comme premier élément puis le (<em>ou les</em>) indice(<em>s</em>)
+					au(<em>x</em>)quel(<em>s</em>) se trouve ce maximum dans la liste
+					analysée.</li>
+				<li>Améliorer le programme principal pour obtenir un affichage comme ci-dessous :
+					<pre class="affichage_python">De quelle longueur doit etre la liste ? 15
+La liste est [66, 7, 87, 96, 96, 91, 53, 75, 65, 12, 98, 5, 17, 25, 98]
+Le maximum de la liste est 98
+Il se trouve aux indices [10, 14]</pre></li>
+			</ol>
+			
+			
+			
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Solution du 1°/</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Solution du 4°/</li>
+					<li class="onglet">Truc/Astuce</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						On décide arbitrairement que le 1<sup>er</sup> élément de la liste est
+						le maximum puis on le compare à chacun des autres éléments, en le
+						remplaçant dès que c'est nécessaire.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def maxi(liste):
+    """ Entrees : une liste d'elements numeriques !
+        Sorties : renvoie la valeur du plus grand element de la liste."""
+    m = liste[0]			# Le maximum est le 1er element au depart
+    for element in liste:
+        if m < element :	# Si m est inferieur a un nouvel element
+             m = element		# Alors m est remplace par cet element
+    return m
+	
+
+##----- Programme principal -----##
+test = liste_alea(15, 100)
+print(test)
+print('Le maximum de cette liste est {}'.format(maxi(test)))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						Lors de la recherche du maximum, on en profite pour stocker au fur
+						et à mesure les indices correspondants à ce maximum dans une liste.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">					
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def maxi_2(liste):
+    """ Entrees : une liste d'elements numeriques !
+        Sorties : renvoie une liste dont le 1er element est la valeur du plus grand element
+                  de la liste d'origine et les elements suivants sont les indices ou le
+                  maximum est present."""
+    m = liste[0]			# Le maximum est le 1er element au depart
+    resultat = []           # La liste des occurrences du maximum
+	
+    for i in range(len(liste)-1):	# On parcourt les indices
+        if m < liste[i]:        	# Si m est inferieur a un nouvel element
+            m = liste[i]        	# Alors m est remplace par cet element
+            resultat = [i]          # et on re-initialise la liste des occurrences
+
+        elif m == liste[i]:     	# Si le nouvel element est égal a m
+            resultat.append(i)      # Son indice est ajoute a la liste
+
+    resultat.insert(0, m)           # On place m au début de la liste a retourner
+    return resultat
+	
+
+##----- Programme principal -----##
+n = int(input('De quelle longueur doit etre la liste ? '))
+test = liste_alea(n, 100)
+print('La liste est {}'.format(test))
+
+maximum = maxi_2(test)
+print('Le maximum de la liste est {}'.format(maximum.pop(0)))
+print('Il se trouve aux indices {}'.format(maximum))
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							La fonction pré-programmée en <span class="majuscules">Python</span>
+							qui permet d'obtenir le maximum d'une liste est
+							<code class="language-python">max()</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from random import *
+
+##----- Définition des Fonctions -----##
+def liste_alea(n=10, p=100):
+    """ Entrees : n et p sont deux entiers naturels non nuls
+        Sorties : Renvoie une liste de n entiers aleatoires compris entre 1 et p"""
+    resultat = []						# Liste vide
+    for i in range(n):
+        resultat.append(randint(1, p))
+    return resultat
+
+
+def indices(element, liste):
+    """ Entrees : element est une valeur, liste est une liste quelconque
+        Sorties : renvoie la liste (eventuellement vide) des indices auxquels
+                  se trouve element dans liste."""
+    resultat = []           		# La liste des occurrences d'element
+	
+    for i in range(len(liste)-1):	# On parcourt les indices
+        if element == liste[i]:     # Si l'element actuel est element
+            resultat.append(i)    	# on ajoute l'indice dans le resultat
+
+    return resultat
+
+
+##----- Programme principal -----##
+n = int(input('De quelle longueur doit etre la liste ? '))
+test = liste_alea(n, 100)
+print('La liste est {}'.format(test))
+
+maximum = max(test)
+print('Le maximum de la liste est {}'.format(maximum))
+
+positions = indices(maximum, test)
+print('Il se trouve aux indices {}'.format(positions))
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/listes/listes_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:46 GMT -->
+</html>

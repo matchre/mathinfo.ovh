@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_depasser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:00 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Le module <code>tkinter</code><br>
+				Les animations - Exercices
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<p>
+				<strong>Attention !</strong> Les erreurs de programmation avec les interfaces
+				graphiques sont souvent nombreuses. Lorsqu'elles se produisent, il faut
+				<strong>redémarrer le shell courant</strong> afin d'éviter &laquo;d'empiler
+				les erreurs&raquo;. Avec l'interface <code>Pyzo</code>,
+				cela se fait en cliquant sur le bouton
+				<img class="logo" src="images_interfaces/Bouton_Redemarre.png">.
+			</p>
+			<p>
+				Un petit résumé des instructions usuelles du module <code>tkinter</code>
+				est disponible, au format <code>.pdf</code> en
+				<a href="fichiers_interfaces/Resume_Tkinter.pdf" download="Resume_Tkinter.pdf">cliquant ici</a>.
+			</p>
+			
+			<p>
+				On rappelle qu'une animation deviendra automatique lorsque la fonction qui
+				&laquo;pilote&raquo; la redéfinition des objets graphiques <strong>fait appel
+				à elle-même</strong> après un cours laps de temps. La méthode <code>.after()</code>
+				du module <code>tkinter</code> permet ce type d'appel récursif :
+			</p>
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+nom_de_la_fenetre.after(temps_en_ms, fonction)
+				</code></pre>
+			</div>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+
+
+
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">L'horloge</h1>
+		<article>
+			<p>
+				<em>Cet exercice est largement inspiré du travail de P. Busac, professeur de
+				Mathématiques au Lycée Édouard Herriot.</em>			
+			</p>
+			<p>
+				L'heure courante est mise à jour toutes les secondes, comme dans l'animation
+				ci-dessous.
+			</p>
+			<img class="img_centre" src="images_interfaces/heure.gif">
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+import time
+
+
+##----- Fonctions de gestion de l'heure -----##
+def mise_a_jour():
+    """Fonction récursive qui remet l'heure à jour toutes les 1000 ms"""
+    # A compléter
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title("Heure courante")
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='0')
+message.grid(row = 0, column = 0, padx=10, pady=10)
+
+##----- Programme principal -----##
+
+fen.mainloop()
+				</code></pre>
+			</div>
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Module <code>time</code></li>
+					<li class="onglet">Une solution ?</li>
+
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						La fonction <code>strftime()</code> du module <code>time</code>
+						permet d'obtenir, sous la forme d'une chaîne de caractères, l'heure
+						actuelle de l'ordinateur sur lequel est exécuté le programme.
+						Pour une chaîne au format &laquo; heure-minute-seconde &raquo;,
+						on utilise <code class="language-python">time.strftime('%H:%M:%S')</code>.
+					</div>
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+import time
+
+
+##----- Fonctions de gestion de l'heure -----##
+def mise_a_jour():
+    """Fonction récursive qui remet l'heure à jour toutes les 1000 ms"""
+    message.configure(text=time.strftime('%H:%M:%S'))
+    fen.after(1000,mise_a_jour)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title("Heure courante")
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='0')
+message.grid(row = 0, column = 0, padx=10, pady=10)
+
+##----- Programme principal -----##
+mise_a_jour()
+
+fen.mainloop()
+						</code></pre>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">La pêche au canard</h1>
+		<article>
+			<p>
+				Un cercle (<em>le canard</em>) apparaît de manière aléatoire dans un <code>Canvas</code>
+				et l'utilisateur doit cliquer à l'intérieur de ce cercle pour l'attraper avant qu'il ne
+				disparaisse (<em>et se &laquo;téléporte&raquo; ailleurs</em>).
+			</p>
+			<img class="img_centre" src="images_interfaces/Peche_Canard.png">
+			<p>
+				L'interface graphique est constituée d'un <code>Canvas</code>, d'un <code>Label</code> et
+				de trois <code>Button</code>. Un cercle rouge de diamètre <code>20</code> pixels apparaît
+				à un endroit du <code>Canvas</code> puis est tracé ailleurs toutes les <code>2</code> secondes.
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+from random import *
+
+##----- Variables globales et conditions initiales -----##
+l, h = 600, 400 											# Dimensions du canevas
+r = 10                                                      # Rayon du cercle
+x0, y0 = randint(12, 590), randint(12, 390)             	# Coordonnées initiales du cercle
+
+##----- Fonction générale pilotant les téléportations -----##
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+
+
+##----- Fonctions receptionnant les événements -----##
+def pointeur(event):
+    """Cette fonction vérifie si le clic de l'utilsateur est bien à l'intérieur du cercle."""
+
+
+def demarrer():
+    """Cette fonction lance le jeu en levant le drapeau qui autorise l'animation."""
+
+
+def arreter():
+    """Cette fonction arrête le jeu en baissant le drapeau qui autorise l'animation."""
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Pêche au Canard')
+
+##----- Création et placement des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', width=12, command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx = 3, pady = 3)
+
+bouton_stop = Button(fen, text='Arrêter', width=12, command=arreter)
+bouton_stop.grid(row = 1, column = 2, padx = 3, pady = 3)
+
+bouton_start = Button(fen, text='Démarrer', width=12, command=demarrer)
+bouton_start.grid(row = 1, column = 1, padx = 3, pady = 3)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='', bg='lightgray', width=40)
+message.grid(row = 1, column = 0, padx = 3, pady = 3)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=l, height=h)
+dessin.grid(row = 0, column = 0, columnspan = 4, padx=3, pady=3)
+
+##----- Objets graphiques -----##
+cercle = dessin.create_oval(x0-r, y0-r, x0+r, y0+r, width=2, outline="red")
+
+##----- Programme principal -----##
+dessin.bind("&lt;Button-1>", pointeur)                      # Au clic, on lance la fonction pointeur
+move()                                                      # On lance l'animation
+
+fen.mainloop()                                              # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			<ol class="liste_num">
+				<li>
+					On suppose que les coordonnées du clic de souris dans le <code>Canvas</code> sont
+					<code>a</code> et <code>b</code>. Comment déterminer mathématiquement que ce clic
+					se situe à l'intérieur du cercle ?</li>
+				<li>
+					Compléter la définition de la fonction <code>pointeur()</code> qui doit déterminer
+					si le clic de souris est dans le cercle. Le texte du <code>Label</code> est modifié
+					pour indiquer si le clic se situe à l'intérieur du cercle ou non.</li>
+				<li>
+					Compléter la définition de la fonction <code>move()</code> pour que, au bout de
+					<code>2</code> secondes, les coordonnées du centre du cercle soient redéfinies
+					de manière aléatoire. <em>On n'utilise pas de drapeau pour l'instant</em>.</li>
+				<li>
+					Terminer par les fonctions <code>demarrer()</code> et <code>arreter()</code>. Ces deux
+					fonctions vont &laquo;donner l'ordre&raquo; à la fonction <code>move()</code> de
+					s'exécuter grâce à une variable globale booléenne <code>drapeau</code>, utilisée dans
+					les trois fonctions.</li>
+				<li>
+					Améliorez l'expérience de jeu en créant un compteur qui affiche dans le
+					<code>Label</code> le nombre de canards	attrapés. A chaque fois que le joueur
+					attrape le canard, la durée entre deux téléportations est raccourcie et le jeu
+					est remis à zéro au bout de 5 échecs.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Fonction n°1</li>
+					<li class="onglet">Fonction n°2</li>
+					<li class="onglet">Fonction n°3</li>
+					<li class="onglet">Une solution ?</li>
+					<li class="onglet">Une variante ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<p>
+							Le centre du cercle a pour coordonnées
+							(<code>x0</code> ; <code>y0</code>) et le
+							cercle a pour rayon <code>r</code>. Le clic de
+							coordonnées (<code>a</code> ; <code>b</code>)
+							se situe donc à l'intérieur du cercle lorsque la
+							distance entre ce clic et le centre du cercle
+							est inférieur à <code>r</code>, c'est-à-dire
+							lorsque :
+						</p>
+						<p class="centrer">
+							<code>(a-x0)²+(b-y0)² &lt;= r²</code>.
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+def pointeur(event):
+    """Cette fonction vérifie si le clic de l'utilsateur est bien à l'intérieur du cercle."""
+    global x0, y0
+    a = event.x                                             # abscisse du clic
+    o = event.y                                             # ordonnée du clic
+    distance = (x0-a)**2+(y0-o)**2                          # Calcul du carré de la distance entre
+    if distance &lt;= r**2:                                    #  le clic et le centre du cercle
+        message.configure(text = 'Clic dans le cercle')
+    else:
+        message.configure(text = 'Clic en dehors du cercle')
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+    global x0, y0
+    x0, y0 = randint(r+2, l-r), randint(r+2, h-r)     		# nouvelles coordonnées du centre du cercle
+    dessin.coords(cercle, x0-10, y0-10, x0+10, y0+10)       # nouveau tracé du cercle
+    fen.after(2000,move)                                  	# Après 2000 millisecondes, la fenêtre appelle
+                                                            # à nouveau la fonction "move"
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<p>
+							On définit la variable globale
+							<code>drapeau</code> en l'initialisant à
+							<code class="language-python">False</code> :
+						</p>
+						<pre class="line-numbers"><code class="language-python">
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+    global x0, y0, drapeau
+    x0, y0 = randint(r+2, l-r), randint(r+2, h-r)     		# nouvelles coordonnées du centre du cercle
+    dessin.coords(cercle, x0-10, y0-10, x0+10, y0+10)       # nouveau tracé du cercle
+    if drapeau == True:
+        fen.after(2000,move)                                # Après 2000 millisecondes, la fenêtre appelle
+                                                            # à nouveau la fonction "move"
+
+def demarrer():
+    """Cette fonction lance le jeu en levant le drapeau qui autorise l'animation."""
+    global drapeau
+    if drapeau == False:
+        drapeau = True                                      # On lève le drapeau
+        move()                                              # On lance l'animation
+
+
+def arreter():
+    """Cette fonction arrête le jeu en baissant le drapeau qui autorise l'animation."""
+    global drapeau
+    drapeau = False                                         # On baisse le drapeau
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import *
+
+##----- Variables globales et conditions initiales -----##
+drapeau = False                                             # Le drapeau est baissé
+l, h = 600, 400 											# Dimensions du canevas
+r = 10                                                      # Rayon du cercle
+x0, y0 = randint(r+2, l-r), randint(r+2, h-r)             	# Coordonnées initiales du cercle
+
+##----- Fonction générale pilotant les téléportations -----##
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+    global x0, y0, drapeau
+    x0, y0 = randint(r+2, l-r), randint(r+2, h-r)     		# nouvelles coordonnées du centre du cercle
+    dessin.coords(cercle, x0-10, y0-10, x0+10, y0+10)       # nouveau tracé du cercle
+    if drapeau == True:
+        fen.after(2000,move)                                # Après 2000 millisecondes, la fenêtre appelle
+                                                            # à nouveau la fonction "move"
+
+
+##----- Fonctions receptionnant les événements -----##
+def pointeur(event):
+    """Cette fonction vérifie si le clic de l'utilsateur est bien à l'intérieur du cercle."""
+    global x0, y0
+    a = event.x                                             # abscisse du clic
+    o = event.y                                             # ordonnée du clic
+    distance = (x0-a)**2+(y0-o)**2                          # Calcul du carré de la distance entre
+    if distance &lt;= r**2:                                    #  le clic et le centre du cercle
+        message.configure(text = 'Clic dans le cercle')
+    else:
+        message.configure(text = 'Clic en dehors du cercle')
+
+
+def demarrer():
+    """Cette fonction lance le jeu en levant le drapeau qui autorise l'animation."""
+    global drapeau
+    if drapeau == False:
+        drapeau = True                                      # On lève le drapeau
+        move()                                              # On lance l'animation
+
+
+def arreter():
+    """Cette fonction arrête le jeu en baissant le drapeau qui autorise l'animation."""
+    global drapeau
+    drapeau = False                                         # On baisse le drapeau
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Pêche au Canard')
+
+##----- Création et placement des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', width=12, command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx = 3, pady = 3)
+
+bouton_stop = Button(fen, text='Arrêter', width=12, command=arreter)
+bouton_stop.grid(row = 1, column = 2, padx = 3, pady = 3)
+
+bouton_start = Button(fen, text='Démarrer', width=12, command=demarrer)
+bouton_start.grid(row = 1, column = 1, padx = 3, pady = 3)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='', bg='lightgray', width=40)
+message.grid(row = 1, column = 0, padx = 3, pady = 3)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=600, height=400)
+dessin.grid(row = 0, column = 0, columnspan = 4, padx=3, pady=3)
+
+##----- Objets graphiques -----##
+cercle = dessin.create_oval(x0-r, y0-r, x0+r, y0+r, width=2, outline="red")
+
+##----- Programme principal -----##
+dessin.bind("&lt;Button-1>", pointeur)		# Au clic, on lance la fonction pointeur
+move()                                     	# On lance l'animation
+
+fen.mainloop()                  			# Boucle d'attente des événements
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import *
+
+##----- Variables globales et conditions initiales -----##
+drapeau = False                                             # Le drapeau est baissé
+l, h = 600, 400 											# Dimensions du canevas
+r = 10                                                      # Rayon du cercle
+x0, y0 = randint(r+2, l-r), randint(r+2, h-r)             	# Coordonnées initiales du cercle
+compteur = 0                                                # Nombre de points
+vies = 4                                                    # Nombre de "vies"
+v = 2000                                                    # Vitesse entre 2 téléportations
+
+
+##----- Fonction générale pilotant les téléportations -----##
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+    global x0, y0, drapeau, v
+    x0, y0 = randint(r+2, l-r), randint(r+2, h-r)     		# nouvelles coordonnées du centre du cercle
+    dessin.coords(cercle, x0-10, y0-10, x0+10, y0+10)       # nouveau tracé du cercle
+    if drapeau == True:
+        fen.after(v, move)                                  # Après v millisecondes, la fenêtre appelle
+                                                            # à nouveau la fonction "move"
+
+															
+##----- Fonctions receptionnant les événements -----##
+def pointeur(event):
+    """Cette fonction vérifie si le clic de l'utilsateur est bien à l'intérieur du cercle."""
+    global x0, y0, compteur, vies, drapeau, v
+    if drapeau:
+        a = event.x                                         # abscisse du clic
+        o = event.y                                         # ordonnée du clic
+        distance = (x0-a)**2+(y0-o)**2                      # Calcul du carré de la distance entre
+        if distance &lt;= r**2:                                # le clic et le centre du cercle
+            compteur += 1
+            v -= 50
+        else:
+            vies -= 1
+        message.configure(text = 'Vies : {}     -     Score : {}'.format(vies, compteur))
+        if vies == -1:
+            drapeau = False
+            message.configure(text = 'Terminé ! Score : {}'.format(compteur))
+
+
+def demarrer():
+    """Cette fonction lance le jeu en levant le drapeau qui autorise l'animation."""
+    global drapeau
+    if drapeau == False:
+        drapeau = True                                      # On lève le drapeau
+        move()                                              # On lance l'animation
+
+
+def reinit():
+    """Cette fonction ré-initialise le jeun."""
+    global drapeau, x0, y0, r, compteur, vies, v
+    drapeau = False
+    x0, y0 = randint(12, 590), randint(12, 390)
+    r = 10
+    compteur = 0
+    vies = 4
+    v = 2000
+    message.configure(text = 'Vies : 4     -     Score : 0')
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Pêche au Canard')
+
+##----- Création et placement des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', width=12, command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx = 3, pady = 3)
+
+bouton_stop = Button(fen, text='Recommencer', width=12, command=reinit)
+bouton_stop.grid(row = 1, column = 2, padx = 3, pady = 3)
+
+bouton_start = Button(fen, text='Démarrer', width=12, command=demarrer)
+bouton_start.grid(row = 1, column = 1, padx = 3, pady = 3)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='Vies : 4     -     Score : 0', bg='lightgray', width=40)
+message.grid(row = 1, column = 0, padx = 3, pady = 3)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=600, height=400)
+dessin.grid(row = 0, column = 0, columnspan = 4, padx=3, pady=3)
+
+##----- Objets graphiques -----##
+cercle = dessin.create_oval(x0-r, y0-r, x0+r, y0+r, width=2, outline="red")
+
+##----- Programme principal -----##
+dessin.bind("&lt;Button-1>", pointeur)                      # Au clic, on lance la fonction pointeur
+move()                                                      # On lance l'animation
+
+fen.mainloop()                                              # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice">Balles rebondissantes</h1>
+		<article>
+			<p>
+				<em>Cet exercice est largement inspiré du travail de J.M. Meny, professeur de
+				Mathématiques au Lycée de la Plaine de l'Ain.</em>			
+			</p>
+			<p>
+				On considère une interface graphique contenant un canevas et un bouton [<em>Quitter</em>].
+				Le but de cet exercice est de placer un nombre aléatoire de balles dans le canevas et
+				de les faire rebondir entre elles et sur les murs :
+			</p>
+			
+			<div class="entoure_python">
+				<pre class="line-numbers"><code class="language-python">
+##-----Importation des Modules-----##
+from tkinter import *
+from random import *
+
+##----- Variables globales et conditions initiales -----##
+l, h = 600, 400 											# Dimensions du canevas
+r = 10                                                      # Rayon du cercle
+x0, y0 = randint(12, 590), randint(12, 390)             	# Coordonnées initiales du cercle
+
+##----- Fonction générale pilotant les téléportations -----##
+def move():
+    """Fonction récursive qui redéfinit les coordonnées du centre du cercle toutes les 2 secondes,
+        à condition que le drapeau soit levé."""
+
+
+##----- Fonctions receptionnant les événements -----##
+def pointeur(event):
+    """Cette fonction vérifie si le clic de l'utilsateur est bien à l'intérieur du cercle."""
+
+
+def demarrer():
+    """Cette fonction lance le jeu en levant le drapeau qui autorise l'animation."""
+
+
+def arreter():
+    """Cette fonction arrête le jeu en baissant le drapeau qui autorise l'animation."""
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Pêche au Canard')
+
+##----- Création et placement des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', width=12, command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 3, padx = 3, pady = 3)
+
+bouton_stop = Button(fen, text='Arrêter', width=12, command=arreter)
+bouton_stop.grid(row = 1, column = 2, padx = 3, pady = 3)
+
+bouton_start = Button(fen, text='Démarrer', width=12, command=demarrer)
+bouton_start.grid(row = 1, column = 1, padx = 3, pady = 3)
+
+##----- Création d'une zone de texte -----##
+message = Label(fen, text='', bg='lightgray', width=40)
+message.grid(row = 1, column = 0, padx = 3, pady = 3)
+
+##----- Création du canevas -----##
+dessin=Canvas(fen, bg='white', width=l, height=h)
+dessin.grid(row = 0, column = 0, columnspan = 4, padx=3, pady=3)
+
+##----- Objets graphiques -----##
+cercle = dessin.create_oval(x0-r, y0-r, x0+r, y0+r, width=2, outline="red")
+
+##----- Programme principal -----##
+dessin.bind("&lt;Button-1>", pointeur)                      # Au clic, on lance la fonction pointeur
+move()                                                      # On lance l'animation
+
+fen.mainloop()                                              # Boucle d'attente des événements
+				</code></pre>
+			</div>
+			
+			
+			<ol class="liste_num">
+				<li>Complétez la définition de la fonction <code>balle()</code> qui renvoie
+					une nouvelle balle créée dans le canevas. Dans la partie &laquo;Objets graphiques&raquo;,
+					stockez <code>n</code> balles dans la liste <code>jeu</code> de rayon aléatoire
+					compris entre <code>5</code> et <code>25</code> pixels à l'aide d'une boucle et de
+					la fonction <code>balle()</code>.</li>
+				
+				<li>Dans la partie &laquo;Programme principal&raquo;, stockez <code>n</code> couples
+					de coordonnées aléatoires comprises entre <code>-20</code> et <code>20</code>
+					dans la liste <code>vitesse</code>. <code>vitesse</code> est alors une liste
+					de <code>n</code> listes à deux éléments.<br>
+					Complétez la définition de la fonction <code>deplacement()</code>. Attention
+					de bien gérer les &laquo;rebonds&raquo; contre les murs.</li>
+				
+				<li>Complétez la partie &laquo;Programme principal&raquo; pour que toutes les balles
+					se &laquo;lancent&raquo; sans arrêt possible dès l'ouverture de la fenêtre.</li>
+				
+				<li>Les balles rebondissent dans tous les sens contre les murs, mais elles peuvent
+					encore se passer au travers. Définir une nouvelle fonction <code>distance()</code>
+					qui prend pour paramètres les coordonnées des centres et les rayons de deux balles
+					puis renvoie <code>True</code> ou <code>False</code> selon que la distance entre
+					les balles est trop faible ou non.</li>
+				
+				<li>Enfin, complétez la définition de <code>deplacement()</code> pour que la balle reparte
+					dans l'autre sens si elle rencontre une autre balle sur le &laquo;terrain de jeu&raquo;.
+					Pour rendre l'animation plus agréable, définir aléatoirement les coordonnées des centres
+					des balles entre <code>25</code> et <code>675</code> et les vitesses de déplacement
+					entre <code>-10</code> et <code>10</code>.</li>
+			</ol>
+			
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Étape n°1</li>
+					<li class="onglet">Étape n°2</li>
+					<li class="onglet">Étape n°3</li>
+					<li class="onglet">Étape n°4</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import randint		# On importe uniquement la fonction randint
+
+##----- Variables globales et initialisation -----##
+largeur, hauteur = 700, 700 	# Dimensions du Canvas
+x0, y0 = largeur/2, hauteur/2 	# Coordonnées initiales des centres des cercles
+jeu = [] 						# liste de balles
+n = 20 							# nombre de balles
+vitesse = []					# liste des vitesses des balles
+
+##----- Fonctions de calcul -----##
+def hexadecim(n):
+    """Fonction qui renvoie l'écriture héxadécimale de l'entier n
+        compris entre 0 et 255."""
+    chiffres = list('0123456789abcdef')
+    if 0 &lt;= n &lt;= 255:
+        return chiffres[n//16]+chiffres[n%16]
+    else:
+        return '00'
+
+def unecouleur():
+    """Fonction qui détermine une couleur au hasard au format hexadécimal."""
+    r = hexadecim(randint(0, 255))
+    v = hexadecim(randint(0, 255))
+    b = hexadecim(randint(0, 255))
+    return '#'+r+v+b
+
+##----- Fonction générant des objets graphiques -----##
+def balle(x_centre, y_centre, r, couleur, zone):
+    """x_centre, y_centre :  coordonnées du centre du cercle représentant la balle.
+       r : rayon du cercle représentant la balle.
+       couleur : couleur de la balle, obtenue avec la fonction unecouleur().
+       zone : canvas dans lequel on crée la balle.
+    """
+    return zone.create_oval(x_centre-r, y_centre-r, x_centre+r, y_centre+r, fill=couleur)
+
+def deplacement(balle, zone, vitesse, j) :
+    """ translation de la balle d'indice j dans le canevas zone avec la vitesse donnée.
+        Si la balle touche un bord du canevas, elle repart en sens inverse.
+    """
+    # liste (x0,y0,x1,y1) des coordonnées coin sup gauche et coin inf droit du rectangle
+    # dans lequel s'inscrit le cercle représentant la balle :
+    x0, y0, x1, y1 = zone.coords(balle)
+
+	
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Balles rebondissantes')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 0, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=largeur, height=hauteur)
+dessin.grid(row = 0, column = 0, padx=5, pady=5)
+
+##----- Objets graphiques -----##
+for i in range(n) :
+    jeu.append(balle(x0, y0, randint(5, 25), unecouleur(), dessin) )
+
+##----- Programme principal -----##
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import randint		# On importe uniquement la fonction randint
+
+##----- Variables globales et initialisation -----##
+largeur, hauteur = 700, 700 	# Dimensions du Canvas
+x0, y0 = largeur/2, hauteur/2 	# Coordonnées initiales des centres des cercles
+jeu = [] 						# liste de balles
+n = 20 							# nombre de balles
+vitesse = []					# liste des vitesses des balles
+
+##----- Fonctions de calcul -----##
+def hexadecim(n):
+    """Fonction qui renvoie l'écriture héxadécimale de l'entier n
+        compris entre 0 et 255."""
+    chiffres = list('0123456789abcdef')
+    if 0 &lt;= n &lt;= 255:
+        return chiffres[n//16]+chiffres[n%16]
+    else:
+        return '00'
+
+def unecouleur():
+    """Fonction qui détermine une couleur au hasard au format hexadécimal."""
+    r = hexadecim(randint(0, 255))
+    v = hexadecim(randint(0, 255))
+    b = hexadecim(randint(0, 255))
+    return '#'+r+v+b
+
+##----- Fonction générant des objets graphiques -----##
+def balle(x_centre, y_centre, r, couleur, zone):
+    """x_centre, y_centre :  coordonnées du centre du cercle représentant la balle.
+       r : rayon du cercle représentant la balle.
+       couleur : couleur de la balle, obtenue avec la fonction unecouleur().
+       zone : canvas dans lequel on crée la balle.
+    """
+    return zone.create_oval(x_centre-r, y_centre-r, x_centre+r, y_centre+r, fill=couleur)
+
+def deplacement(balle, zone, vitesse, j) :
+    """translation de la balle d'indice j dans le canevas zone avec la vitesse donnée.
+        Si la balle touche un bord du canevas, elle repart en sens inverse.
+    """
+    # liste (x0,y0,x1,y1) des coordonnées coin sup gauche et coin inf droit du rectangle
+    # dans lequel s'inscrit le cercle représentant la balle :
+    x0, y0, x1, y1 = zone.coords(balle)
+    
+    # on retrouve rayon et centre de la balle :
+    r = (x1-x0)//2
+    x0, y0 = (x0+x1)//2, (y0+y1)//2
+    
+    # translation de la balle : 
+    x0 += vitesse[j][0]
+    y0 += vitesse[j][1]
+    
+    # dimensions du canevas :
+    h = zone.winfo_reqheight()
+    l = zone.winfo_reqwidth()
+    
+    # si le centre de la balle sort du canevas, la balle part en sens inverse :
+    if x0 &lt; r or x0 > l-r:
+        vitesse[j][0] = -vitesse[j][0]
+        x0 += vitesse[j][0]
+    if y0 &lt; r or y0 > h-r: 
+        vitesse[j][1] = -vitesse[j][1]
+        y0 += vitesse[j][1]
+        
+    # on met à jour les coordonnées de la balle :
+    zone.coords(balle, x0-r, y0-r, x0+r, y0+r)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Balles rebondissantes')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 0, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=largeur, height=hauteur)
+dessin.grid(row = 0, column = 0, padx=5, pady=5)
+
+##----- Objets graphiques -----##
+for i in range(n) :
+    jeu.append(balle(x0, y0, randint(5, 25), unecouleur(), dessin) )
+
+##----- Programme principal -----##
+for i in range(n) :
+    vitesse.append( [randint(-20,20), randint(-20,20)] )
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import randint		# On importe uniquement la fonction randint
+
+##----- Variables globales et initialisation -----##
+largeur, hauteur = 700, 700 	# Dimensions du Canvas
+x0, y0 = largeur/2, hauteur/2 	# Coordonnées initiales des centres des cercles
+jeu = [] 						# liste de balles
+n = 20 							# nombre de balles
+vitesse = []					# liste des vitesses des balles
+
+##----- Fonctions de calcul -----##
+def hexadecim(n):
+    """Fonction qui renvoie l'écriture héxadécimale de l'entier n
+        compris entre 0 et 255."""
+    chiffres = list('0123456789abcdef')
+    if 0 &lt;= n &lt;= 255:
+        return chiffres[n//16]+chiffres[n%16]
+    else:
+        return '00'
+
+def unecouleur():
+    """Fonction qui détermine une couleur au hasard au format hexadécimal."""
+    r = hexadecim(randint(0, 255))
+    v = hexadecim(randint(0, 255))
+    b = hexadecim(randint(0, 255))
+    return '#'+r+v+b
+
+##----- Fonction générant des objets graphiques -----##
+def balle(x_centre, y_centre, r, couleur, zone):
+    """x_centre, y_centre :  coordonnées du centre du cercle représentant la balle.
+       r : rayon du cercle représentant la balle.
+       couleur : couleur de la balle, obtenue avec la fonction unecouleur().
+       zone : canvas dans lequel on crée la balle.
+    """
+    return zone.create_oval(x_centre-r, y_centre-r, x_centre+r, y_centre+r, fill=couleur)
+
+def deplacement(balle, zone, vitesse, j) :
+    """translation de la balle d'indice j dans le canevas zone avec la vitesse donnée.
+        Si la balle touche un bord du canevas, elle repart en sens inverse.
+    """
+    # liste (x0,y0,x1,y1) des coordonnées coin sup gauche et coin inf droit du rectangle
+    # dans lequel s'inscrit le cercle représentant la balle :
+    x0, y0, x1, y1 = zone.coords(balle)
+    
+    # on retrouve rayon et centre de la balle :
+    r = (x1-x0)//2
+    x0, y0 = (x0+x1)//2, (y0+y1)//2
+    
+    # translation de la balle : 
+    x0 += vitesse[j][0]
+    y0 += vitesse[j][1]
+    
+    # dimensions du canevas :
+    h = zone.winfo_reqheight()
+    l = zone.winfo_reqwidth()
+    
+    # si le centre de la balle sort du canevas, la balle part en sens inverse :
+    if x0 &lt; r or x0 > l-r:
+        vitesse[j][0] = -vitesse[j][0]
+        x0 += vitesse[j][0]
+    if y0 &lt; r or y0 > h-r: 
+        vitesse[j][1] = -vitesse[j][1]
+        y0 += vitesse[j][1]
+        
+    # on met à jour les coordonnées de la balle :
+    zone.coords(balle, x0-r, y0-r, x0+r, y0+r)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Balles rebondissantes')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 0, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=largeur, height=hauteur)
+dessin.grid(row = 0, column = 0, padx=5, pady=5)
+
+##----- Objets graphiques -----##
+for i in range(n) :
+    jeu.append(balle(x0, y0, randint(5, 25), unecouleur(), dessin) )
+
+##----- Programme principal -----##
+for i in range(n) :
+    vitesse.append( [randint(-20,20), randint(-20,20)] )
+
+while True :                        # boucle de mises à jour affichage du canevas
+    
+    for j in range(n):              # boucle de translation de toutes les balles
+        deplacement(jeu[j], dessin, vitesse, j) 
+       
+    fen.after(10, dessin.update())
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+def distance(x1, y1, r1, x2, y2, r2):
+    """Cette fonction renvoie True si la distance entre deux centres de balles
+        de coordonnées (x1, y1) et (x2, y2) est inférieure à r1+r2."""
+    if (x1-x2)**2+(y1-y2)**2 &lt;= (r1+r2)**2:
+        return True
+    else:
+        return False
+						</code></pre>
+					</div>
+					   
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+##----- Importation des Modules -----##
+from tkinter import *
+from random import randint		# On importe uniquement la fonction randint
+
+##----- Variables globales et initialisation -----##
+largeur, hauteur = 700, 700 	# Dimensions du Canvas
+x0, y0 = largeur/2, hauteur/2 	# Coordonnées initiales des centres des cercles
+jeu = [] 						# liste de balles
+n = 20 							# nombre de balles
+vitesse = []					# liste des vitesses des balles
+
+##----- Fonctions de calcul -----##
+def hexadecim(n):
+    """Fonction qui renvoie l'écriture héxadécimale de l'entier n
+        compris entre 0 et 255."""
+    chiffres = list('0123456789abcdef')
+    if 0 &lt;= n &lt;= 255:
+        return chiffres[n//16]+chiffres[n%16]
+    else:
+        return '00'
+
+def unecouleur():
+    """Fonction qui détermine une couleur au hasard au format hexadécimal."""
+    r = hexadecim(randint(0, 255))
+    v = hexadecim(randint(0, 255))
+    b = hexadecim(randint(0, 255))
+    return '#'+r+v+b
+
+def distance(x1, y1, r1, x2, y2, r2):
+    """Cette fonction renvoie True si la distance entre deux centres de balles
+        de coordonnées (x1, y1) et (x2, y2) est inférieure à r1+r2."""
+    if (x1-x2)**2+(y1-y2)**2 &lt;= (r1+r2)**2:
+        return True
+    else:
+        return False
+
+##----- Fonction générant des objets graphiques -----##
+def balle(x_centre, y_centre, r, couleur, zone):
+    """x_centre, y_centre :  coordonnées du centre du cercle représentant la balle.
+       r : rayon du cercle représentant la balle.
+       couleur : couleur de la balle, obtenue avec la fonction unecouleur().
+       zone : canvas dans lequel on crée la balle.
+    """
+    return zone.create_oval(x_centre-r, y_centre-r, x_centre+r, y_centre+r, fill=couleur)
+
+def deplacement(balle, zone, vitesse, j, n) :
+    """translation de la balle d'indice j dans le canevas zone avec la vitesse donnée.
+        Si la balle touche un bord du canevas ou une autre balle, elle repart en sens inverse.
+    """
+    # liste (x0,y0,x1,y1) des coordonnées coin sup gauche et coin inf droit du rectangle
+    # dans lequel s'inscrit le cercle représentant la balle :
+    x0, y0, x1, y1 = zone.coords(balle)
+    
+    # on retrouve rayon et centre de la balle :
+    r = (x1-x0)//2
+    x0, y0 = (x0+x1)//2, (y0+y1)//2
+    
+    # recherche de collisions :
+    for i in range(n):
+        if i != j:
+            xa, ya, xb, yb = zone.coords(jeu[i])
+            r2 = (xb-xa)//2
+            xa, ya = (xa+xb)//2, (ya+yb)//2
+            if distance(x0, y0, r, xa, ya, r2):
+                vitesse[j][0] = -vitesse[j][0]
+                vitesse[j][1] = -vitesse[j][1]
+    
+    # translation de la balle : 
+    x0 += vitesse[j][0]
+    y0 += vitesse[j][1]
+    
+    # dimensions du canevas :
+    h = zone.winfo_reqheight()
+    l = zone.winfo_reqwidth()
+    
+    # si le centre de la balle sort du canevas, la balle part en sens inverse :
+    if x0 &lt; r or x0 > l-r:
+        vitesse[j][0] = -vitesse[j][0]
+        x0 += vitesse[j][0]
+    if y0 &lt; r or y0 > h-r: 
+        vitesse[j][1] = -vitesse[j][1]
+        y0 += vitesse[j][1]
+        
+    # on met à jour les coordonnées de la balle :
+    zone.coords(balle, x0-r, y0-r, x0+r, y0+r)
+
+
+##----- Création de la fenêtre -----##
+fen = Tk()
+fen.title('Balles rebondissantes')
+
+##----- Création des boutons -----##
+bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+bouton_quitter.grid(row = 1, column = 0, sticky=S+W+E, padx=25, pady=5)
+
+##----- Création du canevas -----##
+dessin = Canvas(fen, bg='white', width=largeur, height=hauteur)
+dessin.grid(row = 0, column = 0, padx=5, pady=5)
+
+##----- Objets graphiques -----##
+for i in range(n) :
+    jeu.append(balle(randint(25, 675), randint(25, 675), randint(5, 25), unecouleur(), dessin) )
+
+##----- Programme principal -----##
+for i in range(n) :
+    vitesse.append( [randint(-10,10), randint(-10,10)] )
+
+while True :                        # boucle de mises à jour affichage du canevas
+    
+    for j in range(n):              # boucle de translation de toutes les balles
+        deplacement(jeu[j], dessin, vitesse, j, n) 
+       
+    fen.after(10, dessin.update())
+
+fen.mainloop()                  # Boucle d'attente des événements
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/interfaces/interfaces_depasser.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:56:01 GMT -->
+</html>

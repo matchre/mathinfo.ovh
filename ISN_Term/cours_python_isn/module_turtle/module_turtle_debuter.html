@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<!-- Structure html/css/js de Nicolas Buyle-Bodin et Jean_Manuel Meny -->
+<!-- "L'allègement" de MathJax a été réalisé par Mickael Bordonaro -->
+
+<!-- Ces documents ont demandé plusieurs centaines d'heures de travail et de conception. -->
+<!-- Ils sont sous licence Creative Commons BY-NC-SA : -->
+<!-- Respect de la Paternité - Pas d'utilisation commerciale - Partage des conditions initiales à l'identique -->
+
+
+
+<html lang="fr">
+
+<!-- ***************************** En-tête du document ****************************** -->
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/module_turtle/module_turtle_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:41 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Lycée Lacassagne - Spécialité ISN en Terminale Scientifique"> 
+	<meta name="designer" content="Nicolas Buyle-Bodin">
+	<meta name="author"  content="Nicolas BUYLE-BODIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Titre de la page -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../images_index/icone_python.png" />
+	<title> Langage Python en ISN </title>
+	
+	<!-- **************************************************************************** -->
+	<!-- ************************** Feuilles de style CSS *************************** -->
+	
+	<!-- remise à zéro pour annuler style navigateur -->
+	<link rel="stylesheet" href="../../../css/raz.css">
+	
+	<!-- prism permet la coloration syntaxique des programmes en Python -->
+	<link rel="stylesheet" href="../../../css/prism.css"/>
+		
+	<!-- Coloration syntaxique avec codemirror -->
+	<link rel="stylesheet" type="text/css" href="../../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../../../codemirror/theme/rubyblue.css">
+    	
+	<!-- Mise en page générale de la page -->
+	<link rel="stylesheet" href="../../../css/Style_ISN_Terminale.css">
+	
+	<!-- ****************************** Fin d'appel CSS ***************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ******************************* Scripts JS ********************************* -->
+	<!-- JQuery - Nécessaire pour une partie des scripts ci-dessous. -->
+	<script src="../../../scripts/jquery.js"></script>
+	<script src="../../../scripts/jquery-iframe-auto-height-master/vendor/jquery.browser.js"></script>
+    <script src="../../../scripts/jquery-iframe-auto-height-master/dist/jquery-iframe-auto-height.js"></script>
+	
+	<!-- Javascript du menu de navigation dans le site. -->
+	<!-- Attention, dossier interne à la "capsule", à modifier pour chaque nouvelle capsule. -->
+	<script src="../scripts_cours_python_isn/menu.js"></script>
+
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../codemirror/lib/codemirror.js" type="text/javascript"></script>
+    <script src="../../../codemirror/mode/python/python.js" type="text/javascript"></script>
+	<script src="../../../codemirror/mode/xml/xml.js"></script>
+	<script src="../../../codemirror/mode/javascript/javascript.js"></script>
+	<script src="../../../codemirror/mode/css/css.js"></script>
+	<script src="../../../codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="../../../codemirror/addon/edit/matchbrackets.js"></script>
+    
+	<!-- Javascript permettant la coloration syntaxique des programmes. -->
+	<script src="../../../scripts/prism.js"></script>  
+    <script src="../../../scripts/clipboard.min.js"></script>
+	
+	<!-- Javascript d'utilisation de Skulpt (interpretation des programmes en Python. -->
+	<script src="../../../skulpt/skulpt.min.js"></script>  
+	<script src="../../../skulpt/skulpt-stdlib.js"></script>
+	
+	<!-- Javascript permettant d'exécuter les codes en Python. -->
+	<!-- Nécessite Skulpt et CodeMirror. -->
+	<script src="../../../scripts/prog_python.js"></script>
+	
+	<!-- Javascript permettant d'afficher e rendu des codes en Html/Css/JS. -->
+	<!-- Nécessite CodeMirror. -->
+	<script src="../../../scripts/prog_html.js"></script>
+	 
+    <!-- Javascript permettant d'utiliser Mathjax. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        showMathMenuMSIE: false,
+        jax: ["input/TeX","output/SVG"],
+        tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+        });
+    </script>
+    <script type="text/javascript" src="../../../mathjax/MathJax8480.js?config=TeX-AMS_SVG-full&amp;locale=fr"></script>
+    	 
+	<!-- Javascript permettant l'affichage des boîtes à onglets. -->
+	<script src="../../../scripts/boite_onglet.js"></script>
+	 
+	<!-- Javascript permettant l'affichage des "accordéons solutions pour les exercices HTML/CSS". -->
+	<script src="../../../scripts/accordeon.js"></script>
+	
+	<!-- ****************************** Fin d'appel JS ****************************** -->
+	<!-- **************************************************************************** -->
+
+
+</head>
+
+
+
+<!-- ************************* Corps principal du document ************************** -->
+<body>
+
+	<!-- **************************************************************************** -->
+	<!-- *********** Encart gauche : menu de navigation dans le(s) site(s) ********** -->
+	<aside id="navparagraphe">  
+		<ul id="menu_accordeon">
+			
+		</ul>
+	</aside>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********** Encart droit : menu de navigation d'une page à l'autre ********** -->
+	<div id="menu_droit">  
+		<a href="#" title="Haut de page"><div id="haut"></div></a>
+		<a href="#" title="Page précédente"><div id="precedent"></div></a>
+		<a href="#" title="Page suivante"><div id="suivant"></div></a>
+		<a href="#" title="Accueil principal"><div id="retour_accueil"></div></a>
+	</div>
+	<!-- ************************* Fin de l'encart gauche *************************** -->
+	<!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ************************** Bannière de la page ***************************** -->
+	<header>
+		<div id="entete">
+			<h1><span class="majuscules">Python</span></h1>
+			<p>
+				Module <code>turtle</code><br>
+				Exercices pour débuter
+			</p>
+		</div>
+	</header>
+	<!-- *************************** Fin de la bannière ***************************** -->
+	<!-- **************************************************************************** -->
+	
+
+	<!-- **************************************************************************** -->
+	<!-- ***************************** Corps de la page ***************************** -->
+	<div id="corps">
+
+    <!-- **************************************************************************** -->
+    <!-- ************** Fil d'Ariane pour repérer la page dans le site ************** -->
+    <ul id="ariane">  
+
+    </ul>
+    <!-- ************************** Fin du fil d'Ariane ***************************** -->
+    <!-- **************************************************************************** -->
+
+
+	<!-- **************************************************************************** -->
+	<!-- ********* Section principale : notions et exercices correspondants ********* -->
+	<section>
+	
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<article>
+			<h2>Conseils</h2>
+			<p>
+				Même si ce site permet de tester de petits programmes en <span class="majuscules">Python</span>,
+				il est <strong>fortement conseillé</strong> de sauvegarder ces programmes à
+				l'aide d'un environnement de programmation en <span class="majuscules">Python</span>
+				(<em>Pyzo, Geany, etc...</em>). Pour cela, il faut donner à chaque programme
+				un nom explicite puis les &laquo;organiser&raquo; dans les répertoires adéquats.
+			</p>
+			<p>
+				On pourra commencer par créer un dossier <code>[Module_Turtle]</code>.
+				Ce dossier contiendra tous les programmes (<em>scripts</em>) rédigés à
+				partir de cette page.
+			</p>
+			<p>
+				Ensuite, il faut prendre l'habitude d'insérer des commentaires (<em>pertinents</em>)
+				dans son programme. En <span class="majuscules">Python</span>, ces commentaires sont
+				précédés d'un dièse &laquo;<code>#</code>&raquo;. Ils ne sont pas interprétés lors
+				de l'exécution des instructions.
+			</p>
+			
+			
+			<h2>Remarque importante</h2>
+			<p>
+				Les programmes en <span class="majuscules">Python</span> rédigés avec ce site
+				<strong class="majuscules">ne doivent pas comporter d'accents</strong> !
+				A cause d'un seul caractère accentué, le programme est susceptible de ne pas
+				être exécuté correctement.<br>
+				Ce problème d'encodage des caractères sera étudié plus tard au cours de l'année.
+			</p>
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<p>
+				En reprenant le script d'exemple sur la spirale, modifier les
+				instructions (<em>angle, couleur, etc...</em>) afin d'aboutir à
+				des dessins originaux. Par exemple :
+			</p>
+			<table class="classique">
+				<tr><td><img src="images_module_turtle/Spirale01.png"></td>
+					<td><img src="images_module_turtle/Spirale02.png"></td>
+					<td><img src="images_module_turtle/Spirale03.png"></tr>
+			</table>
+			
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+from turtle import *
+stylo = Turtle()
+stylo.color('blue')
+n = int(input('Valeur ?'))
+
+for i in range(n):
+	stylo.forward(3*i)
+	stylo.right(90)
+
+exitonclick()				# La fenêtre se ferme en cliquant dessus
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" --></li>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Spirale n°1</li>
+					<li class="onglet">Spirale n°2</li>
+					<li class="onglet">Spirale n°3</li>
+				</ul>
+				<div class="zone_boite">
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+stylo = Turtle()
+n = int(input('Valeur ?'))
+
+for i in range(n):
+	stylo.forward(3*i)
+	stylo.right(120)
+
+exitonclick()				# La fenêtre se ferme en cliquant dessus
+						</code></pre>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+stylo = Turtle()
+stylo.color('red')
+n = int(input('Valeur ?'))
+
+for i in range(n):
+	stylo.forward(3*i)
+	stylo.left(120)
+
+exitonclick()				# La fenêtre se ferme en cliquant dessus
+						</code></pre>
+					</div><!-- fin contenu -->
+					  
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+stylo = Turtle()
+stylo.color('blue')
+n = int(input('Valeur ?'))
+
+for i in range(n):
+	stylo.circle(i)
+	stylo.left(120)
+
+exitonclick()				# La fenêtre se ferme en cliquant dessus
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<img class="img_flotte" src="images_module_turtle/turtle_schema.png">
+			<p>
+				Les instructions ci-dessous permettent de tracer la figure ci-contre.
+			</p>
+			<p>
+				Traduire ces instructions à l'aide du module <code>turtle</code> de
+				<code>Python</code>.
+			</p>
+			<table class="classique">
+				<tr><th>Traitement</th></tr>
+				<tr><td style="text-align: left;">Tracer un quart de cercle
+					de rayon 100 pixels.<br>
+					Tourner à droite de 90° et avancer de 50 pixels sans
+					tracer.<br>
+					Tracer un disque de rayon 50 pixels et de couleur rouge.<br>
+					Retourner le crayon et avancer de 50 pixels sans tracer.<br>
+					Tracer un segment de 100 pixels, tourner à gauche de 90°
+					puis tracer un nouveau segment de 100 pixels.</td></tr>
+			</table>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" --></li>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Le quart de cercle s'obtient avec la méthode
+						<code class="language-python">.circle()</code>,
+						le disque avec la méthode
+						<code class="language-python">.dot()</code>.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+
+stylo = Turtle()		# Le crayon
+stylo.circle(100, 90)   # quart de cercle (90°) de rayon 100
+stylo.right(90)         # car le stylo devient orienté vers le haut
+stylo.up()              # pour avancer sans tracer
+stylo.forward(50)
+stylo.down()            # pour tracer
+stylo.dot(50, 'red')	# disque rouge de rayon 50
+stylo.left(180)         # demi-tour
+stylo.up()
+stylo.forward(50)
+stylo.down()            # pour tracer les rayons du quart de cercle
+stylo.forward(100)
+stylo.left(90)
+stylo.forward(100)
+exitonclick()
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<img class="img_flotte" src="images_module_turtle/turtle_maison.png">
+			<p>
+				Écrire un programme qui permet de tracer la figure ci-contre.
+			</p>
+			<p>
+				Tous les segments ont la même longueur, on stockera donc cette longueur
+				dans une variable : cela évitera de modifier de nombreuses lignes du
+				programme uniquement pour changer la longueur de référence de ce tracé.
+			</p>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" --></li>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						La base est un carré, le toit est formé par deux côtés d'un
+						triangle équilatéral.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Les méthodes <code class="language-python">.left()</code> et
+							<code class="language-python">.right()</code> permettent au
+							crayon de s'orienter de <strong>manière relative</strong>.
+							Les pointillés montrent la direction dans laquelle le crayon
+							appliquera la prochaine instruction de type
+							<code class="language-python">.forward()</code>.
+						</p>
+						<p>
+							Avant l'instruction <code class="language-python">.left(50)</code> :
+							<img class="logo" src="images_module_turtle/turtle_avant.png">
+						</p>
+						<p>
+							Après l'instruction <code class="language-python">.left(50)</code> :
+							<img class="logo2" src="images_module_turtle/turtle_apres.png">
+						</p>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+stylo = Turtle()
+longueur = 50               # Important : la longueur est stockée sous forme de constante globale
+
+stylo.forward(longueur)     # Le sol
+stylo.left(90)
+stylo.forward(longueur)     # Mur droit
+stylo.left(30)
+stylo.forward(longueur)     # Toit droit
+stylo.left(120)
+stylo.forward(longueur)     # Toit gauche
+stylo.left(30)
+stylo.forward(longueur)     # Mur gauche
+
+stylo.hideturtle()          # On masque le crayon
+exitonclick()
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+
+		
+		
+		<!-- ************************************************************************ -->
+		<!-- ************* Une partie : un titre h1 suivi d'un article ************** -->
+		<h1 class="exercice"></h1>
+		<article>
+			<img class="img_flotte" src="images_module_turtle/turtle_ligne_carres.png">
+			<p>
+				Le dessin ci-contre représente 10 carrés de 30 pixels de côté,
+				espacés chacun de 10 pixels. Écrire un script dans lequel le crayon :
+			</p>
+			<ul class="enum">
+				<li>Trace un carré ;</li>
+				<li>Avance pour s'éloigner de 10 pixels de ce carré ;</li>
+				<li>Trace un nouveau carré ; etc...</li>
+			</ul>
+			<p>
+				Le nombre de carrés à tracer, la longueur d'un côté du carré et l'espace
+				(<em>la distance</em>) entre deux carrés consécutifs doivent être stockés
+				dans des variables au nom explicite. On peut définir d'autres variables si besoin.
+			</p>
+			
+			<div class="programme_python">
+				<div class="titrePanneauPython"></div>
+				<div class="a_executer">
+					<textarea class="code_python">
+
+
+					</textarea>
+					<button class="runner" type="button">Exécuter le programme</button>
+				</div> <!-- ferme div class="a_executer" -->
+
+				<div class="execution">
+					<pre class="sortie"></pre>
+					<!-- Tortue nécessaire même si elle n'est pas utilisée -->
+					<div class="tortue"></div> 
+				</div><!-- ferme div class="execution" -->
+									
+			</div><!-- ferme div class="programme" --></li>
+			
+			<!-- ******************* Début de la Boîte à onglets ******************** -->
+			<div class="boite_onglets">
+				<ul class="onglets">
+					<li class="onglet">Une piste ?</li>
+					<li class="onglet">Une autre piste ?</li>
+					<li class="onglet">Une solution ?</li>
+				</ul>
+				<div class="zone_boite">   
+					<div class="contenu">
+						Il ne faut pas tout faire en même temps.<br>
+						Commencer par définir les variables puis tracer un
+						carré à l'aide de ces variables. A la fin de ce
+						tracé, écarter le crayon pour se mettre en
+						position afin de tracer le carré suivant.
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<p>
+							Il y a deux répétitions :
+						</p>
+						<ul class="enum">
+							<li>Une première boucle
+								<code class="language-python">for</code> doit
+								permettre de tracer un carré ;</li>
+							<li>Cette boucle est imbriquée à l'intérieur
+								d'une autre boucle <code class="language-python">for</code>
+								qui, elle, tracera la totalité des carrés.</li>
+						</ul>
+						<p>
+							Attention : ces deux boucles ne peuvent pas être
+							basées sur le même nom de variable...
+						</p>
+					</div><!-- fin contenu -->
+					
+					<div class="contenu">
+						<pre class="line-numbers"><code class="language-python">
+from turtle import *
+
+# On définit des variables
+n = 4                       # Nombre de côtés d'un carré
+l = 30                      # Longueur d'un côté d'un carré
+a = 90                      # Angle "gauche" de rotation pour le tracé d'un carré
+
+e = 10                      # Espace entre deux figures
+nombre = 10                 # Nombre de figures
+
+stylo = Turtle()            # Le crayon
+stylo.speed(0)				# Pour tracer vite...
+# On programme les instructions
+for i in range(nombre):     # Nombre de figures à tracer
+
+    for j in range(n):      # Boucle du tracé d'un carré
+        stylo.forward(l) 
+        stylo.left(a)
+
+    # Passage à la figure suivante
+    stylo.up()              # On n'écrit plus
+    stylo.forward(l+e)      # On avance d'un côté et de l'espace
+    stylo.down()            # On peut écrire
+
+stylo.hideturtle()
+exitonclick()
+						</code></pre>
+					</div><!-- fin contenu -->
+				</div><!-- fin zone_boite -->
+			</div><!-- fin boite_onglets -->
+			<!-- ******************** Fin de la Boîte à onglets ********************* -->
+			
+			
+			
+		</article>
+		<!-- *************************** Fin de la partie *************************** -->
+		<!-- ************************************************************************ -->
+		
+		
+		
+		
+
+		<!-- fin de l'énoncé -->
+	</section>
+	<!-- fin de l'encart droit -->
+	
+	</div>
+	<!-- fin du corps de la page -->
+
+	<!-- début du pied de page -->
+	<footer> 
+		<span id="a_gauche">N. Buyle-Bodin</span>
+		<span id="a_droite"> </span>
+	</footer>
+	
+</body>
+
+<!-- Mirrored from www.mathinfo.ovh/ISN_Term/cours_python_isn/module_turtle/module_turtle_debuter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Sep 2019 14:55:43 GMT -->
+</html>
